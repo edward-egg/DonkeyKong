@@ -1,0 +1,126 @@
+body {
+    background-image: url("../../imags/login-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    .login {
+        float: right;
+        min-width: 23%;
+        width: auto;
+        height: auto;
+        background-color: #FFFFFF;
+        border-radius: 8px;
+        text-align: center;
+        margin-right: 10%;
+        box-shadow: 0 0 10px #434A50;
+        padding: 2%;
+        .radios {
+            margin-top: 20px;
+            // color: #ffa800;
+            .user-radio,
+            .manager-radio {
+                width: 20px;
+                height: 20px;
+                outline: 0;
+            }
+        }
+        .error {
+            display: none;
+            // margin-top: %;
+            font-size: 13px;
+            color: red;
+            position: relative;
+            top: 10px;
+        }
+        .welcome-login {
+            font-size: 30px;
+            font-weight: bolder;
+            color: dimgray;
+            display: block;
+            border-bottom: 1px solid #ee7700;
+            width: 100%;
+        }
+        .id-input,
+        .pass-input {
+            line-height: 28px;
+            border: 1px solid #d8d8d8;
+            color: #666;
+            box-shadow: 0 0 5px #fff;
+            border-radius: 5px;
+            height: 40px;
+            width: 80%;
+            margin-top: 5%;
+            padding-left: 5px;
+            &:focus {
+                transition-duration: 0.5s;
+                border: 1px solid #ffa200;
+                box-shadow: 0 0 5px #ffa200;
+                outline: 0;
+            }
+        }
+        .btn-login {
+            width: 70%;
+            height: 40px;
+            margin-top: 10%;
+            background-color: #ffa800;
+            font-size: 18px;
+            color: whitesmoke;
+            border-radius: 8px;
+            font-weight: bold;
+            border: none;
+            &:hover {
+                background-color: #ffb01e;
+                color: whitesmoke;
+                font-weight: bold;
+                transition-duration: 0.3s;
+            }
+        }
+        .to-regist {
+            display: block;
+            margin-top: 5%;
+            font-size: 16px;
+            color: #757575;
+            a {
+                text-decoration: none;
+                color: red;
+            }
+        }
+        #forget{
+            position: relative;
+            top: 16px;
+            font-size: 14px;
+            color: gainsboro;
+            float: left;
+            a{
+                text-decoration: none;
+                &:hover{
+                    color: red;
+                }
+            }
+        }
+    }
+    .title {
+        color: black;
+        font-size: 28px;
+        font-weight: bolder;
+        position: relative;
+        top: 80px;
+        left: 120px;
+        letter-spacing: 2px;
+        span {
+            position: relative;
+            bottom: 20px;
+        }
+    }
+    .slogan {
+        width: 50%;
+        padding-left: 5px;
+        border-left: 5px whitesmoke solid;
+        border-radius: 3px;
+        color: black;
+        font-size: 25px;
+        font-weight: bolder;
+        position: relative;
+        top: 280px;
+        left: 100px;
+    }
+}

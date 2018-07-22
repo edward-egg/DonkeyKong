@@ -1,0 +1,93 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controllers;
+
+import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import pojo.FoodStore;
+import pojo.FoodStoreComment;
+import pojo.Scenic;
+import pojo.Users;
+import services.FoodService;
+import services.UsersService;
+import util.DateUtils;
+import util.IDUtils;
+
+/**
+ *
+ * @author hasee
+ */
+@Controller
+@RequestMapping(value = "food")
+public class FoodController {
+    
+    @Autowired
+    FoodService fs;
+    @Autowired
+    UsersService us;
+    
+    @RequestMapping(value = "/add" ,method = RequestMethod.POST)
+    public String addFood(FoodStore food,Model model){
+        fs.addFood(food);
+        model.addAttribute("foodList", fs.getAllFood());
+        return "manager/foodManage";
+    }
+    
+    @RequestMapping(value = "/delete" , method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteFood(String fid){
+        fs.deleteFood(fid);
+    }
+    
+    @RequestMapping(value ="/edit" ,method = RequestMethod.POST)
+    public String editFood(FoodStore food,Model model){
+        fs.updateFood(food);
+        model.addAttribute("food", food);
+        return "manager/foodManage";
+    }
+    
+    @RequestMapping(value = "showAll",method = RequestMethod.GET)
+    @ResponseBody
+    public ArrayList<FoodStore> showAllFood(Model model){
+//        model.addAttribute("foodList",fs.getAllFood());
+        System.out.println("List "+fs.getAllFood());
+        return fs.getAllFood();
+    }
+    
+    @RequestMapping(value = "getAFood",method = RequestMethod.POST)
+    public String getAFood(String fid,Model model){
+        FoodStore food = fs.getFoodById(fid);
+        model.addAttribute("getFood", food);
+        ArrayList<FoodStoreComment> list = fs.getAllComments(food);
+        for(FoodStoreComment comments : list){
+            comments.setUsers(us.getAUser(comments.getUsers().getUserId()));
+        }
+        model.addAttribute("commentList", list);
+        return "foodDetail";
+    }
+    
+    
+    @RequestMapping(value = "/commentedit", method = RequestMethod.POST)
+    public String editNoteComment(String comment, String storeId, Model model, HttpSession session){
+        FoodStore store = fs.getFoodById(storeId);
+        Users user = (Users) session.getAttribute("CURRENT_USER");
+        FoodStoreComment noteComment = new FoodStoreComment(IDUtils.getUUID(),store , user, comment, DateUtils.getTimestamp());
+        fs.addStoreComment(noteComment);
+        ArrayList<FoodStoreComment> list = fs.getAllComments(store);
+        for(FoodStoreComment comments : list){
+            comments.setUsers(us.getAUser(comments.getUsers().getUserId()));
+        }
+        model.addAttribute("commentList", list);
+        return "foodDetail";
+    }
+    
+}

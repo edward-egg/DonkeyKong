@@ -1,0 +1,53 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package services;
+
+import dao.AreaDao;
+import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pojo.Areas;
+
+/**
+ *
+ * @author Jason
+ */
+@Service
+public class AreasServiceImpl implements AreasService{
+    @Autowired
+    AreaDao ad;
+    
+    @Override
+    public void addAreas(Areas area) {
+        ad.insertArea(area);
+    }
+
+    @Override
+    public void deleteAreas(String aid) {
+        ad.deleteArea(aid);
+    }
+
+    @Override
+    public void updateAreas(Areas area) {
+        ad.update(area);
+    }
+
+    @Override
+    public ArrayList<Areas> getAllAreas() {
+        return ad.getAllAreas();
+    }
+
+    @Override
+    public Areas getFoodById(String aid) {
+        return ad.getAreaById(aid);
+    }
+
+    @Override
+    public Areas getAreaByName(String areaName) {
+        return ad.getAreaByName(areaName);
+    }
+    
+}

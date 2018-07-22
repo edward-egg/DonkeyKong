@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+">
+    <bean id="autBean1" class="POJO.Author" autowire="byType">
+        <property name="aut_id" value="Q01"/>
+        <property name="aut_fname" value="Edward"/>
+        <property name="aut_lname" value="Egg"/>
+        <property name="aut_gender" value="Man"/>
+        <property name="aut_no_books" value="6"/>
+        <property name="aut_dob" value="2018/06/03"/>
+        <property name="aut_ord" ref="orderBean1"/>
+    </bean>
+    <bean id="autBean2" class="POJO.Author" autowire="byType">
+        <property name="aut_id" value="Q02"/>
+        <property name="aut_fname" value="Edward"/>
+        <property name="aut_lname" value="Egg"/>
+        <property name="aut_gender" value="Man"/>
+        <property name="aut_no_books" value="6"/>
+        <property name="aut_dob" value="2018/06/03"/>
+        <property name="aut_ord" ref="orderBean2"/>
+    </bean>
+    <bean id="autBean3" class="POJO.Author" autowire="byName">
+        <property name="aut_id" value="Q03"/>
+        <property name="aut_fname" value="Edward"/>
+        <property name="aut_lname" value="Egg"/>
+        <property name="aut_gender" value="Man"/>
+        <property name="aut_no_books" value="6"/>
+        <property name="aut_dob" value="2018/06/03"/>
+<!--        <property name="aut_ord" ref="orderBean"/>-->
+    </bean>
+
+
+    <bean id="orderBean1" class="POJO.Order">
+        <property name="ord_id" value="A01"/>
+        <property name="ord_date" value="2017/03/04"/>
+        <property name="ord_time" value="15/30/00"/>
+        <property name="ord_qty" value="60"/>
+        <property name="ord_cost" value="99.9"/>
+        <property name="ord_books" >
+            <list>
+                <ref bean="bookBean1"/>
+<!--                <ref bean="bookBean2"/>
+                <ref bean="bookBean3"/>-->
+            </list>
+        </property>
+    </bean>
+    <bean id="orderBean2" class="POJO.Order">
+        <property name="ord_id" value="A01"/>
+        <property name="ord_date" value="2017/03/04"/>
+        <property name="ord_time" value="15/30/00"/>
+        <property name="ord_qty" value="60"/>
+        <property name="ord_cost" value="99.9"/>
+        <property name="ord_books" >
+            <list>
+                <!--<ref bean="bookBean1"/>-->
+                <ref bean="bookBean2"/>
+                <!--<ref bean="bookBean3"/>-->
+            </list>
+        </property>
+    </bean>
+    <bean id="aut_ord" class="POJO.Order">
+        <property name="ord_id" value="A01"/>
+        <property name="ord_date" value="2017/03/04"/>
+        <property name="ord_time" value="15/30/00"/>
+        <property name="ord_qty" value="60"/>
+        <property name="ord_cost" value="99.9"/>
+        <property name="ord_books" >
+            <list>
+                <!--<ref bean="bookBean1"/>-->
+                <ref bean="bookBean2"/>
+                <ref bean="bookBean3"/>
+            </list>
+        </property>
+    </bean>
+    
+    
+    <bean id="bookBean1" class="POJO.Book">
+        <constructor-arg value="D01"/>
+        <constructor-arg value="Blood"/>
+        <constructor-arg value="100.99"/>
+        <constructor-arg value="80"/>
+    </bean>
+    <bean id="bookBean2" class="POJO.Book">
+        <constructor-arg value="D01"/>
+        <constructor-arg value="Blood"/>
+        <constructor-arg value="100.99"/>
+        <constructor-arg value="80"/>
+    </bean>
+    <bean id="bookBean3" class="POJO.Book">
+        <constructor-arg value="D01"/>
+        <constructor-arg value="Blood"/>
+        <constructor-arg value="100.99"/>
+        <constructor-arg value="80"/>
+    </bean>
+</beans>

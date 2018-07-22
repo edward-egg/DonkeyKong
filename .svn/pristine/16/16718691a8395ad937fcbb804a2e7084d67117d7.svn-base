@@ -1,0 +1,118 @@
+<%-- 
+    Document   : notePage
+    Created on : 2018-5-23, 23:11:04
+    Author     : hasee
+    游记主页
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/notePage.css">
+
+        <title>Note Page</title>
+        <style>
+            #note-nav{
+                color: black;
+                text-decoration: none;
+            }
+            #note-nav:link{
+                color: black;
+            }
+            #note-nav:visited{
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <!--导航模块-->
+        <%@include file="header.jsp" %>
+        <div class="note-body">
+            <!--
+                    游记列表
+            -->
+            <div class="note-list">
+                <div class="toolbar">
+<!--                    <div class="note-search">
+                        <img src="resource/imags/icon/search.png" class="icon-search" width="20px" height="20px"/>
+                        <input class="in-find" type="text" placeholder="Enter the note name" />
+                        <button type="button" class="find">Search</button>
+                    </div>-->
+                    <div class="note-sort">
+                        <span>
+                            Sort
+                        </span>
+                        <button type="button" class="sort-btn like" onclick="sortByLike()">Like</button>
+                        <button type="button" class="sort-btn time" onclick="sortByRelease()">Release Time</button>
+                    </div>
+                </div>
+                <div class="travel-note">
+                    <c:forEach items="${noteList}" var="n">
+                        <a href="note/getANote?nid=${n.noteId}" id="note-nav">
+                            <div class="note-item">
+                                <img src="resource/imags/note/${n.noteImg == null ? 'c4Fvlp63yAQ.jpg' : n.noteImg}" />
+                                <div class="content">
+                                    <span hidden>${n.noteId}</span><!--隐藏id传数据-->
+                                    <dl>
+                                        <dt>
+                                            ${n.noteTitle}
+                                        </dt>
+                                        <dd>
+                                            ${n.noteContent}
+                                        </dd>
+                                    </dl>
+                                    <div class="info">
+                                        <span class="user">
+                                            <img src="resource/imags/icon/account.png" class="icon account" alt="">${n.users.userId}</span>
+                                        <span class="like">
+                                            <img src="resource/imags/icon/favorites.png" class="icon browse" alt="">${n.noteLike}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a> 
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <script src="resource/js/jquery-2.1.0.js"></script>
+    <script>
+        function sortByLike() {
+            $.ajax({
+                url: 'redirect/noteLikeSort',
+                type: 'POST',
+                data: {},
+                dataType: "json",
+                success: function () {
+                    alert("success");
+                    window.location.href = 'redirect/notePage';
+                },
+                error: function () {
+                    window.location.href = 'redirect/notePage';
+                }
+            });
+        }
+        function sortByRelease() {
+            $.ajax({
+                url: 'redirect/noteReleaseSort',
+                type: 'POST',
+                data: {},
+                dataType: "json",
+                success: function () {
+                    window.location.href = 'redirect/notePage';
+                },
+                error: function () {
+                    window.location.href = 'redirect/notePage';
+                }
+            });
+        }
+    </script>
+
+</html>

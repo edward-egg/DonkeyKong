@@ -1,0 +1,109 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import pojo.Users;
+import services.UsersService;
+import util.MD5Utils;
+
+/**
+ *
+ * @author hasee
+ */
+@Controller
+@RequestMapping(value = "/users")
+public class UsersController {
+    @Autowired
+    UsersService usersService;
+    
+    //go to the register page
+    @RequestMapping(value="/register")
+    public String toRegister(){
+        return "register";
+    }
+    
+    //register a new user
+    @RequestMapping(value="/register",method=RequestMethod.POST)
+    public String register(Users user,String password){
+//        String s = user.getPassword();
+//        System.out.println(s);
+        System.out.println("---------------------------------");
+        System.out.println(user.getUserId());
+        System.out.println(password);
+//        String smi = MD5Utils.md5(password);
+//        System.out.println(smi);
+//        user.setPassword(smi);
+        usersService.saveUser(user);      
+        return "login";
+    }
+    
+    //login function
+    @RequestMapping(value="/login" ,method=RequestMethod.POST)
+    public String loginUser(String uid,String upass,Model model){
+        upass = MD5Utils.md5(upass);
+        Users user = usersService.login(uid, upass);
+        System.out.println(upass);
+        if(user !=null){
+            model.addAttribute("user",user);
+            return "main";
+        }else{
+            return "fail";
+        }
+    }
+    
+    //add new user
+    @RequestMapping(value="/addUser" ,method=RequestMethod.POST)
+    @ResponseBody
+    public String addUser(Users user,Model model){
+        usersService.saveUser(user);
+        model.addAttribute("userList",usersService.getUsers());
+        return "manager/manager";
+    }
+    
+    //delete user
+    @RequestMapping(value = "/delUser",method=RequestMethod.POST)
+    @ResponseBody
+    public void deleteUser(String uid){
+        usersService.deleteUser(uid);
+    }
+    
+    //update user
+    @RequestMapping(value = "/editUser",method=RequestMethod.POST)
+    public String editUser(Users user, Model model){
+        usersService.updateUser(user);
+        model.addAttribute("userList", usersService.getUsers());
+        return "manager/manager";
+    }
+    
+    //show userList
+    @RequestMapping(value = "/userList" ,method=RequestMethod.GET)
+    public String showUserList(Model model){
+        model.addAttribute("userList", usersService.getUsers());
+        return "manager/manager";
+    }
+    
+    //find a user
+    @RequestMapping(value="/getAUser",method=RequestMethod.POST)
+    public String getAUser(String uid,Model model){
+        Users user = usersService.getAUser(uid);
+        model.addAttribute("getAUser", user);
+        return "manager/manager";
+    }
+    
+    //user change password
+    @RequestMapping(value = "/changePass",method=RequestMethod.POST)
+    public String changPass(Users user,Model model){
+        usersService.updateUser(user);
+        model.addAttribute("userList", usersService.getUsers());
+        return "user/userPage";
+    }
+}

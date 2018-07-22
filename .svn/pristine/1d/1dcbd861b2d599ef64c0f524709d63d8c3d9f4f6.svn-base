@@ -1,0 +1,65 @@
+body{
+    background-image: url("../imags/login-bg.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    // text-align: center;
+    .login{
+        margin-left: 37%;
+        width: 23%;
+        height: auto;
+        background-color:rgba(240,230,140,0.7);
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 10%;
+        padding:2%;
+        .welcome-login{
+            font-size: 30px;
+            font-weight: bolder;
+            color:dimgray;
+        }
+        .id-input,.pass-input,.tel-input,.mail-input,.name-input{
+            border-radius: 5px;
+            height: 30px;
+            width: 70%;
+            margin-top: 8%;
+            padding-left: 5px;
+        }
+        .error{
+            display: block;
+            font-size: 13px;
+            color: red;
+            position: relative;
+            top: 10px;
+        }
+        .wrong{
+            font-size: 13px;
+            color: red;
+            position: relative;
+            left: 20%;
+        }
+        .btn-regist,.btn-reset{
+            width: 70%;
+            height: 40px;
+            margin-top: 10%;
+            font-size: 18px;
+            background-color: #00008B;
+            color: whitesmoke;
+            border-radius: 8px;
+            &:hover{
+                background-color:#FFFFF0;
+                color: black;
+                font-weight: bold;
+                transition-duration: 0.3s;
+            }
+        }
+    }
+    .title{
+        color: black;
+        font-size: 28px;
+        font-weight: bolder;
+        position: relative;
+        top: 80px;
+        left: 120px;
+        letter-spacing: 2px;
+    }
+}

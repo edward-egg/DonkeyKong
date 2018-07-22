@@ -1,0 +1,121 @@
+<%-- 
+    Document   : foodDetail
+    Created on : 2018-5-23, 23:00:37
+    Author     : hasee
+美食详情
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <title>Food Detail</title>
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" type="text/css" href="resource/css/css/foodDetail.css" />     
+        <link rel="stylesheet" type="text/css" href="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
+    </head>
+
+    <body>
+        <%@include file="header.jsp" %>
+        <div class="food-detail">
+            <div class="head-img">
+                <img src="resource/imags/Akz00I_GGjU.jpg" />
+                <h3>${f.foodStoreName}</h3>
+            </div>
+            <div class="article">
+                <div class="content">
+                    <p>
+                        ${f.storeContent}
+                    </p>
+                </div>
+            </div>
+            <div class="food-comment">
+                <span id="comment-title">Comments</span>
+                <div class="write">
+                    <img src="resource/imags/icon/edit.png"/>
+                    <button type="button" class="w-btn">Write Recommend</button>
+                </div>
+                <div id="dialog" title="Comment">
+                    <form>
+                        <textarea cols="50" rows="7" id="comment" style="width: 100%;resize: none"></textarea>
+                    </form>
+                </div>
+                <br/><br/>
+                <hr/>
+                <div class="comment-list">
+                    <c:forEach items="${commentList}" var="c">
+                    <div class="comment-item">
+                        <div class="avatar">
+                            <img src="resource/imags/icon/account.png" />
+                        </div>
+                        <div class="comment-detail">
+                            <div class="info">
+                                <span>${c.users.userId}</span>&nbsp;&nbsp;
+                                <span>Lv.${c.users.level}</span>
+                                <span id="report">
+                                    <img src="resource/imags/icon/report.png"/>&nbsp;<button id="btn-report" type="button">Report!</button>
+                                </span>
+                            </div>
+                            <div class="msg">
+                                <input hidden="true" id="storeId" value="0726a1cbb0af405cb257dd93308ca223"/><!--测试用，暂时静态值-->
+                                <p>
+                                    ${c.foodStoreComments.commentContent}
+                                </p>
+                                <span id="">
+                                    ${c.foodStoreComments.commentTime}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    </c:forEach>
+                </div>
+            </div>
+    </body>
+
+</body>
+<script src="resource/js/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+<script>
+    $(function () {
+        $('.w-btn').click(function () {
+            $('#dialog').dialog('open');
+        });
+        $('#dialog').dialog({
+            height: 300,
+            width: 400,
+            autoOpen: false,
+            modal: true,
+            buttons: {
+                "Comment": function () {
+                    console.log("comment");
+                    $.ajax({
+                            url: 'food/commentedit',
+                            type: 'POST', 
+                            
+                            data: {
+                                "comment": $('#comment').val(),
+                                "storeId":$('#storeId').val()
+                            },
+                            success: function () {
+                                console.log('success');
+                                location.reload();
+
+                            },
+                            error: function () {
+                                console.log('error!');
+                            }
+                        });
+                },
+                "Cancel": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    })
+</script>
+
+
+</html>

@@ -1,0 +1,62 @@
+#demo {
+	height: 70px;
+	width: 400px;
+	margin: 0 auto;
+	background: #72af3c;
+	color: #FFF;
+	padding: 5px 0 10px 0;
+	overflow: hidden;
+	border-radius: 50px;
+	text-align: center;
+	position: relative;
+	bottom: 30px;
+}
+
+#demo i {
+	background: no-repeat top left;
+	display: inline-block;
+	height: 20px;
+	line-height: 15px;
+	margin: 0 auto 10px auto;
+	font-size: 18px;
+	padding: 0 auto;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+}
+
+#demo i.icon-xiaoyu {
+	background-image: url("../../imags/icon/xiaoyu.png");
+}
+
+#demo i.icon-zhongyu {
+	background-image: url("../../imags/icon/zhongyu.png");
+}
+
+#demo i.icon-dayu {
+	background-image: url("../../imags/icon/dayu.png");
+}
+
+#demo i.icon-qing {
+	background-image: url("../../imags/icon/qing.png");
+}
+
+#demo i.icon-duoyun {
+	background-image: url("../../imags/icon/duoyun.png");
+}
+
+#demo i.icon-yin {
+	background-image: url("../../imags/icon/yin.png");
+}
+
+#demo p {
+	background: rgba(0, 0, 0, .3);
+	margin: 0 10px;
+	padding: 2px;
+	border-radius: 10px;
+	font-size: 14px;
+}
+
+#demo p span {
+	margin: 0 15px;
+}

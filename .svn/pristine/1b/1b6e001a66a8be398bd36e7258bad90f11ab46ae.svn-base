@@ -1,0 +1,287 @@
+body{
+    .header{
+        background-color: #fff;
+        width: 100%;
+        height: 50px;
+        padding:0;
+        height:80px;
+        .title{
+            display: block;
+            float: left;
+            font-size: 20px;
+            font-weight: bolder;
+            letter-spacing: 2px;
+            margin-left:6%;
+            span{
+                position: relative;
+                bottom: 25px;
+            }
+        }
+        .nav{
+            padding-top: 1%;
+            display: block;
+            margin-left: 20%;
+            width: auto;
+            height: inherit;
+            ul{
+                list-style-type: none;
+                li{
+                    float: left;
+                    a{
+                        color: black;
+                        width: 80px;
+                        height: 30px;
+                        font-size: 18px;
+                        line-height: 30px;
+                        display: block;
+                        text-align: center;
+                        text-decoration: none;
+                        margin-left: 8px;
+                        border-bottom: 2px #EEB422 solid;
+                        &:link{
+                            color: black;
+                        }
+                        &:hover{
+                            background-color: #EEB422;
+                            transition-duration: 0.3s;
+                            color: white;
+                            font-weight: bold;
+                            border-radius: 4px;
+                        }
+                        
+                    }
+                    
+                }
+            }
+            .to-login{
+                width: 200px;
+                float: left;
+                height: 50px;
+                margin-left: 10%;
+                .btn{ 
+                    border: none;        
+                    width: 100px;
+                    background-color: #66CD00;
+                    color: whitesmoke;
+                    font-size: 18px;
+                    border-radius: 5px;
+                    height: 30px;
+                    &:hover{
+                        background-color:#90EE90; 
+                    }
+                }
+                .register{
+                    position: relative;
+                    bottom: 30px;
+                    left: 130px;
+                }
+            }
+        }
+        
+    }
+    .search{
+        width: 70%;
+        margin: 0 auto;
+        margin-top: 3%;
+        input{
+            float: left;
+            margin-left: 20px;
+            width: 150px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333333;
+            height: 34px;
+            line-height: 34px;
+            padding: 0 12px;
+            border: 1px solid #CCCCCC;
+            &:focus{
+                outline: 0;
+                border-color: #FFB200;
+                transition-duration: 0.3s;
+            }
+        }
+        .search{
+            margin-top: 1px;
+            margin-left: 20px;
+            width: 110px;
+            height: 34px;
+            background-color: #EEB422;
+            border-radius: 3px;
+            border: none;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            line-height: 34px;
+            position: relative;
+            overflow: hidden;
+            &:focus{
+                outline: 0;
+            }
+            &:hover{
+                cursor: pointer;
+                background-color: #ffb01e;
+                transition-duration: 0.3s;
+            }
+        }
+    }
+    .hotel-content {
+            width: 70%;
+            margin: 2% auto;
+            height: auto;
+            border: 1px solid #E4E7ED;
+            padding: 5px;
+            .toolbar {
+                width: 100%;
+                height: 60px;
+                border-radius: 5px;
+                background-color: #a6a9ad;
+                .hotel-search {
+                    float: left;
+                    width: 60%;
+                    margin-top: 0.6%;
+                    .in-find {
+                        padding-left: 30px;
+                        width: 70%;
+                        height: 40px;
+                        border-radius: 7px;
+                        outline: 0;
+                        border: 1px solid #d8d8d8;
+                        box-shadow: 0 0 5px #fff;
+                        &:focus {
+                            transition-duration: 0.5s;
+                            border: 1px solid #ffa200;
+                            box-shadow: 0 0 5px #ffa200;
+                            outline: 0;
+                        }
+                    }
+                    .find {
+                        border: none;
+                        outline: 0;
+                        background-color: #EEB422;
+                        color: white;
+                        font-size: 18px;
+                        font-weight: bold;
+                        height: 40px;
+                        width: 80px;
+                        border-radius: 7px;
+                        &:hover {
+                            background-color: #ffb01e;
+                            cursor: pointer;
+                            font-weight: bold;
+                            transition-duration: 0.3s;
+                        }
+                    }
+                    .icon-search {
+                        position: relative;
+                        left: 36px;
+                        top: 6px;
+                    }
+                }
+                .hotel-sort {
+                    float: right;
+                    width: 40%;
+                    margin-top: 1%;
+                    span {
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: whitesmoke;
+                    }
+                    .sort-btn {
+                        background-color: #409EFF;
+                        color: white;
+                        font-size: 14px;
+                        font-weight: bold;
+                        width: 25%;
+                        height: 30px;
+                        border-radius: 4px;
+                        border: 1px #409EFF solid;
+                        &:hover {
+                            cursor: pointer;
+                            transition-duration: 0.4s;
+                            border: 1px #66b1FF;
+                            background-color: #66b1ff;
+                        }
+                    }
+                }
+            }
+            .hotel-list {
+                margin-top: 8px;
+                width: 100%;
+                padding: 5px;
+                .hotel-item {
+                    border-bottom: 2px #EEB422 solid;
+                    height: 180px;
+                    width: 100%;
+                    &:hover {
+                        background-color: #F5F5F5;
+                    }
+                    a {
+                        text-decoration: none;
+                    }
+                    img {
+                        width: 25%;
+                        height: 150px;
+                        margin-top: 1%;
+                    }
+                    .content {
+                        float: right;
+                        width: 70%;
+                        height: 150px;
+                        margin-top: 1%;
+                        margin-right: 3%;
+                        dt span {
+                            color: black;
+                            font-size: 18px;
+                            position: relative;
+                            bottom: 8px;
+                            left: 8px;
+                            font-weight: bold;
+                        }
+                        dd span {
+                            color: black;
+                            display: block;
+                            margin-right: 10px;
+                            word-wrap: break-word;
+                            font-size: 14px;
+                        }
+                        .info {
+                            width: 100%;
+                            height: auto;
+                            padding-left: 18px;
+                            margin-top: 3%;
+                            .money {
+                                position: relative;
+                                top: -5px;
+                                display: block;
+                                float: left;
+                                margin-right: 30px;
+                                font-size: 35px;
+                                font-weight: bolder;
+                                color: #f4ea2a;
+
+                                .cash{
+                                    width: 40px;
+                                    height: 50px;
+                                }
+
+                            }
+                            .place{
+                                 position: relative;
+                                top: -5px;
+                                display: block;
+                                float: left;
+                                margin-right: 30px;
+                                font-size: 35px;
+                                font-weight: bolder;
+                                color: #000;
+                                .address{
+                                    width: 40px;
+                                    height: 50px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+}

@@ -1,0 +1,70 @@
+<%-- 
+    Document   : userTemplate
+    Created on : 2018-6-4, 21:27:37
+    Author     : hasee
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>JSP Page</title>
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/userPage.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="title">
+                <img src="resource/imags/logo.png" width="100px" height="100px"/>
+                <span id="">
+                    DonkeyKong
+                </span>
+            </div>
+            <button type="button" class="to-main">Main Page</button>
+            <button type="button" class="logout" onlick="logout()">Log Out</button>
+
+
+        </div>
+        <div class="banner">
+            <nav>
+                <ul id="tabs">
+                    <li>
+                        <a href="toUserDetail">
+                            <img src="resource/imags/icon/menu.png" class="icon-menu" alt="" />个人信息</a>
+                    </li>
+                    <li>
+                        <a href="toMyNote">
+                            <img src="resource/imags/icon/menu.png" class="icon-menu" alt="" />我的游记</a>
+                    </li>
+                    <li>
+                        <a href="toGoTravel">
+                            <img src="resource/imags/icon/menu.png" class="icon-menu" alt="" />组团游申请</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </body>
+    <script src="resource/js/jquery-2.1.0.js"></script>
+    <script>
+        $(function () {
+            $('.to-main').click(function () {
+                window.location.href = 'redirect/main';
+            });
+            $('.logout').click(function () {
+                $.ajax({
+                    url:'users/logout',
+                    type:'POST',
+                    success:function(){
+                        console.log("logout!!!!");
+                        window.location.href = 'redirect/login';
+                    }
+                })
+                
+            });
+        });
+    </script>
+</html>

@@ -1,0 +1,94 @@
+<%-- 
+    Document   : foodDetail
+    Created on : 2018-5-23, 23:00:37
+    Author     : hasee
+美食详情
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <title>Scenic Detail</title>
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" type="text/css" href="resource/css/css/foodDetail.css" />
+        <link rel="stylesheet" type="text/css" href="resource/css/css/weather.css" />
+    </head>
+
+    <body>
+        <%@include file="header.jsp" %>
+        <div class="scenic-detail">
+            <div class="head-img">
+                <img src="resource/imags/Akz00I_GGjU.jpg" />
+                <h3>Shanghai</h3>
+            </div>
+            <div class="article">
+                <div class="content">
+                    <p>
+                        2017年对于我来说是日程满满的一年，生宝宝、买房、装修，三件大事中随便拧一个出来，都是可以开很多小单元详细阐述的话题。高效率的一年值得以一场期待已久的旅行来收尾，无奈春节期间可以选择的地方实在有限，斟酌再三，意大利已经是综合各个因素之后最为合适的目的地。春寒料峭的季节，托斯卡纳艳阳是无缘相会了，虽然遗憾，但这倒是帮我们减少了行程单的纠结，9天时间，5个城市，浮光掠影意犹未尽，开贴记录，为了分享旅途精彩，也为了自己不会遗忘。 ……好了，楼主正处于“傻三年”的第二年，前言 事件背景 旅行意义 心灵感触。。。楼主已经编不下去了，少写点字，咋们先来点首页预览图可好？ 梵蒂冈—— 2017年对于我来说是日程满满的一年，生宝宝、买房、装修，三件大事中随便拧一个出来，都是可以开很多小单元详细阐述的话题。高效率的一年值得以一场期待已久的旅行来收尾，无奈春节期间可以选择的地方实在有限，斟酌再三，意大利已经是综合各个因素之后最为合适的目的地。春寒料峭的季节，托斯卡纳艳阳是无缘相会了，虽然遗憾，但这倒是帮我们减少了行程单的纠结，9天时间，5个城市，浮光掠影意犹未尽，开贴记录，为了分享旅途精彩，也为了自己不会遗忘。 ……好了，楼主正处于“傻三年”的第二年，前言 事件背景 旅行意义 心灵感触。。。楼主已经编不下去了，少写点字，咋们先来点首页预览图可好？ 梵蒂冈—— 2017年对于我来说是日程满满的一年，生宝宝、买房、装修，三件大事中随便拧一个出来，都是可以开很多小单元详细阐述的话题。高效率的一年值得以一场期待已久的旅行来收尾，无奈春节期间可以选择的地方实在有限，斟酌再三，意大利已经是综合各个因素之后最为合适的目的地。春寒料峭的季节，托斯卡纳艳阳是无缘相会了，虽然遗憾，但这倒是帮我们减少了行程单的纠结，9天时间，5个城市，浮光掠影意犹未尽，开贴记录，为了分享旅途精彩，也为了自己不会遗忘。 ……好了，楼主正处于“傻三年”的第二年，前言 事件背景 旅行意义 心灵感触。。。楼主已经编不下去了，少写点字，咋们先来点首页预览图可好？ 梵蒂冈——
+                    </p>
+                </div>
+            </div>
+            <div class="scenic-comment">
+                <span id="comment-title">Comments</span>
+                <div class="comment-list">
+                    <div class="comment-item">
+                        <div class="avatar">
+                            <img src="resource/imags/icon/account.png" />
+                        </div>
+                        <div class="comment-detail">
+                            <div class="info">
+                                <span>dasha</span>&nbsp;&nbsp;
+                                <span>Lv.99</span>
+                                <span id="report">
+                                    <img src="resource/imags/icon/举报.png"/>&nbsp;Report!
+                                </span>
+                            </div>
+                            <div class="msg">
+                                <p>
+                                    ……好了，楼主正处于“傻三年”的第二年，前言 事件背景 旅行意义 心灵感触。。。楼主已经编不下去了，少写点字，咋们先来点首页预览图可好？ 梵蒂冈——
+                                </p>
+                                <span id="">
+                                    2018-3-4
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comment-item">
+                        <div class="avatar">
+                            <img src="resource/imags/icon/account.png" />
+                        </div>
+                        <div class="comment-detail">
+                            <div class="info">
+                                <span>dasha</span>&nbsp;&nbsp;
+                                <span>Lv.99</span>
+                                <span id="report">
+                                    <img src="resource/imags/icon/举报.png"/>&nbsp;Report!
+                                </span>
+                            </div>
+                            <div class="msg">
+                                <p>
+                                    ……好了，楼主正处于“傻三年”的第二年，前言 事件背景 旅行意义 心灵感触。。。楼主已经编不下去了，少写点字，咋们先来点首页预览图可好？ 梵蒂冈——
+                                </p>
+                                <span id="">
+                                    2018-3-4
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </body>
+
+</body>
+<script src="resource/js/jquery-2.1.0.js"></script>
+<script>
+
+</script>
+
+
+</html>

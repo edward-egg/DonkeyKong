@@ -1,0 +1,139 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Main Page</title>
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/main.css">
+        <link rel="stylesheet" href="resource/css/swiper-4.1.6.min.css">
+    </head>
+
+    <body>
+            <!--导航模块-->
+    <%@include file="header.jsp" %>
+    <!--热门城市-->
+    <div class="swiper-container ">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide hot-img">
+                <span class="img-info">Beautiful Place!</span>
+                <img src="resource/imags/saxby7Bioxc.jpg" alt="">
+            </div>
+        </div>
+        <div class="swiper-pagination swiper-btn"></div>
+        <div class="swiper-button-prev swiper-btn"></div>
+        <div class="swiper-button-next swiper-btn"></div>
+
+    </div>
+    <!--关键字搜索-->
+    <div class="search">
+        <form>
+            <div>
+                <input type="radio" name="thing" value="scenic" id="scenic" checked onclick="radioShow()" />
+                <label for="scenic">Scenic</label>
+                <input type="radio" name="thing" value="scenic" id="Food" onclick="radioShow()" />
+                <label for="scenic">Food</label>
+                <input type="radio" name="thing" value="scenic" id="Hotel" onclick="radioShow()" />
+                <label for="scenic">Hotel</label>
+            </div>
+            <div id="c">
+                <div class="c1">
+                    <img src="resource/imags/icon/search.png" class="icon-search" width="20px" height="20px" alt="">
+                    <input class="in-find" type="text" placeholder="Search the Scenic" />
+                    <button type="button" class="find">Search</button>
+                </div>
+                <div class="c2" style="display: none">
+                    <img src="resource/imags/icon/search.png" class="icon-search" width="20px" height="20px" alt="">
+                    <input class="in-find" type="text" placeholder="Search the Food" />
+                    <button type="button" class="find">Search</button>
+                </div>
+                <div class="c3" style="display: none">
+                    <img src="resource/imags/icon/search.png" class="icon-search" width="20px" height="20px" alt="">
+                    <input class="in-find" type="text" placeholder="Search the Hotel" />
+                    <button type="button" class="find">Search</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+
+    <!--热门游记-->
+    <div class="notes">
+        <span class="topic">
+            <img src="resource/imags/icon/hot-red.png" width="20px" height="20px" />Hot Topic
+            <img src="resource/imags/icon/hot-red.png" width="20px" height="20px" />
+        </span>
+        <div class="travel-note">
+            <div class="note-item">
+                    <img src="resource/imags/2JMZXTyFUOg.jpg" />
+                <div class="content">
+                    <dl>
+                        <dt>
+                            Shanghai yeyeye!
+                        </dt>
+                        <dd>
+                         时值北大120周年（1898-2018）校庆，谨以此文献予母校，生日快乐！大家也可以趁此机会去北大看看，应该有不少活动，校园也会特别布置，听说最近一个月博雅塔的灯都亮着。 北京 大学作为旅游...
+                        </dd>
+                    </dl>
+                    <div class="info">
+                        <span class="place">
+                            <img src="resource/imags/icon/address.png" class="icon address" />Shanghai</span>
+                        <span class="user">
+                            <img src="resource/imags/icon/account.png" class="icon account" alt=""> Edward</span>
+                        <span class="like">
+                            <img src="resource/imags/icon/browse.png" class="icon browse" alt=""> 999</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+<script src="resource/js/swiper-4.1.6.min.js"></script>
+<script src="resource/js/jquery-2.1.0.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        loop: true,
+        speed: 500,
+        pagination: {
+            el: '.swiper-pagination'
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        autoplay: true,
+        effect: 'coverflow'
+    });
+
+    function radioShow() {
+        var myRadio = document.getElementsByName('thing');
+        var div = document.getElementById('c').getElementsByTagName('div');
+        for (i = 0; i < div.length; i++) {
+            if (myRadio[i].checked) {
+                div[i].style.display = 'block';
+            } else {
+                div[i].style.display = 'none';
+            }
+
+        }
+    };
+    $(document).ready(function () {
+       
+        $('.hot-img').click(function () {
+            window.location.href = 'toScenicDetail';
+        });
+        $('.note-item').click(function(){
+            window.location.href = 'toNoteDetail';
+        })
+    })
+</script>
+</html>

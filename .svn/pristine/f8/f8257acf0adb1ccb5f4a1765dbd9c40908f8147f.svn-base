@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="../js/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+		<title>Document</title>
+		<link rel="stylesheet" type="text/css" href="../css/css/myNote.css" />
+	</head>
+
+	<body>
+		<div class="content">
+			<div id="tabs">
+				<div class="thead">
+					<span>My Notes</span>
+					<ul>
+						<li>
+							<a href="#tab1">Note List</a>
+						</li>
+						<li>
+							<a href="#tab2">Write Note</a>
+						</li>
+					</ul>
+				</div>
+				<div class="detail">
+					<div id="tab1" class="note-list">
+						<div class="list">
+							<div class="item">
+								<div class="item-img">
+									<img src="../imags/icon/camera.png" />
+								</div>
+								<div class="item-content">
+									<span>ShangHai</span>									
+								</div>
+								<div class="confirm">
+									<span class="like">
+            						<img src="../imags/icon/favorites.png" width="20px" height="20px"/>999
+            					</span>
+									<span class="browse">
+            						<img src="../imags/icon/browse.png" width="20px" height="20px"/>999
+            					</span>
+									<br/>
+
+								</div>
+								<div class="operate">
+									<button type="button" class="edit">
+            							Edit
+            						</button>
+									<button type="button" class="delete">
+            							Delete
+            						</button>
+								</div>
+
+							</div>
+							<div class="item">
+								<div class="item-img">
+									<img src="../imags/icon/camera.png" />
+								</div>
+								<div class="item-content">
+									<span>ShangHai</span>
+								</div>
+								<div class="confirm">
+									<span class="like">
+            						<img src="../imags/icon/favorites.png" width="20px" height="20px"/>999
+            					</span>
+									<span class="browse">
+            						<img src="../imags/icon/browse.png" width="20px" height="20px"/>999
+            					</span>
+								</div>
+								<div class="operate">
+									<button type="button" class="edit">
+            							Edit
+            						</button>
+									<button type="button" class="delete">
+            							Delete
+            						</button>
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-img">
+									<img src="../imags/icon/camera.png" />
+								</div>
+								<div class="item-content">
+									<span>ShangHai</span>
+								</div>
+								<div class="confirm">
+									<span class="like">
+            						<img src="../imags/icon/favorites.png" width="20px" height="20px"/>999
+            					</span>
+									<span class="browse">
+            						<img src="../imags/icon/browse.png" width="20px" height="20px"/>999
+            					</span>
+								</div>
+								<div class="operate">
+									<button type="button" class="edit">
+            							Edit
+            						</button>
+									<button type="button" class="delete">
+            							Delete
+            						</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="tab2" class="write-note">
+						<div class="note-title">
+							<input type="text" name="" id="" value="" placeholder="Enter the note title" />
+						</div>
+						<div id="" class="note-content">
+							<textarea name=""></textarea>
+						</div>
+						<div id="" class="note-submit">
+							<button type="submit">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/jquery-2.1.0.js"></script>
+	<script src="../js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script>
+		$(function() {
+			$('#tabs').tabs();
+			$('.item').click(function(){
+				window.open("noteDetail.html");
+			})
+		})
+	</script>
+
+</html>

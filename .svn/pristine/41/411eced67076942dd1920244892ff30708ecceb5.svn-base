@@ -1,0 +1,183 @@
+<%-- 
+    Document   : hotelDetail
+    Created on : 2018-5-30, 19:45:31
+    Author     : hasee
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/hotelDetail.css">
+        <link rel="stylesheet" href="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="resource/css/css/weather.css" />
+        <title>Hotel Detail</title>
+    </head>
+    <body>
+        <div class="header">
+            <div class="title">
+                <img src="resource/imags/logo.png" width="80px" height="80px" alt="">
+                <span>DonkeyKong</span>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li>
+                        <a href="redirect/main">首页</a>
+                    </li>
+                    <li>
+                        <a href="redirect/scenicPage">景点</a>
+                    </li>
+                    <li>
+                        <a href="redirect/foodPage">美食</a>
+                    </li>
+                    <li>
+                        <a href="redirect/notePage">游记</a>
+                    </li>
+                    <li>
+                        <a href="redirect/hotelPage">酒店</a>
+                    </li>
+                    <li>
+                        <a href="travelPage.html">组团游</a>
+                    </li>
+                </ul>
+                <div class="to-login">
+                    <button type="button" class="btn login">Login</button>
+                    <button type="button" class="btn register">Register</button>
+                </div>
+                <div id="demo">
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="detail-content">
+            <div class="h-head">
+                <div class="h-info">
+                    <span id="h-name">
+                        上海香格里拉酒店
+                    </span>
+                    <div class="h-address">
+                        <span>Address:&nbsp;</span>
+                        <span>上海常德路12号</span>
+                    </div>
+                </div>
+                <div class="h-img">
+                    <img src="resource/imags/Akz00I_GGjU.jpg"/>
+                </div>
+                <div class="daohang">
+                    <nav>
+                        <ul>
+                            <li><a href="#booking">Booking</a></li>
+                            <li><a href="#recommend">Recommend</a></li>
+                        </ul>
+                    </nav>
+                    <div class="write">
+                        <img src="resource/imags/icon/edit.png"/>
+                        <button type="button" class="w-btn">Write Recommend</button>
+                    </div>
+                </div>
+
+            </div>		
+            <div class="h-body" id="booking">
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>Room Type</th>
+                            <th>Cost</th>
+                            <th>Book</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Normal</td>
+                            <td>999</td>
+                            <td><button type="button" class="btn-book">Book</button></td>
+                        </tr>
+                        <tr>
+                            <td>Normal</td>
+                            <td>999</td>
+                            <td><button type="button" class="btn-book">Book</button></td>
+                        </tr>
+                        <tr>
+                            <td>Normal</td>
+                            <td>999</td>
+                            <td><button type="button" class="btn-book">Book</button></td>
+                        </tr>
+                    </tbody>					
+                </table>
+            </div>
+            <div class="h-recommend" id="recommend">
+                <span id="comment-title">Comments</span>
+                <div class="comment-list">
+                    <div class="comment-item">
+                        <div class="avatar">
+                            <img src="resource/imags/icon/account.png" />
+                        </div>
+                        <div class="comment-detail">
+                            <div class="info">
+                                <span>dasha</span>&nbsp;&nbsp;
+                                <span>Lv.99</span>
+                                <span id="report">
+                                    <img src="resource/imags/icon/举报.png"/>&nbsp;Report!
+                                </span>
+                            </div>
+                            <div class="msg">
+                                <p>
+                                    ……好了，楼主正处于“傻三年”的第二年，前言 事件背景 旅行意义 心灵感触。。。楼主已经编不下去了，少写点字，咋们先来点首页预览图可好？ 梵蒂冈——
+                                </p>
+                                <span id="">
+                                    2018-3-4
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comment-item">
+                        <div class="avatar">
+                            <img src="resource/imags/icon/account.png" />
+                        </div>
+                        <div class="comment-detail">
+                            <div class="info">
+                                <span>dasha</span>&nbsp;&nbsp;
+                                <span>Lv.99</span>
+                                <span id="report">
+                                    <img src="resource/imags/icon/举报.png"/>&nbsp;Report!
+                                </span>
+                            </div>
+                            <div class="msg">
+                                <p>
+                                    ……好了，楼主正处于“傻三年”的第二年，前言 事件背景 旅行意义 心灵感触。。。楼主已经编不下去了，少写点字，咋们先来点首页预览图可好？ 梵蒂冈——
+                                </p>
+                                <span id="">
+                                    2018-3-4
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="resource/js/jquery-2.1.0.js" ></script>
+    <script type="text/javascript" src="resource/js/jquery.leoweather.min.js" ></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.login').click(function () {
+                window.location.href = 'redirect/login';
+            });
+            $('.register').click(function () {
+                window.location.href = 'redirect/register';
+            });
+            $('#demo').leoweather({
+                format: '<i class="icon-{图标}">{气温}℃</i><p>{城市}<span>|</span>{天气}<span>|</span>{风向}{风级}级</p>'
+            });
+        });
+    </script>
+
+</html>

@@ -1,0 +1,168 @@
+<%--
+    Document   : noteDetail
+    Created on : 2018-5-23, 23:09:41
+    Author     : hasee
+    游记详情
+--%>
+<%@page import="pojo.Users"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/noteDetail.css">
+        <link rel="stylesheet" type="text/css" href="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
+        <link rel="stylesheet" href="resource/css/edbox.css"/>
+        <title>Note Detail</title>
+    </head>
+
+    <body>
+        
+        <!--导航模块-->
+        <%@include file="header.jsp" %>
+        <%Users user = (Users)session.getAttribute("CURRENT_USER");%>
+        <!--游记详情-->
+        <div class="note-detail">
+            <div class="note-head">
+                <div class="head-img">
+                    <img src="resource/imags/Akz00I_GGjU.jpg" />
+
+                    <h3>${n.noteTitle}</h3>
+                </div>
+                <div class="note-avatar">
+                    <img src="resource/imags/user/${n.users.userImg==null? 'c4Fvlp63yAQ.jpg' : n.users.userImg}" />
+                </div>
+                <div class="user-info">
+                    <span><em style="font-size: 20px;">${n.users.userId}</em>&nbsp;LV.${n.users.level}</span>
+                    <span id="publish-time">${n.publishTime}</span>
+                    <span><img id="like" src="resource/imags/icon/heart.png"/>&nbsp;<span id="like-num" style="color: red;">${n.noteLike}</span></span>
+                    <span><img src="resource/imags/icon/report.png"/>&nbsp;<button type="button" class="btn-report">Report!</button></span>
+                    <div class="write">
+                        <img src="resource/imags/icon/edit.png"/>
+                        <button type="button" class="w-btn">Write Recommend</button>
+                    </div>
+                    <div id="dialog" title="Comment">
+                        <form>
+                            <textarea name="ncomment" cols="50" rows="7" id="comment" style="width: 100%;resize: none"></textarea>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article">
+                <input hidden="true" id="noteId" value="${n.noteId}"/>
+                <div class="content">
+                   
+                    <p>
+                        ${n.noteContent}
+                    </p>
+                </div>
+            </div>
+            <div class="note-comment">
+                <span id="comment-title">Comments</span>
+                <div class="comment-list">
+                    <c:forEach items="${commentList}" var="c">
+                        <div class="comment-item">
+                            <div class="avatar">
+                                <img src="resource/imags/user/${c.users.userImg==null? 'account.png' : c.users.userImg}" />
+                            </div>
+                            <div class="comment-detail">
+                                <div class="info">
+                                    <span>${c.users.userId}</span>&nbsp;&nbsp;
+                                    <span>Lv.${c.users.level}</span>
+                                    <span id="report">
+                                        <img src="resource/imags/icon/report.png"/>&nbsp;<button type="button" class="btn-report">Report</button>
+                                    </span>                              
+                                </div>
+                                <div class="msg">
+                                    <p>
+                                        ${c.commentContent}
+                                    </p>
+                                    <span id="">
+                                        ${c.commentTime}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+    </body>
+    <script src="resource/js/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+    <script src="resource/js/jquery.edbox.js"></script>
+    <script>
+        $(function () {
+
+            $('.w-btn').click(function () {
+                $('#dialog').dialog('open');
+            });
+            $('#dialog').dialog({
+                height: 300,
+                width: 400,
+                autoOpen: false,
+                modal: true,
+                buttons: { 
+                    "Comment": function () {
+                        console.log("comment");
+                        $.ajax({
+                            url: 'note/commentedit',
+                            type: 'POST', 
+                            
+                            data: {
+                                "comment": $('#comment').val(),
+                                "noteId":$('#noteId').val()
+                            },
+                            success: function () {
+                                $.edbox({success:'commend success!'});
+                                console.log('success');
+                                location.reload();
+
+                            },
+                            error: function () {
+                                $.edbox({warning:"<b>You should Login!Go to<a href='redirect/login'>Log in</a></b>"});
+                                console.log($('#noteId').val());
+                                console.log('error!');
+                                $('#dialog').dialog('close');
+                            }
+                        });
+
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        });
+        $(function () {
+            $('#like').click(function () {
+                var num = parseInt($('#like-num').text());
+                num += 1;
+                $.ajax({
+                            url: 'note/like',
+                            type: 'POST', 
+                            data: {
+                                "like": $('#like-num').text(),
+                                "noteId":$('#noteId').val()
+                            },
+                            success: function () {
+                                console.log('success');
+                            },
+                            error: function () {
+                                console.log('error!');
+                            }
+                        });
+                $('#like-num').text(num);
+            });
+            var t = $('#publish-time').text();
+            var sub = t.toString().substring(0, 11);
+            $('#publish-time').text(sub);
+        });
+    </script>
+
+
+</html>

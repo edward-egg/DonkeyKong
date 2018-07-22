@@ -1,0 +1,45 @@
+<%-- 
+    Document   : register
+    Created on : 2018-5-17, 22:15:10
+    Author     : hasee
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Register</title>
+    <base href="${pageContext.request.contextPath}/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="resource/css/css/register.css" />
+    <script src="resource/js/jquery-2.1.0.js"></script>
+</head>
+
+<body>
+    <div class="title">
+        <div>
+            <img src="resource/imags/logo.png" width="80px" height="80px" alt="">
+            <span>DonkeyKong</span> 
+        </div>
+    </div>
+    <div class="login">
+        <form action="users/register" method="POST" id="valid-form">
+            <span class="welcome-login">Register</span>
+            <br>          
+            <input id="id" name="userId"  class="id-input" type="text" placeholder="Enter your ID" />
+            <br>
+            <input id="pass" name="password"  class="pass-input"  type="password"  placeholder="Enter your Password" />
+            <br>
+            <input id="tel" name="tel"  class="tel-input" type="text" placeholder="Enter your phone number" />
+            <br>
+            <input id="mail" name="email" class="mail-input" type="text" placeholder="Enter your e-mail" />           
+            <br>
+            <button type="submit" class="btn-regist">Register</button>
+            <button type="reset" class="btn-reset">Reset</button>
+        </form>
+    </div>
+</body>
+
+</html>

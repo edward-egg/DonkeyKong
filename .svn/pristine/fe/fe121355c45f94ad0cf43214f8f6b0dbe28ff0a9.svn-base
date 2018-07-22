@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-5-28 23:08:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.NoteComment" table="note_comment" catalog="donkeykong" optimistic-lock="version">
+        <id name="noteCommentId" type="string">
+            <column name="note_comment_id" length="64" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="note" class="pojo.Note" fetch="select">
+            <column name="note_id" length="64" not-null="true" />
+        </many-to-one>
+        <many-to-one name="users" class="pojo.Users" fetch="select">
+            <column name="user_id" length="64" not-null="true" />
+        </many-to-one>
+        <property name="commentContent" type="string">
+            <column name="comment_content" not-null="true" />
+        </property>
+        <property name="commentTime" type="timestamp">
+            <column name="comment_time" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

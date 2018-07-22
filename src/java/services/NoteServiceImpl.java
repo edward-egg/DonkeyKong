@@ -1,0 +1,108 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package services;
+
+import dao.NoteDao;
+import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pojo.Note;
+import pojo.NoteComment;
+import pojo.Report;
+import pojo.Users;
+
+/**
+ *
+ * @author hasee
+ */
+@Service
+public class NoteServiceImpl implements NoteService{
+    
+
+    @Autowired
+    NoteDao nd;
+    
+    @Override
+    public void addNote(Note note) {
+        nd.insertNote(note);
+    }
+
+    @Override
+    public void deleteNote(String nid) {
+        nd.deleteNote(nid);
+    }
+
+    @Override
+    public void updateNote(Note note) {
+        nd.updateNote(note);
+    }
+
+    @Override
+    public ArrayList<Note> getAllNotes() {
+        return nd.getAllNotes();
+    }
+
+    @Override
+    public Note getNoteById(String nid) {
+        return nd.getNoteById(nid);
+    }
+
+    @Override
+    public void addNoteComment(NoteComment noteComment) {
+        nd.insertNoteComment(noteComment);
+    }
+
+    @Override
+    public ArrayList<NoteComment> getAllComments(Note note) {
+        return nd.getAllComments(note);
+    }
+
+    @Override
+    public ArrayList<Note> getTopNotes() {
+        return nd.getTopNotes();
+    }
+
+    @Override
+    public ArrayList<Note> getAllNotesByUserId(String user) {
+        return nd.getAllNotesByUserId(user);
+    }
+
+    @Override
+    public ArrayList<Note> sortLikeNotes() {
+        return nd.sortLikeNotes();
+    }
+
+    @Override
+    public ArrayList<Note> sortReleaseNotes() {
+        return nd.sortReleaseNotes();
+    }
+
+    @Override
+    public void addNoteReport(Report report) {
+        nd.addNoteReport(report);
+    }
+
+    @Override
+    public boolean findReport(Users user, Note note) {
+        return nd.findReport(user, note);
+    }
+
+    @Override
+    public void deleteNoteCommentById(String noteCommentId) {
+        nd.deleteNoteCommentById(noteCommentId);
+    }
+
+    @Override
+    public NoteComment getCommentById(String cid) {
+        return nd.getCommentById(cid);
+    }
+
+    @Override
+    public boolean findReportComment(Users user, NoteComment comment) {
+        return nd.findReportComment(user, comment);
+    }
+    
+}

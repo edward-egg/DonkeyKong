@@ -1,0 +1,142 @@
+<%-- 
+    Document   : scenicManage
+    Created on : 2018-5-23, 23:12:57
+    Author     : hasee
+景点管理
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Scenic Manage</title>
+		<link rel="stylesheet" type="text/css" href="../js/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
+		<link rel="stylesheet" href="../css/css/manage.css">
+		<style type="text/css">
+    	#dialog table label,#dialog table input{
+    		display: block;    		
+    	}
+    	#dialog table input{
+    		margin-bottom: 12px;
+    		width: 100%;
+    		padding: .4em;
+    	}
+    	#dialog table textarea{
+    		resize: none;
+    	}
+    	#dialog table input:focus{
+    		outline: 0;
+    		border: 1px solid #ffa200;
+            box-shadow: 0 0 5px #ffa200;
+    		transition-duration: 0.5s;
+    	}
+    	#dialog table textarea:focus{
+    		outline: 0;
+    		border: 1px solid #ffa200;
+            box-shadow: 0 0 5px #ffa200;
+    		transition-duration: 0.5s;
+    	}
+    </style>
+	</head>
+
+	<body>
+		<div class="contentManage">
+			<div class="t-title">Scenic Manage</div>
+			<div class="table-head">
+				<div class="operate">
+					<img src="../imags/icon/search.png" class="icon-search" width="20px" height="20px" alt="">
+					<input type="text" name="search" id="search" class="search" placeholder="Search want you want" />
+					<button type="button" class="find">Search</button>
+					<button type="button" class="add">Add</button>
+					<div id="dialog" title="New Scenic">
+						<form>
+							<table>
+								<tr>
+									<td><label for="sid">Scenic ID:&nbsp;</label></td>
+								</tr>
+								<tr>
+									<td><input type="text" id="sid" class="ui-widget-content ui-corner-all"/></td>
+								</tr>
+								<tr>
+									<td><label for="sname">Scenic Name:&nbsp;</label></td>
+								</tr>
+								<tr>
+									<td><input type="text" id="sname" class="ui-widget-content ui-corner-all"/></td>
+								</tr>
+								<tr>
+									<td><label for="sarea">Area:&nbsp;</label></td>
+								</tr>
+								<tr>
+									<td><input type="text" id="sarea" class="ui-widget-content ui-corner-all"/></td>
+								</tr>
+								<tr>
+									<td><label for="saddress">Scenic Address:&nbsp;</label></td>
+								</tr>
+								<tr>
+									<td><input type="text" id="saddress" class="ui-widget-content ui-corner-all"/></td>
+								</tr>
+								<tr>
+									<td><label for="scontent">Scenic Content:&nbsp;</label></td>
+								</tr>
+								<tr>
+									<td><textarea cols="50"
+										rows="7" id="scontent" class="ui-widget-content ui-corner-all"></textarea></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="table-content">
+				<table border="1" cellpadding="0" cellspacing="0">
+					<tr>
+						<th>Scenic ID</th>
+						<th>Scenic Name</th>
+						<th>Area</th>
+						<th>Scenic Address</th>
+						<th>Scenic Content</th>
+						<th>Operate</th>
+					</tr>
+					<tr>
+						<td>122345</td>
+						<td>the Great Wall</td>
+						<td>Beijing</td>
+						<td>Beijing</td>
+						<td>LOng Long Long!</td>
+						<td>
+							<button type="button" class="edit">Edit</button>
+							<button type="button" class="delete">Delete</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
+<script type="text/javascript" src="../js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+<script>
+	$(function(){
+		$('.add').click(function(){
+			$('#dialog').dialog('open');
+		});
+		$('#dialog').dialog({
+			height: 500,
+			width: 500,
+			autoOpen: false,
+			modal: true,
+			buttons:{
+				"Create":function(){
+					
+				},
+				"Cancel":function(){
+					$(this).dialog("close");
+				}
+			}
+		});
+	})
+</script>
+
+</html>

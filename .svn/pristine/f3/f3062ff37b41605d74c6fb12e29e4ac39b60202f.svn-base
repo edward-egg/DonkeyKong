@@ -1,0 +1,613 @@
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+--
+-- Host: localhost    Database: donkeykong
+-- ------------------------------------------------------
+-- Server version	5.7.17-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin` (
+  `admin_id` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `regist_time` datetime NOT NULL,
+  `update_time` datetime NOT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin`
+--
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `area`
+--
+
+DROP TABLE IF EXISTS `area`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `area` (
+  `area_id` varchar(64) NOT NULL,
+  `area_details` varchar(200) DEFAULT NULL,
+  `area_img` blob,
+  PRIMARY KEY (`area_id`),
+  UNIQUE KEY `area_id_UNIQUE` (`area_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `area`
+--
+
+LOCK TABLES `area` WRITE;
+/*!40000 ALTER TABLE `area` DISABLE KEYS */;
+/*!40000 ALTER TABLE `area` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `donkeykong`.`area_AFTER_DELETE` AFTER DELETE ON `area` FOR EACH ROW
+BEGIN
+delete from food_store where area_id = old.area_id;
+delete from hotel where area_id = old.area_id;
+delete from scenic where area_id = old.area_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `food_store`
+--
+
+DROP TABLE IF EXISTS `food_store`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `food_store` (
+  `food_store_id` varchar(64) NOT NULL,
+  `avg_price` double(10,2) NOT NULL,
+  `area_id` varchar(64) NOT NULL,
+  `store_address` varchar(64) NOT NULL,
+  `liked` int(10) DEFAULT NULL,
+  `store_img` longblob NOT NULL,
+  `store_content` blob NOT NULL,
+  PRIMARY KEY (`food_store_id`),
+  KEY `fsa__fk_idx` (`area_id`),
+  CONSTRAINT `fsa__fk` FOREIGN KEY (`area_id`) REFERENCES `area` (`area_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `food_store`
+--
+
+LOCK TABLES `food_store` WRITE;
+/*!40000 ALTER TABLE `food_store` DISABLE KEYS */;
+/*!40000 ALTER TABLE `food_store` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `donkeykong`.`food_store_AFTER_DELETE` AFTER DELETE ON `food_store` FOR EACH ROW
+BEGIN
+delete from food_store_comment where food_store_id = old.food_store_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `food_store_comment`
+--
+
+DROP TABLE IF EXISTS `food_store_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `food_store_comment` (
+  `store_comment_id` varchar(64) NOT NULL,
+  `food_store_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `comment_content` varchar(200) NOT NULL,
+  `comment_time` datetime NOT NULL,
+  PRIMARY KEY (`store_comment_id`),
+  KEY `fst_fk_idx` (`food_store_id`),
+  KEY `fcu_fk_idx` (`user_id`),
+  CONSTRAINT `fcu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fst_fk` FOREIGN KEY (`food_store_id`) REFERENCES `food_store` (`food_store_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `food_store_comment`
+--
+
+LOCK TABLES `food_store_comment` WRITE;
+/*!40000 ALTER TABLE `food_store_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `food_store_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hotel`
+--
+
+DROP TABLE IF EXISTS `hotel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hotel` (
+  `hotel_id` varchar(64) NOT NULL,
+  `hotel_name` varchar(255) NOT NULL,
+  `area_id` varchar(64) NOT NULL,
+  `hotel_address` varchar(100) NOT NULL,
+  `hotel_like` int(255) DEFAULT NULL,
+  `hotel_comment` varchar(100) DEFAULT NULL,
+  `is_reserve` int(5) NOT NULL,
+  `hotel_img` longblob NOT NULL,
+  `hotel_content` blob NOT NULL,
+  PRIMARY KEY (`hotel_id`),
+  KEY `ha_fk_idx` (`area_id`),
+  CONSTRAINT `ha_fk` FOREIGN KEY (`area_id`) REFERENCES `area` (`area_id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hotel`
+--
+
+LOCK TABLES `hotel` WRITE;
+/*!40000 ALTER TABLE `hotel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hotel` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `donkeykong`.`hotel_AFTER_DELETE` AFTER DELETE ON `hotel` FOR EACH ROW
+BEGIN
+delete from hotel_book where hotel_id = old.hotel.id;
+delete from hotel_room where hotel_id = old.hotel.id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `hotel_book`
+--
+
+DROP TABLE IF EXISTS `hotel_book`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hotel_book` (
+  `book_id` varchar(64) NOT NULL,
+  `hotel_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `room_id` varchar(64) NOT NULL,
+  `check_in_time` datetime NOT NULL,
+  `check_out_time` datetime NOT NULL,
+  PRIMARY KEY (`book_id`),
+  KEY `bkh_fk_idx` (`hotel_id`),
+  KEY `bkr_fk_idx` (`room_id`),
+  KEY `bku_fk_idx` (`user_id`),
+  KEY `bkuser_fk_idx` (`user_id`),
+  CONSTRAINT `bkh_fk` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`hotel_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `bkr_fk` FOREIGN KEY (`room_id`) REFERENCES `hotel_room` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `bku_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hotel_book`
+--
+
+LOCK TABLES `hotel_book` WRITE;
+/*!40000 ALTER TABLE `hotel_book` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hotel_book` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hotel_room`
+--
+
+DROP TABLE IF EXISTS `hotel_room`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hotel_room` (
+  `room_id` varchar(20) NOT NULL COMMENT '房间id',
+  `hotel_id` varchar(64) NOT NULL COMMENT '酒店id',
+  `room_num` varchar(20) NOT NULL COMMENT '房间号',
+  `room_type` varchar(20) NOT NULL COMMENT '房间类型',
+  `room_price` double(10,2) NOT NULL COMMENT '价格',
+  `is_use` int(4) NOT NULL COMMENT '是否可用',
+  PRIMARY KEY (`room_id`),
+  KEY `rh_fk_idx` (`hotel_id`),
+  CONSTRAINT `rh_fk` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`hotel_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hotel_room`
+--
+
+LOCK TABLES `hotel_room` WRITE;
+/*!40000 ALTER TABLE `hotel_room` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hotel_room` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `donkeykong`.`hotel_room_AFTER_DELETE` AFTER DELETE ON `hotel_room` FOR EACH ROW
+BEGIN
+delete from hotel_book where room_id = old.room_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `note`
+--
+
+DROP TABLE IF EXISTS `note`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `note` (
+  `note_id` varchar(64) NOT NULL,
+  `note_title` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `is_browse` int(4) NOT NULL,
+  `report` int(10) DEFAULT NULL,
+  `publish_time` datetime NOT NULL,
+  `update_time` datetime NOT NULL,
+  PRIMARY KEY (`note_id`),
+  KEY `nu_fk_idx` (`user_id`),
+  CONSTRAINT `nu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `note`
+--
+
+LOCK TABLES `note` WRITE;
+/*!40000 ALTER TABLE `note` DISABLE KEYS */;
+/*!40000 ALTER TABLE `note` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `donkeykong`.`note_AFTER_DELETE` AFTER DELETE ON `note` FOR EACH ROW
+BEGIN
+	delete from note_comment where note_id = old.note_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `note_comment`
+--
+
+DROP TABLE IF EXISTS `note_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `note_comment` (
+  `note_comment_id` varchar(64) NOT NULL,
+  `note_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `comment_content` varchar(255) NOT NULL,
+  `comment_time` datetime NOT NULL,
+  PRIMARY KEY (`note_comment_id`),
+  KEY `ntc_fk_idx` (`note_id`),
+  KEY `ncu_fk_idx` (`user_id`),
+  CONSTRAINT `ncu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `ntc_fk` FOREIGN KEY (`note_id`) REFERENCES `note` (`note_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `note_comment`
+--
+
+LOCK TABLES `note_comment` WRITE;
+/*!40000 ALTER TABLE `note_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `note_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notification`
+--
+
+DROP TABLE IF EXISTS `notification`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notification` (
+  `notify_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `notify_content` varchar(64) NOT NULL,
+  `send_time` datetime NOT NULL,
+  PRIMARY KEY (`notify_id`),
+  KEY `ntfu_fk_idx` (`user_id`),
+  CONSTRAINT `ntfu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notification`
+--
+
+LOCK TABLES `notification` WRITE;
+/*!40000 ALTER TABLE `notification` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notification` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `scenic`
+--
+
+DROP TABLE IF EXISTS `scenic`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `scenic` (
+  `scenic_id` varchar(64) NOT NULL,
+  `scenic_name` varchar(64) NOT NULL,
+  `area_id` varchar(64) NOT NULL,
+  `scenic_address` varchar(255) NOT NULL,
+  `scenic_like` int(255) NOT NULL,
+  `scenic_comment` varchar(255) NOT NULL,
+  `scenic_img` longblob NOT NULL,
+  `scenic_content` blob NOT NULL,
+  PRIMARY KEY (`scenic_id`),
+  KEY `sa_fk_idx` (`area_id`),
+  CONSTRAINT `sa_fk` FOREIGN KEY (`area_id`) REFERENCES `area` (`area_id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `scenic`
+--
+
+LOCK TABLES `scenic` WRITE;
+/*!40000 ALTER TABLE `scenic` DISABLE KEYS */;
+/*!40000 ALTER TABLE `scenic` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tour`
+--
+
+DROP TABLE IF EXISTS `tour`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour` (
+  `tour_id` varchar(20) NOT NULL,
+  `tour_title` varchar(30) NOT NULL,
+  `scenic_name` varchar(64) NOT NULL,
+  `tour_price` double(10,2) NOT NULL,
+  `limit_num` int(10) NOT NULL,
+  `trip_mode` varchar(64) NOT NULL,
+  `hotel_name` varchar(64) NOT NULL,
+  `is_approve` int(4) NOT NULL,
+  `tour_begin_time` datetime NOT NULL,
+  `tour_end_time` datetime NOT NULL,
+  `apply_end_time` datetime NOT NULL,
+  PRIMARY KEY (`tour_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour`
+--
+
+LOCK TABLES `tour` WRITE;
+/*!40000 ALTER TABLE `tour` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tour` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `donkeykong`.`tour_AFTER_DELETE` AFTER DELETE ON `tour` FOR EACH ROW
+BEGIN
+delete from tour_apply where tour_id = old.tour_id;
+delete from tour_comment where tour_id = old.tour_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `tour_apply`
+--
+
+DROP TABLE IF EXISTS `tour_apply`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour_apply` (
+  `apply_id` varchar(64) NOT NULL,
+  `tour_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  PRIMARY KEY (`apply_id`),
+  KEY `at_fk_idx` (`tour_id`),
+  KEY `au_fk_idx` (`user_id`),
+  CONSTRAINT `at_fk` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`tour_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `au_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour_apply`
+--
+
+LOCK TABLES `tour_apply` WRITE;
+/*!40000 ALTER TABLE `tour_apply` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tour_apply` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tour_comment`
+--
+
+DROP TABLE IF EXISTS `tour_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour_comment` (
+  `tour_comment_id` varchar(64) NOT NULL,
+  `tour_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `comment_content` varchar(255) NOT NULL,
+  `comment_time` datetime NOT NULL,
+  PRIMARY KEY (`tour_comment_id`),
+  KEY `tour_fk_idx` (`tour_id`),
+  KEY `tcu_fk_idx` (`user_id`),
+  CONSTRAINT `tcu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tour_fk` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`tour_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour_comment`
+--
+
+LOCK TABLES `tour_comment` WRITE;
+/*!40000 ALTER TABLE `tour_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tour_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `user_id` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `freeze` int(11) NOT NULL,
+  `level` int(11) NOT NULL,
+  `tel` varchar(64) DEFAULT NULL,
+  `user_regist_time` datetime NOT NULL,
+  `user_update_time` datetime NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `donkeykong`.`users_AFTER_DELETE` AFTER DELETE ON `users` FOR EACH ROW
+BEGIN
+delete from food_store_comment where user_id = old.user_id;
+delete from hotel_book where user_id = old.user_id;
+delete from note where user_id = old.user_id;
+delete from notification where user_id = old.user_id;
+delete from tour_apply where user_id = old.user_id;
+delete from tour_comment where user_id = old.user_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Dumping events for database 'donkeykong'
+--
+
+--
+-- Dumping routines for database 'donkeykong'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-05-21 19:16:10

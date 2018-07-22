@@ -1,0 +1,89 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controllers;
+
+import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import pojo.FoodStore;
+import pojo.FoodStoreComment;
+import pojo.Scenic;
+import pojo.ScenicComment;
+import pojo.Users;
+import services.ScenicService;
+import services.UsersService;
+import util.DateUtils;
+import util.IDUtils;
+
+/**
+ *
+ * @author hasee
+ */
+@Controller
+@RequestMapping(value = "/scenic")
+public class ScenicController {
+    
+    @Autowired
+    ScenicService ss;
+    @Autowired
+    UsersService us;
+    @RequestMapping(value = "/add" ,method = RequestMethod.POST)
+    public String addScenic(Scenic scenic,Model model){
+        ss.addScenic(scenic);
+        model.addAttribute("scenicList", ss.getAllScenic());
+        return "manager/scenicManager";
+    }
+    
+    @RequestMapping(value = "/delete" , method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteScenic(String sid){
+        ss.deleteScenic(sid);
+    }
+    
+    @RequestMapping(value ="/edit" ,method = RequestMethod.POST)
+    public String editScenic(Scenic scenic,Model model){
+        ss.update(scenic);
+        model.addAttribute("scenicList", ss.getAllScenic());
+        return "manager/scenicManager";
+    }
+    
+    @RequestMapping(value = "showAll",method = RequestMethod.GET)
+    public String showAllScenic(Model model){
+        model.addAttribute("scenicList",ss.getAllScenic());
+        return "manager/scenicManager";
+    }
+    
+    @RequestMapping(value = "getAScenic",method = RequestMethod.POST)
+    public String getAScenic(String sid,Model model){
+        Scenic scenic = ss.getScenic(sid);
+        model.addAttribute("getScenic", scenic);
+        ArrayList<ScenicComment> list = ss.getAllComments(scenic);
+        for(ScenicComment comments : list){
+            comments.setUsers(us.getAUser(comments.getUsers().getUserId()));
+        }
+        model.addAttribute("commentList", list);
+        return "scenicDetail";
+    }
+    
+    @RequestMapping(value = "/commentedit", method = RequestMethod.POST)
+    public String editNoteComment(String comment, String scenicId, Model model, HttpSession session){
+        Scenic scenic = ss.getScenic(scenicId);
+        Users user = (Users) session.getAttribute("CURRENT_USER");
+        ScenicComment scenicComment = new ScenicComment(IDUtils.getUUID(),scenic , user, comment, DateUtils.getTimestamp());
+        ss.addScenicComment(scenicComment);
+        ArrayList<ScenicComment> list = ss.getAllComments(scenic);
+        for(ScenicComment comments : list){
+            comments.setUsers(us.getAUser(comments.getUsers().getUserId()));
+        }
+        model.addAttribute("commentList", list);
+        return "scenicDetail";
+    }
+}

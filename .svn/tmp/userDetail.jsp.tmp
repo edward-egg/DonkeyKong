@@ -1,0 +1,243 @@
+<%-- 
+    Document   : userDetail
+    Created on : 2018-5-23, 23:19:47
+    Author     : hasee
+    用户信息详情
+--%>
+
+<%@page import="pojo.Users"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>User Detail</title>
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/userDetail.css">
+        <link rel="stylesheet" href="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        <style type="text/css">
+            table {
+                padding: 10px;
+            }
+
+            .pass tr {
+                margin-top: 10px;
+            }
+
+            .pass th label {
+                text-align: right;
+            }
+
+            .pass td {
+                height: 60px;
+                text-align: center;
+            }
+
+            .pass td input {
+                outline: 0;
+                border-radius: 5px;
+                line-height: 28px;
+                border: 1px solid #d8d8d8;
+                color: #666;
+                box-shadow: 0 0 5px #fff;
+                height: 25px;
+                width: 100%;
+                padding-left: 5px;
+            }
+            .pass td input:focus{
+                transition-duration: 0.5s;
+                border: 1px solid #ffa200;
+                box-shadow: 0 0 5px #ffa200;
+                outline: 0;
+            }
+            .btn-pass{
+                float: left;
+                width: 100%;
+                text-align: center;
+            }
+            .chang-pass{
+                margin-top: 10px;
+                outline: 0;
+                color: #fff;
+                background-color: #ffa800;
+                border-radius: 3px;
+                height: 40px;
+                border: none;
+                width: 120px;
+            }
+            .chang-pass:hover{
+                background-color: #ff7200;
+            }
+        </style>
+    </head>
+
+    <body>
+        <%Users user = (Users)session.getAttribute("CURRENT_USER");%>
+        <%@include file="userTemplate.jsp" %>
+        <div class="content">
+            <div class="thead">
+                <span>User Message</span>
+                <button id="editInfo" type="button" class="edit">Edit</button>
+                <button id="cancelInfo" type="button" class="cancel">Cancel</button>&nbsp;&nbsp;
+                <button type="button" id="change-pass">Change Password</button>
+                <div id="c-pass" title="Change your password">
+                    <form action="users/changePass" method="POST">
+                        <div id="" class="pass-in">
+                            <table class="pass" border="0" cellspacing="" cellpadding="">
+                                <tr>
+                                    <th>
+                                        <label for="pass1">New Password</label>
+                                    </th>
+                                    <td>
+                                        <input type="hidden" name="userId" value="<%=user.getUserId()%>"/>
+                                        <input type="password" name="password" id="pass1" /><br/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <label for="pass2">Enter Again</label>
+                                    </th>
+                                    <td>
+                                        <input type="password" name="secpass" id="pass2" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="btn-pass">
+                            <button type="submit" class="chang-pass">Change</button>						
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="tbody">
+                <div class="changeAvatar">
+                    <form action="">
+                        <div class="user-avatar">
+                            <img src="resource/imags/c4Fvlp63yAQ.jpg" alt="">
+                        </div>
+                        <button type="button" id="opener">Change</button>
+                        <div id="dialog" title="Choose Avatar">
+                            <form action="">
+                                <div class="choose">
+                                    <img style="width: 130px;height: 130px;display: block;margin: 0 auto;" title="choose the image" src="resource/imags/dPSc8w2zn-A.jpg" id="preview-avatar" alt=""/>
+                                    <input type="file" id="select-avatar" style="margin-top: 20px;display: block;" />
+                                </div>
+                            </form>
+                        </div>
+                    </form>
+                </div>
+                <div class="user-info">
+                    <form action="users/update" method="POST">
+                        <table>
+                            <tr>
+<<<<<<< .mine
+                                <th>ID:</th>
+                                <td class="finish">${user.userId}</td>
+                                <td class="unfinish text" style="display: none">
+                                    <input type="text" value="${user.userId}" disabled="true" />
+                                </td>
+=======
+                                <th>UserID:</th>
+                                <td><%=user.getUserId()%></td>
+                                <input type="hidden" name="userId"  value="<%=user.getUserId()%>" />
+>>>>>>> .r57
+                            </tr>
+                            <tr>
+                                <th>Tel:</th>
+                                <td class="finish"><%=user.getTel()%></td>
+                                <td class="unfinish text" style="display: none">
+                                    <input type="text" name="tel"  value="<%=user.getTel()%>" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>E-mail:</th>
+                                <td class="finish"><%=user.getEmail()%></td>
+                                <td class="unfinish text" style="display: none">
+                                    <input type="text" name="email" value="<%=user.getEmail()%>" />
+                                </td>
+                            </tr>
+                            <tr id="rank">
+                                <th>Level:</th>
+                                <td><%=user.getLevel()%></td>
+                            </tr>
+<<<<<<< .mine
+=======
+                            <tr>
+                                <th>Register Time:</th>
+                                <td><%=user.getUserRegistTime()%></td>
+                            </tr>
+>>>>>>> .r57
+                        </table>
+                        <button id="saveInfo" class="save" type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="resource/js/jquery-2.1.0.js"></script>
+    <script src="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#cancelInfo').hide();
+            $('#saveInfo').hide();
+            $('#editInfo').click(function () {
+                $('td.finish').hide();
+                $('td.unfinish').show();
+                $(this).hide();
+                $('#cancelInfo').show();
+                $('#saveInfo').show();
+                $('#rank').hide();
+            });
+            $('#cancelInfo').click(function () {
+                $(this).hide();
+                $('#editInfo').show();
+                $('td.finish').show();
+                $('td.unfinish').hide();
+                $('#saveInfo').hide();
+            })
+        });
+        $(function () {
+            $('#opener').click(function () {
+                $('#dialog').dialog("open");
+            });
+            $('#dialog').dialog({
+                height: 330,
+                width: 400,
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    Finish: function () {},
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+
+                }
+            });
+            $('#change-pass').click(function () {
+                $('#c-pass').dialog("open");
+            });
+            $('#c-pass').dialog({
+                height: 300,
+                width: 400,
+                autoOpen: false,
+                modal: true
+            });
+            bindAvatar();
+        });
+
+        function bindAvatar() {
+            $('#select-avatar').change(function () {
+                var obj = $('#select-avatar')[0].files[0];
+                var fr = new FileReader();
+                fr.onload = function () {
+                    $('#preview-avatar').attr('src', this.result);
+                };
+                fr.readAsDataURL(obj);
+            })
+        }
+    </script>
+
+</html>

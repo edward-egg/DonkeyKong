@@ -1,0 +1,51 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.util.ArrayList;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pojo.Hotel;
+
+/**
+ *
+ * @author hasee
+ */
+@Repository
+public class HotelDaoImpl implements HotelDao{
+
+    @Autowired
+    SessionFactory factory;
+    
+    @Override
+    public void insertHotel(Hotel hotel) {
+        factory.getCurrentSession().save(hotel);
+    }
+
+    @Override
+    public void deleteHotel(String hid) {
+        factory.getCurrentSession().delete(hid);
+    }
+       
+
+    @Override
+    public void update(Hotel hotel) {
+        factory.getCurrentSession().update(hotel);
+    }
+
+    @Override
+    public Hotel getHotelById(String hid) {
+        return (Hotel)factory.getCurrentSession().get(Hotel.class, hid);
+    }
+
+    @Override
+    public ArrayList<Hotel> getAllHotel() {
+        String hql = "select ht.hotelId,ht.hotelName,ht.hotelAddress,ht.areas,ht.hotelContent from Hotel as ht";
+        return (ArrayList<Hotel>) factory.getCurrentSession().createQuery(hql).list();
+    }
+    
+}

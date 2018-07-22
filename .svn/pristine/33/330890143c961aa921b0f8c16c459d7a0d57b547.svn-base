@@ -1,0 +1,233 @@
+<%-- 
+    Document   : foodManage
+    Created on : 2018-5-23, 23:01:33
+    Author     : hasee
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Food Manage</title>
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/manage.css">
+        <link rel="stylesheet" type="text/css" href="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
+        <style type="text/css">
+            .dialog table label,.dialog table input{
+                display: block;    		
+            }
+            .dialog table input{
+                margin-bottom: 12px;
+                width: 100%;
+                padding: .4em;
+            }
+            .dialog table textarea{
+                resize: none;
+            }
+            .dialog table input:focus{
+                outline: 0;
+                border: 1px solid #ffa200;
+                box-shadow: 0 0 5px #ffa200;
+                transition-duration: 0.5s;
+            }
+            .dialog table textarea:focus{
+                outline: 0;
+                border: 1px solid #ffa200;
+                box-shadow: 0 0 5px #ffa200;
+                transition-duration: 0.5s;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="contentManage">
+            <div class="t-title">Food Store Manage</div>
+            <div class="table-head">
+                <div class="operate">
+                    <img src="resource/imags/icon/search.png" class="icon-search" width="20px" height="20px" alt="">
+                    <input type="text" name="search" id="search" class="search" placeholder="Search want you want" />
+                    <button type="button" class="find">Search</button>
+                    <button type="button" class="add">Add</button>
+                    <div class="dialog" id="dialog" title="New Store">
+                        <form action="food/add">
+                            <table>
+                                <tr>
+                                    <td><label for="fid">Store ID:&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input name="foodStoreId" type="text" id="fid" class="ui-widget-content ui-corner-all"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="fname">Store Name:&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input name="foodStoreName" type="text" id="fname" class="ui-widget-content ui-corner-all"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="farea">Area:&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input name="areas" type="text" id="farea" class="ui-widget-content ui-corner-all"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="faddress">Store Address:&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input name="storeAddress" type="text" id="faddress" class="ui-widget-content ui-corner-all"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="fcontent">Store Content:&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                    <td><textarea cols="50"
+                                                  rows="7" name="storeContent" id="fcontent" class="ui-widget-content ui-corner-all"></textarea></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>           
+                </div>
+            </div>
+            <div class="table-content">
+                <table border="1" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th>Food Store ID</th>
+                        <th>Food Store Name</th>
+                        <th>Area</th>
+                        <th>Food Store Address</th>
+                        <th>Food Store Content</th>
+                        <th>Operate</th>
+                    </tr>
+                    <c:forEach items="${foodList}" var="f">
+                        <tr id="${f.foodStoreId}">
+                            <td>${f.foodStoreId}</td>
+                            <td>${f.foodStoreName}</td>
+                            <td>${f.areas}</td>
+                            <td>${f.storeAddress}</td>
+                            <td>${f.storeContent}</td>
+                            <td>
+                                <button type="button" class="edit">Edit</button>
+                                <button type="button" class="delete" onclick="delFood('${f.foodStoreId}')">Delete</button>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+                <div class="dialog" id="edit-dialog" title="Edit Scenic">
+                    <from action="users/editUser" method="POST">
+                        <table>
+                            <tr>
+                                <td><label for="e-fid">Store ID:&nbsp;</label></td>
+                            </tr>
+                            <tr>
+                                <td><input name="foodStoreId" type="text" id="e-fid" class="ui-widget-content ui-corner-all"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="e-fname">Store Name:&nbsp;</label></td>
+                            </tr>
+                            <tr>
+                                <td><input name="foodStoreName" type="text" id="e-fname" class="ui-widget-content ui-corner-all"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="e-farea">Area:&nbsp;</label></td>
+                            </tr>
+                            <tr>
+                                <td><input name="areas" type="text" id="e-farea" class="ui-widget-content ui-corner-all"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="e-faddress">Store Address:&nbsp;</label></td>
+                            </tr>
+                            <tr>
+                                <td><input name="storeAddress" type="text" id="e-faddress" class="ui-widget-content ui-corner-all"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="e-fcontent">Store Content:&nbsp;</label></td>
+                            </tr>
+                            <tr>
+                                <td><textarea cols="50"
+                                              rows="7" name="storeContent" id="e-fcontent" class="ui-widget-content ui-corner-all"></textarea></td>
+                            </tr>
+                        </table>
+                    </from>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="resource/js/jquery-2.1.0.js" ></script>
+    <script type="text/javascript" src="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+    <script>
+        $(function () {
+            $('.add').click(function () {
+                $('#dialog').dialog('open');
+            });
+            $('#dialog').dialog({
+                height: 500,
+                width: 500,
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    "Create": function () {
+                        console.log("create");
+                        $.ajax({
+                            url: 'food/add',
+                            type: 'POST',
+                            data: {
+                                "foodStoreId": $('#fid').val(),
+                                "foodStoreName": $('#fname').val(),
+                                "areas": $('#farea').val(),
+                                "storeAddress": $('#faddress').val(), 
+                                "storeContent": $('#fcontent').val()
+                            },
+                            success: function () {
+                                console.log('success');
+
+                            },
+                            error: function () {
+                                console.log('error!');
+                            }
+                        });
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            $('.edit').click(function () {
+                $('#edit-dialog').dialog('open');
+            });
+            $('#edit-dialog').dialog({
+                height: 400,
+                width: 400,
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    "Edit": function () {
+                        console.log('edit');
+                        $.ajax({
+                            url: 'food/edit',
+                            type: 'POST',
+                            data: {
+                                "foodStoreId": $('#e-fid').val(),
+                                "foodStoreName": $('#e-fname').val(),
+                                "areas": $('#e-farea').val(),
+                                "storeAddress": $('#e-faddress').val(), 
+                                "storeContent": $('#e-fcontent').val()
+                            },
+                            success: function (result) {
+                                console.log(result);
+                                if (result.resultCode == 200) {
+                                    console.log("SUCCESS");
+                                }
+                            },
+                            error: function () {
+                                console.log("error！");
+                            }
+                        });
+                    }
+                }
+            });
+        })
+    </script>
+
+</html>

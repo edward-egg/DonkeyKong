@@ -1,0 +1,50 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.util.ArrayList;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pojo.FoodStore;
+
+/**
+ *
+ * @author hasee
+ */
+@Repository
+public class FoodDaoImpl implements FoodDao{
+    
+    @Autowired
+    SessionFactory factory;
+    
+    @Override
+    public void insertFood(FoodStore food) {
+        factory.getCurrentSession().save(food);
+    }
+
+    @Override
+    public void deleteFood(String fid) {
+        factory.getCurrentSession().delete(getFoodById(fid));
+    }
+
+    @Override
+    public void updateFood(FoodStore food) {
+        factory.getCurrentSession().update(food);
+    }
+
+    @Override
+    public FoodStore getFoodById(String fid) {
+        return (FoodStore)factory.getCurrentSession().get(FoodStore.class, fid);
+    }
+
+    @Override
+    public ArrayList<FoodStore> getAllFood() {
+        String hql = "from FoodStore";
+        return (ArrayList<FoodStore>)factory.getCurrentSession().createQuery(hql).list();
+    }
+    
+}

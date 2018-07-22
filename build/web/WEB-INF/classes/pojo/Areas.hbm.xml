@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-5-28 23:08:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Areas" table="areas" catalog="donkeykong" optimistic-lock="version">
+        <id name="areaId" type="string">
+            <column name="area_id" length="64" />
+            <generator class="assigned" />
+        </id>
+        <property name="areaName" type="string">
+            <column name="area_name" />
+        </property>
+        <property name="areaImg" type="string">
+            <column name="area_img" />
+        </property>
+<!--        <set name="scenics" table="scenic" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="area_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Scenic" />
+        </set>
+        <set name="foodStores" table="food_store" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="area_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.FoodStore" />
+        </set>
+        <set name="hotels" table="hotel" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="area_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Hotel" />
+        </set>-->
+    </class>
+</hibernate-mapping>

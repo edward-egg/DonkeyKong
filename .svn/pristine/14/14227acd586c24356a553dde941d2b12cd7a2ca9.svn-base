@@ -1,0 +1,233 @@
+
+body .header {
+    background-color: #fff;
+    width: 100%;
+    height: 50px;
+    padding: 0;
+    height: 80px; }
+body .header .title {
+    display: block;
+    float: left;
+    font-size: 20px;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    margin-left: 6%; }
+body .header .title span {
+    position: relative;
+    bottom: 25px; }
+body .header .nav {
+    padding-top: 1%;
+    display: block;
+    margin-left: 20%;
+    width: auto;
+    height: inherit; }
+body .header .nav ul {
+    list-style-type: none; }
+body .header .nav ul li {
+    float: left; }
+body .header .nav ul li a {
+    color: black;
+    width: 80px;
+    height: 30px;
+    font-size: 18px;
+    line-height: 30px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 8px;
+    border-bottom: 2px #EEB422 solid; }
+body .header .nav ul li a:link {
+    color: black; }
+body .header .nav ul li a:hover {
+    background-color: #EEB422;
+    transition-duration: 0.3s;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px; }
+body .header .nav .to-login {
+    width: 200px;
+    float: left;
+    height: 50px;
+    margin-left: 10%; }
+body .header .nav .to-login .btn {
+    border: none;
+    width: 100px;
+    background-color: #66CD00;
+    color: whitesmoke;
+    font-size: 18px;
+    border-radius: 5px;
+    height: 30px; }
+body .header .nav .to-login .btn:hover {
+    background-color: #90EE90; }
+body .header .nav .to-login .register {
+    position: relative;
+    bottom: 30px;
+    left: 130px; }
+body .note-detail {
+    margin-top: 2%;
+    width: 100%;
+    
+}
+body .note-detail .note-head{
+    height: auto;
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d7d7d7;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+}
+body .note-detail .head-img {
+    width: 100%;
+    height: 400px; }
+body .note-detail .head-img img {
+    width: 100%;
+    height: inherit; }
+body .note-detail .head-img h3 {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    text-align: center;
+    bottom: 70px;
+    color: whitesmoke;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px; }
+body .note-detail .note-avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 130px;
+    overflow: hidden;
+    margin-left: 10%;
+    margin-top: -2%; }
+body .note-detail .note-avatar img {
+    width: 100%;
+    height: 100%; }
+body .note-detail .user-info {
+    width: 70%;
+    margin-left: 17%;
+    margin-top: -1%; 
+}
+body .note-detail .user-info span {
+    margin-left: 10px; }
+body .note-detail .user-info span .btn-report:hover{
+     background-color: #f78989;
+    border-color: #f78989;
+    transition-duration: 0.2s;
+}
+body .note-detail .user-info img {
+    width: 30px;
+    height: 30px; }
+
+body .note-detail .user-info .write {
+    position: relative;
+    bottom: 15px;
+    width: auto;
+    float:right;
+ }
+body .note-detail .user-info .write img {
+    width: 40px;
+    height: 40px; }
+body .note-detail .user-info .write .w-btn {
+    position: relative;
+    bottom: 10px;
+    border: none;
+    outline: 0;
+    background-color: #EEB422;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    height: 40px;
+    width: auto; 
+    border-radius: 7px; }
+body .note-detail .user-info .write .w-btn:hover {
+    background-color: #ffb01e;
+    cursor: pointer;
+    font-weight: bold;
+    transition-duration: 0.3s; }
+body .note-detail hr {
+    position: relative;
+    z-index: 100px;
+    border: 1px solid #d7d7d7;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05); }
+body .note-detail .article {
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+    width: 50%;
+    border: 2px dotted #FFB01E;
+    padding: 8px 8px; }
+body .note-detail .article .content {
+    width: 100%;
+    text-indent: 2em;
+    word-wrap: break-word;
+    font-size: 16px; }
+body .note-detail .note-comment {
+    float: left;
+    transform: translateX(48%);
+    margin-top: 20px;
+    border: 2px dotted blue;
+    width: 50%;
+    padding: 8px 8px; }
+body .note-detail .note-comment #comment-title {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 3%; }
+body .note-detail .note-comment .comment-list {
+    float: left;
+    width: 100%;
+    padding: 5px; }
+body .note-detail .note-comment .comment-list .comment-item {
+    float: left;
+    width: 98%;
+    height: auto;
+    border-bottom: 1px solid #C5C5C5;
+    margin-top: 20px; }
+body .note-detail .note-comment .comment-list .comment-item .avatar {
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-top: 10px;
+    border: 1px solid #AAAAAA;
+    margin-bottom: 8px; }
+body .note-detail .note-comment .comment-list .comment-item .avatar img {
+    width: 100%; }
+body .note-detail .note-comment .comment-list .comment-item .comment-detail {
+    float: left;
+    margin-left: 8px;
+    width: 90%; }
+body .note-detail .note-comment .comment-list .comment-item .comment-detail .info {
+    border-bottom: 1px solid #AAAAAA; }
+body .note-detail .note-comment .comment-list .comment-item .comment-detail .info #report {
+    float: right;
+    position: relative;
+    bottom: 10px; }
+body .note-detail .note-comment .comment-list .comment-item .comment-detail .info #report img {
+    width: 25px;
+    height: 25px; }
+body .note-detail .note-comment .comment-list .comment-item .comment-detail .info #report #btn-report,#btn-report{
+    background-color: #f56c6c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    width:80px;
+    height: 30px;
+    position: relative;
+    bottom: 8px;
+    outline: 0;
+}
+body .note-detail .note-comment .comment-list .comment-item .comment-detail .info #report #btn-report:hover{
+    background-color: #f78989;
+    border-color: #f78989;
+    transition-duration: 0.2s;
+}
+body .note-detail .note-comment .comment-list .comment-item .comment-detail .msg p {
+    word-break: break-all;
+    text-indent: 2em; }
+body .note-detail .note-comment .comment-list .comment-item .comment-detail .msg span {
+    float: right;
+    margin-right: 5%;
+    margin-top: 5px; }
+
+/*# sourceMappingURL=noteDetail.css.map */

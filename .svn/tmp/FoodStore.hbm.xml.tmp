@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-5-28 23:08:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.FoodStore" table="food_store" catalog="donkeykong" optimistic-lock="version">
+        <id name="foodStoreId" type="string">
+            <column name="food_store_id" length="64" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="areas" class="pojo.Areas" lazy="false" fetch="select">
+            <column name="area_id" length="64" not-null="true" />
+        </many-to-one>
+        <property name="foodStoreName" type="string">
+            <column name="food_store_name" not-null="true" />
+        </property>
+        <property name="avgPrice" type="double">
+            <column name="avg_price" precision="10" not-null="true" />
+        </property>
+        <property name="storeAddress" type="string">
+            <column name="store_address" not-null="true" />
+        </property>
+        <property name="liked" type="java.lang.Integer">
+            <column name="liked" />
+        </property>
+<<<<<<< .mine
+        <property name="storeImg" type="string">
+            <column name="store_img"/>
+=======
+        <property name="storeImg" type="string">
+            <column name="store_img" />
+>>>>>>> .r171
+        </property>
+        <property name="storeContent" type="string">
+            <column name="store_content" />
+        </property>
+<!--        <set name="foodStoreComments" table="food_store_comment" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="food_store_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.FoodStoreComment" />
+        </set>-->
+    </class>
+</hibernate-mapping>

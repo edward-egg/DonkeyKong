@@ -1,0 +1,27 @@
+<!DOCTYPE html>  
+<html lang="en">  
+    <head>  
+        <meta charset="utf-8">  
+        <title>new_file1</title>  
+        <!-- <script type="text/jscript" src="jquery-1.10.2.min.js"></script>   -->
+        <script src="../js/jquery-2.1.0.js"></script>
+        <script type="text/javascript">  
+            function delTr(obj){ //删除行  
+                $(obj).parent().parent().remove();  
+            }  
+            function addTr(){  //增加行  
+                $("#tab tr:last").after('<tr><td>名称</td><td><input type="button" onclick="delTr(this)" value="删除"/></td></tr>')  
+            }  
+        </script>  
+    </head>  
+  
+    <body>  
+        <input type="button" onclick="addTr()" value="添加"/>  
+        <table border="1px #ooo" id="tab" cellpadding="0" cellspacing="0" width="30%">  
+            <tr>  
+                <td>名称</td>  
+                <td>操作</td>  
+            </tr>  
+        </table>  
+    </body>  
+</html>  

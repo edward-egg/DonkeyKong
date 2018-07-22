@@ -1,0 +1,207 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controllers;
+
+import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import services.FoodService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import pojo.Note;
+import pojo.Tour;
+import pojo.Users;
+import services.HotelService;
+import services.NoteService;
+import services.ScenicService;
+import services.TravelService;
+import services.UsersService;
+
+/**
+ *
+ * @author hasee
+ */
+@Controller
+public class IndexController {
+
+    @Autowired
+    FoodService fs;
+    @Autowired
+    UsersService us;
+    @Autowired
+    HotelService hs;
+    @Autowired
+    ScenicService ss;
+    @Autowired
+    NoteService ns;
+    @Autowired
+    TravelService ts;
+
+    /////////////////////Main Page////////////////////////
+    @RequestMapping(value = {"/", "main.htm"})
+    public String main(Model model) {
+        model.addAttribute("noteTopList", ns.getTopNotes());
+        return "main";
+    }
+
+    @RequestMapping(value = "redirect/main")
+    public String mainPage(Model model) {
+        model.addAttribute("noteTopList", ns.getTopNotes());
+        return "main";
+    }
+
+    @RequestMapping(value = "redirect/login")
+    public String loginPage() {
+        return "login";
+    }
+
+    @RequestMapping(value = "redirect/register")
+    public String registerPage() {
+        return "register";
+    }
+
+    @RequestMapping(value = "redirect/userPage")
+    public String userPage() {
+        return "user/userPage";
+    }
+
+    @RequestMapping(value = "redirect/scenicPage")
+    public String scenicPage(Model model) {
+        model.addAttribute("scenicList", ss.getAllScenic());
+        model.addAttribute("topScenicList", ss.getTopSenic());
+        return "scenicPage";
+    }
+
+    @RequestMapping(value = "redirect/foodPage")
+    public String foodPage(Model model) {
+        model.addAttribute("topFoodList", fs.getTopFood());
+        model.addAttribute("foodList", fs.getAllFood());
+        return "foodPage";
+    }
+
+    @RequestMapping(value = "redirect/notePage")
+    public String notePage(Model model) {
+        model.addAttribute("noteTopList", ns.getTopNotes());
+        model.addAttribute("noteList", ns.getAllNotes());
+        return "notePage";
+    }
+
+    @RequestMapping(value = "redirect/travelPage")
+    public String travelPage(Model model) {
+        model.addAttribute("travelList", ts.getAllTravel());
+        return "travelPage";
+    }
+
+    @RequestMapping(value = "redirect/hotelPage")
+    public String hotelPage() {
+        return "hotelPage";
+    }
+
+    @RequestMapping(value = "redirect/manager")
+    public String manager() {
+        return "manager/manager";
+    }
+
+    ///////////////Page Detail////////////////
+    @RequestMapping(value = "toTravelDetail")
+    public String travelDetail() {
+        return "travelDetail";
+    }
+
+    @RequestMapping(value = "toFoodDetail")
+    public String foodDetail() {
+        return "foodDetail";
+    }
+
+    @RequestMapping(value = "toHotelDetail")
+    public String hotelDetail() {
+        return "hotelDetail";
+    }
+
+    @RequestMapping(value = "toScenicDetail")
+    public String scenicDetail() {
+        return "scenicDetail";
+    }
+
+    @RequestMapping(value = "toNoteDetail")
+    public String noteDetail() {
+        return "noteDetail";
+    }
+
+    ////////////////////////////Manager Page/////////////////////////////////
+    @RequestMapping(value = "toChangePass")
+    public String toChangePass() {
+        return "manager/changePass";
+    }
+
+    @RequestMapping(value = "toUserManage")
+    public String toUserManage(Model model) {
+        model.addAttribute("userList", us.getUsers());
+        return "manager/userManage";
+    }
+
+    @RequestMapping(value = "toFoodManage")
+    public String toFoodManage(Model model) {
+        model.addAttribute("foodList", fs.getAllFood());
+        System.out.println(fs.getAllFood());
+        return "manager/foodManage";
+    }
+
+    @RequestMapping(value = "toHotelManage")
+    public String toHotelManage(Model model) {
+        model.addAttribute("hotelList", hs.getAllHotel());
+        return "manager/hotelManage";
+    }
+
+    @RequestMapping(value = "toScenicManage")
+    public String toScenicManage(Model model) {
+        model.addAttribute("scenicList", ss.getAllScenic());
+        return "manager/scenicManage";
+    }
+
+    @RequestMapping(value = "toNoteManage")
+    public String toNoteManage(Model model) {
+        model.addAttribute("noteList", ns.getAllNotes());
+        return "manager/noteManage";
+    }
+
+    @RequestMapping(value = "toTravelManage")
+    public String toTravelManage(Model model) {
+        model.addAttribute("travelList", ts.getAllTravel());
+        return "manager/travelManage";
+    }
+
+    /////////////////////////User Page////////////////////
+    @RequestMapping(value = "toUserDetail")
+    public String userDetail(Model model, Users user) {
+        model.addAttribute("user", user);
+        return "user/userDetail";
+    }
+
+    @RequestMapping(value = "toMyNote")
+    public String myNote(Model model, HttpSession session) {
+        Users user = (Users) session.getAttribute("CURRENT_USER");
+        model.addAttribute("noteList", ns.getAllNotesByUserId(user.getUserId()));
+        return "user/myNote";
+    }
+
+    @RequestMapping(value = "toGoTravel")
+    public String goTravel(Model model, HttpSession session) {
+        Users user = (Users) session.getAttribute("CURRENT_USER");
+        System.out.println(user.getUserId() + "-----------Id");
+        model.addAttribute("travelList", ts.getAllTravelByUserId(user.getUserId()));
+        session.setAttribute("USER_TRAVEL", ts.getAllTravelByUserId(user.getUserId()));
+        ArrayList<Tour> list = (ArrayList<Tour>) session.getAttribute("USER_TRAVEL");
+        if (ts.getAllTravelByUserId(user.getUserId()).size() != 0) {
+            for (int i = 0; i < list.size(); i++) {
+                model.addAttribute("applyList", ts.getApplyUsersId(list.get(i).getTourId()));
+            }
+        }
+        return "user/goTravel";
+    }
+
+}

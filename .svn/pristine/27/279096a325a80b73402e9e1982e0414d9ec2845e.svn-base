@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>City Detail</title>
+</head>
+<body>
+    <!--导航模块-->
+    <div class="header">
+            <span class="title">
+                DonkeyKong
+            </span>
+            <div class="nav">
+                <ul>
+                    <li>
+                        <a href="main.html">首页</a>
+                    </li>
+                    <li>
+                        <a href="scenicPage.html">景点</a>
+                    </li>
+                    <li>
+                        <a href="foodPage.html">美食</a>
+                    </li>
+                    <li>
+                        <a href="notePage.html">游记</a>
+                    </li>
+                    <li>
+                        <a href="hotelPage.html">酒店</a>
+                    </li>
+                    <li>
+                        <a href="travelPage.html">组团游</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="to-login">
+                <button type="button" class="btn login">Login</button>
+                <button type="button" class="btn register">Register</button>
+            </div>
+        </div>
+</body>
+</html>

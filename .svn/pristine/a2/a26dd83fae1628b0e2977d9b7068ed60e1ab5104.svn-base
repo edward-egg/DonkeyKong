@@ -1,0 +1,47 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pojo.Admin;
+import pojo.Users;
+
+/**
+ *
+ * @author hasee
+ */
+@Repository
+public class ManagerDaoImpl implements ManagerDao{
+    @Autowired
+    SessionFactory factory;
+
+    @Override
+    public Admin login(String mid) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        Admin temp=  (Admin) session.get(Admin.class, mid);
+        trans.commit();
+        session.close();
+        return temp;
+    }
+
+    @Override
+    public void update(Admin admin) {
+        String hql = "UPDATE Admin as admin SET admin.password=? WHERE admin.adminId=?";    
+        Session session = factory.openSession();
+        session.beginTransaction();
+        Query query = session.createQuery(hql);
+        query.setString(0, admin.getPassword());
+        session.getTransaction().commit();
+        System.out.println("更新成功！");
+        session.close();
+    }
+}

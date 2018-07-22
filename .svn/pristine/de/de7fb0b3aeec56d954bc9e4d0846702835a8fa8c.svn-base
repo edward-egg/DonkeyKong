@@ -1,0 +1,243 @@
+body {
+    overflow-x: hidden;
+    .header {
+        background-color: #fff;
+        width: 100%;
+        height: 50px;
+        padding: 0;
+        height: 80px;
+        .title {
+            display: block;
+            float: left;
+            font-size: 20px;
+            font-weight: bolder;
+            letter-spacing: 2px;
+            margin-left: 6%;
+            span {
+                position: relative;
+                bottom: 25px;
+            }
+        }
+        .nav {
+            padding-top: 1%;
+            display: block;
+            margin-left: 20%;
+            width: auto;
+            height: inherit;
+            ul {
+                list-style-type: none;
+                li {
+                    float: left;
+                    a {
+                        color: black;
+                        width: 80px;
+                        height: 30px;
+                        font-size: 18px;
+                        line-height: 30px;
+                        display: block;
+                        text-align: center;
+                        text-decoration: none;
+                        margin-left: 8px;
+                        border-bottom: 2px #EEB422 solid;
+                        &:link {
+                            color: black;
+                        }
+                        &:hover {
+                            background-color: #EEB422;
+                            transition-duration: 0.3s;
+                            color: white;
+                            font-weight: bold;
+                            border-radius: 4px;
+                        }
+                    }
+                }
+            }
+            .to-login {
+                width: 200px;
+                float: left;
+                height: 50px;
+                margin-left: 10%;
+                .btn {
+                    border: none;
+                    width: 100px;
+                    background-color: #66CD00;
+                    color: whitesmoke;
+                    font-size: 18px;
+                    border-radius: 5px;
+                    height: 30px;
+                    &:hover {
+                        background-color: #90EE90;
+                    }
+                }
+                .register {
+                    position: relative;
+                    bottom: 30px;
+                    left: 130px;
+                }
+            }
+        }
+    }
+    .travel-search {
+        margin: 0 auto;
+        width: 60%;
+        margin-top: 3%;
+        padding-top: 12px;
+        text-align: center;
+        border-top: 2px solid #EEB422;
+        span {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .in-find {
+            padding-left: 30px;
+            width: 60%;
+            height: 40px;
+            border-radius: 7px;
+            outline: 0;
+            border: 1px solid #d8d8d8;
+            box-shadow: 0 0 5px #fff;
+            &:focus {
+                transition-duration: 0.5s;
+                border: 1px solid #ffa200;
+                box-shadow: 0 0 5px #ffa200;
+                outline: 0;
+            }
+        }
+        .find {
+            border: none;
+            outline: 0;
+            background-color: #EEB422;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            height: 40px;
+            width: 80px;
+            border-radius: 7px;
+            &:hover {
+                background-color: #ffb01e;
+                cursor: pointer;
+                font-weight: bold;
+                transition-duration: 0.3s;
+            }
+        }
+        .icon-search {
+            position: relative;
+            left: 30px;
+            top: 6px;
+        }
+    }
+    .travel-list {
+        width: 60%;
+        margin: 2% auto;
+        height: auto;
+        border: 1px solid #E4E7ED;
+        padding: 5px;
+        .toolbar {
+            width: 100%;
+            height: 60px;
+            border-radius: 5px;
+            background-color: #a6a9ad;
+            .travel-sort {
+                float:left;
+                width: 40%;
+                margin-top: 1%;
+                margin-left: 20px;
+                span {
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: whitesmoke;
+                }
+                .sort-btn {
+                    background-color: #409EFF;
+                    color: white;
+                    font-size: 14px;
+                    font-weight: bold;
+                    width: 25%;
+                    height: 30px;
+                    border-radius: 4px;
+                    border: 1px #409EFF solid;
+                    &:hover {
+                        cursor: pointer;
+                        transition-duration: 0.4s;
+                        border: 1px #66b1FF;
+                        background-color: #66b1ff;
+                    }
+                }
+            }
+        }
+        .travel-note {
+            margin-top: 8px;
+            width: 100%;
+            padding: 5px;
+            .note-item {
+                border-bottom: 2px #EEB422 solid;
+                height: 200px;
+                width: 100%;
+                &:hover {
+                    background-color: #F5F5F5;
+                }
+                a {
+                    text-decoration: none;
+                }
+                img {
+                    width:160px;
+                    height:160px ;
+                    margin-top:1%;
+                    margin-left:2%;
+                }
+                .content {
+                    float: right;
+                    width: 70%;
+                    height: 150px;
+                    margin-top: 2%;
+                    margin-right: 3%;
+                    dt a {
+                        color: black;
+                        font-size: 18px;
+                        position: relative;
+                        bottom: 8px;
+                        left: 8px;
+                        font-weight: bold;
+                    }
+                    dd a {
+                        color: black;
+                        display: block;
+                        margin-right: 10px;
+                        word-wrap: break-word;
+                        font-size: 14px;
+                    }
+                    .info {
+                        width: 100%;
+                        height: auto;
+                        padding-left: 18px;
+                        margin-top: 2%;
+                        
+                        span {
+                            position: relative;
+                            top: 16px;
+                            width: 100px;
+                            display: block;
+                            float: left;
+                            margin-right: 30px;
+                            .icon {
+                                width: 20px;
+                                height: 20px;
+                            }
+                            
+                        }
+                        .money{
+                            color: #f4ea2a;
+                            font-size: 35px;
+                            font-weight: bolder;
+                            width: 120px;
+                            img{
+                                width: 40px;
+                                height: 40px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

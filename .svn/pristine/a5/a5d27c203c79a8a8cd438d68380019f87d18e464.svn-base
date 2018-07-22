@@ -1,0 +1,281 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pojo.Hotel;
+
+import pojo.HotelComment;
+import pojo.HotelRoom;
+import pojo.ScenicComment;
+import util.IDUtils;
+import java.util.Comparator;
+import java.util.Date;
+import pojo.HotelBook;
+import pojo.Report;
+import pojo.Users;
+
+/**
+ *
+ * @author hasee
+ */
+@Repository
+public class HotelDaoImpl implements HotelDao {
+
+    @Autowired
+    SessionFactory factory;
+
+    @Override
+    public void insertHotel(Hotel hotel) {
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        session.save(hotel);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void deleteHotel(String hid) {
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        session.delete(getHotelById(hid));
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void update(Hotel hotel) {
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        session.update(hotel);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public Hotel getHotelById(String hid) {
+        Session session = factory.openSession();
+        Hotel temp = (Hotel) session.get(Hotel.class, hid);
+        session.close();
+        return temp;
+    }
+
+    @Override
+    public ArrayList<Hotel> getAllHotel() {
+        String hql = "from Hotel";
+        Session session = factory.openSession();
+        ArrayList<Hotel> list = (ArrayList<Hotel>) session.createQuery(hql).list();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public void insertHotelComment(HotelComment hotelComment) {
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        session.save(hotelComment);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public ArrayList<HotelComment> getAllComments(Hotel hotel) {
+        String hql = "from HotelComment where hotel = ? order by commentTime desc";
+        Session session = factory.openSession();
+        Query query = session.createQuery(hql);
+        ArrayList<HotelComment> list = (ArrayList<HotelComment>) query.setEntity(0, hotel).list();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public Set<HotelRoom> getAllRoomsByHotel(Hotel hotel) {
+        String hql = "from HotelRoom where hotel = ? ";
+        Session session = factory.openSession();
+        Query query = session.createQuery(hql);
+        ArrayList<HotelRoom> list = (ArrayList<HotelRoom>) query.setEntity(0, hotel).list();
+        Set<HotelRoom> set = new HashSet<HotelRoom>();
+        for (HotelRoom room : list) {
+            set.add(room);
+        }
+        session.close();
+        return set;
+    }
+
+    @Override
+    public ArrayList<Hotel> sortByLike() {
+        Comparator<Hotel> c = new Comparator<Hotel>() {
+            @Override
+            public int compare(Hotel o1, Hotel o2) {
+                if (o1.getHotelLike() < o2.getHotelLike()) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
+        };
+        ArrayList<Hotel> list = getAllHotel();
+        list.sort(c);
+        return list;
+    }
+
+    @Override
+    public void bookRoom(String hid, String uid, String rid, Timestamp ftime, Timestamp ttime) {
+        String bookId = IDUtils.getUUID();
+        HotelBook book = new HotelBook();
+        Users user = getUserById(uid);
+        Hotel hotel = getHotelById(hid);
+        HotelRoom room = getRoomById(rid);
+        book.setBookId(bookId);
+        book.setHotel(hotel);
+        book.setHotelRoom(room);
+        book.setUsers(user);
+        book.setCheckInTime(ftime);
+        book.setCheckOutTime(ttime);
+
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        session.save(book);
+        trans.commit();
+        session.close();
+
+    }
+
+    public Users getUserById(String uid) {
+        String hqltour = "from Users where userId=?";
+        Session session = factory.openSession();
+        Query querytour = session.createQuery(hqltour).setString(0, uid);
+        ArrayList<Users> listtouri = (ArrayList<Users>) querytour.list();
+        session.close();
+        return listtouri.get(0);
+    }
+
+    public HotelRoom getRoomById(String rid) {
+        String hqltour = "from HotelRoom where roomId=?";
+        Session session = factory.openSession();
+        Query querytour = session.createQuery(hqltour).setString(0, rid);
+        ArrayList<HotelRoom> listtouri = (ArrayList<HotelRoom>) querytour.list();
+        session.close();
+        return listtouri.get(0);
+    }
+
+    //hotelname, room number, room type, room price, check-in time, check-out time
+    @Override
+    public ArrayList<HotelBook> getAllBookByUserId(String uid) {
+        String hql = "from HotelBook where users=?";
+        Session session = factory.openSession();
+        ArrayList<HotelBook> list = (ArrayList<HotelBook>) session.createQuery(hql).setString(0, uid).list();
+        session.close();
+        return list;
+    }
+    public HotelBook getBookByBookId(String bid) {
+        Session session = factory.openSession();
+        HotelBook temp = (HotelBook) session.get(HotelBook.class, bid);
+        session.close();
+        return temp;
+    }
+
+    @Override
+    public void delBook(String bid) {
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        session.delete(getBookByBookId(bid));
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void updatePic(Hotel hotel) {
+        Session session = factory.openSession();
+        String hql = "update Hotel set hotelImg=?  where hotelId=?";
+        Transaction trans = session.beginTransaction();
+        Query query = session.createQuery(hql);
+        query.setString(0, hotel.getHotelImg());
+        query.setString(1, hotel.getHotelId());
+        query.executeUpdate();
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void deleteHotelCommentById(String hotelCommentId) {
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        session.createQuery("delete from HotelComment where hotelCommentId = ?").setString(0, hotelCommentId).executeUpdate();
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void addHotelReport(Report report) {
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        session.save(report);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public boolean findReport(Users user, Hotel hotel) {
+        Session session = factory.openSession();
+        Query q = session.createQuery("from Report where user = ? and hotel = ?");
+        q.setString(0, user.getUserId());
+        q.setString(1, hotel.getHotelId());
+        Report report = (Report) q.uniqueResult();
+        if(report == null){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public HotelComment getHotelCommentById(String cid) {
+        String hql = "from HotelComment where hotelCommentId=?";
+        Session session = factory.openSession();
+        Query query = session.createQuery(hql).setString(0, cid);
+        HotelComment comment = (HotelComment) query.uniqueResult();
+        session.close();
+        return comment;
+    }
+
+    @Override
+    public boolean findReportComment(Users user, HotelComment comment) {
+        Session session = factory.openSession();
+        Query q = session.createQuery("from Report where user = ? and hotelComment = ?");
+        q.setString(0, user.getUserId());
+        q.setString(1, comment.getHotelCommentId());
+        Report report = (Report) q.uniqueResult();
+        if(report == null){
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean checkBook(String uid, String hid){
+        Session session = factory.openSession();
+        Query q = session.createQuery("from HotelBook where users = ? and hotel = ?");
+        Users user=getUserById(uid);
+        Hotel hotel=getHotelById(hid);
+        q.setString(0, user.getUserId());
+        q.setString(1, hotel.getHotelId());
+        HotelBook temp = (HotelBook) q.uniqueResult();
+        if(temp == null){
+            return true;
+        }
+        return false;
+    }
+
+
+}

@@ -1,0 +1,203 @@
+#tabs{
+    width:80%;
+    height: auto;
+    float: left;
+    margin: 5px 10px;
+    padding: 10px;
+    margin-left: 20px;
+}
+#tabs .travel-head {
+    text-align: center;
+    padding-top: 5px; }
+#tabs .travel-head span {
+    display: block;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold; }
+#tabs .travel-head {
+    text-align: center;
+    padding-top: 5px; }
+#tabs .travel-head span {
+    display: block;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold; }
+#tabs .travel-head ul{
+    list-style-type: none;
+}
+#tabs .travel-head ul li{
+    float:left;
+}
+#tabs .travel-head ul li input{
+    background-color: #ffa200;
+    padding: 5px;
+    border:none;
+    border-radius: 4px;
+    text-align: center;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    margin-left: 30px;
+    outline: 0;
+    color: white;
+    font-weight: bold;
+}
+#tabs .travel-head ul li input:hover{
+    background-color: #EEB422 ;
+    transition-duration: 0.3s;
+    color: white;
+    border-radius: 4px;
+}
+
+#tabs #tab1 table {
+    margin-top: 60px;
+    padding: 10px;
+    width: 50%; }
+#tabs #tab1 table tr {
+    margin-top: 10px; }
+#tabs #tab1 table th {
+    text-align: right; }
+#tabs #tab1 table td {
+    height: 60px;
+    text-align: center; }
+#tabs #tab1 table td input {
+    border-radius: 5px;
+    line-height: 28px;
+    border: 1px solid #d8d8d8;
+    color: #666;
+    box-shadow: 0 0 5px #fff;
+    height: 25px;
+    width: 80%;
+    padding-left: 5px; }
+#tabs #tab1 table td input:focus {
+    transition-duration: 0.5s;
+    border: 1px solid #ffa200;
+    box-shadow: 0 0 5px #ffa200;
+    outline: 0; }
+#tabs #tab1 #t-submit {
+    margin-top: 5px;
+    margin-left: 20%; }
+#tabs #tab1 #t-submit button {
+    outline: 0;
+    color: #fff;
+    background-color: #ffa800;
+    border-radius: 3px;
+    text-align: center;
+    height: 40px;
+    border: none;
+    width: 10%; }
+#tabs #tab1 #t-submit button:hover {
+    background-color: #ff7200; }
+#tabs #tab2 {
+    margin-top: 100px;
+    width: 100%; }
+#tabs #tab2 .list {
+    width: 100%;
+    margin: 20px auto; 
+ margin-top: 30px;}
+#tabs #tab2 .list dl dt {
+    background-color: #f4fff4;
+    height: 50px;
+    width: 90%;
+    border-radius: 4px;
+    color: #006600;
+    display: block;
+    border: 1px solid #AAAAAA;
+    padding: 15px 10px 0 10px; }
+#tabs #tab2 .list dl dt .start-time {
+    display: block;
+    float: right; }
+#tabs #tab2 .list dl dd {
+    margin-left: 2px;
+    width: 91%;
+    border: 1px solid #AAAAAA;
+    background-color: #f4fff4; }
+#tabs #tab2 .list dl dd .person table {
+    padding: 10px;
+    width: 50%; }
+#tabs #tab2 .list dl dd .person table tr {
+    margin-top: 2px; }
+#tabs #tab2 .list dl dd .person table th {
+    text-align: right; }
+#tabs #tab2 .list dl dd .person table td {
+    height: 30px;
+    text-align: center; }
+#tabs #tab2 .list dl dd .person table td input {
+    border-radius: 5px;
+    line-height: 28px;
+    border: 1px solid #d8d8d8;
+    color: #666;
+    box-shadow: 0 0 5px #fff;
+    height: 25px;
+    width: 80%;
+    padding-left: 5px; }
+#tabs #tab2 .list dl dd .person table td input:focus {
+    transition-duration: 0.5s;
+    border: 1px solid #ffa200;
+    box-shadow: 0 0 5px #ffa200;
+    outline: 0; }
+#tabs #tab2 .list dl dd .person #t-submit {
+    margin-top: 5px;
+    margin-left: 6%;
+    margin-bottom: 5px; }
+#tabs #tab2 .list dl dd .person #t-submit .submit {
+    outline: 0;
+    color: #fff;
+    background-color: #ffa800;
+    border-radius: 6px;
+    text-align: center;
+    height: 40px;
+    border: none;
+    width: 120px; }
+#tabs #tab2 .list dl dd .person #t-submit .submit:hover {
+    background-color: #ff7200; }
+#tabs #tab2 .list dl dd .person #t-submit .edit {
+    border-radius: 6px;
+    outline: 0;
+    height: 40px;
+    width: 120px;
+    background-color: #fff;
+    border: 1px solid c6e2ff; }
+#tabs #tab2 .list dl dd .person #t-submit .edit:hover {
+    background-color: #ecf5ff;
+    border-color: #c6e2ff;
+    color: #409EFF;
+    transition-duration: 0.2s; }
+#tabs #tab2 .list dl dd .person #t-submit .delete {
+    border-radius: 6px;
+    outline: 0;
+    height: 40px;
+    width: 120px;
+    background-color: #f56c6c;
+    color: #fff;
+    border: none; }
+#tabs #tab2 .list dl dd .person #t-submit .delete:hover {
+    background-color: #f78989;
+    border-color: #f78989;
+    transition-duration: 0.2s; }
+#tabs #tab2 .list dl dd .person #t-submit .cancel {
+    border-radius: 6px;
+    outline: 0;
+    height: 40px;
+    width: 120px;
+    background-color: #00BC9B;
+    color: #fff;
+    border: none; }
+#tabs #tab2 .list dl dd .person #t-submit .cancel:hover {
+    background-color: #00B091;
+    border-color: #00B091;
+    transition-duration: 0.2s; }
+#tabs #tab2 .list dl dd .person #t-submit .person {
+    border-radius: 6px;
+    outline: 0;
+    height: 40px;
+    width: 120px;
+    background-color: #409EFF;
+    color: #fff;
+    border: none; }
+#tabs #tab2 .list dl dd .person #t-submit .person:hover {
+    background-color: #66b1ff;
+    border-color: #66b1ff;
+    transition-duration: 0.2s; }
+
+/*# sourceMappingURL=goTravel.css.map */

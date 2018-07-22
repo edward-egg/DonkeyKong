@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-5-28 23:08:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Hotel" table="hotel" catalog="donkeykong" optimistic-lock="version">
+        <id name="hotelId" type="string">
+            <column name="hotel_id" length="64" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="areas" class="pojo.Areas" fetch="select">
+            <column name="area_id" length="64" not-null="true" />
+        </many-to-one>
+        <property name="hotelName" type="string">
+            <column name="hotel_name" not-null="true" />
+        </property>
+        <property name="hotelAddress" type="binary">
+            <column name="hotel_address" not-null="true" />
+        </property>
+        <property name="hotelLike" type="java.lang.Integer">
+            <column name="hotel_like" />
+        </property>
+        <property name="hotelComment" type="string">
+            <column name="hotel_comment" length="100" />
+        </property>
+        <property name="isReserve" type="int">
+            <column name="is_reserve" not-null="true" />
+        </property>
+        <property name="hotelImg" type="binary">
+            <column name="hotel_img" />
+        </property>
+        <property name="hotelContent" type="binary">
+            <column name="hotel_content" />
+        </property>
+        <set name="hotelRooms" table="hotel_room" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="hotel_id" length="64" not-null="true">
+                    <comment>&#190;&#198;&#181;&#234;id</comment>
+                </column>
+            </key>
+            <one-to-many class="pojo.HotelRoom" />
+        </set>
+        <set name="hotelBooks" table="hotel_book" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="hotel_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.HotelBook" />
+        </set>
+    </class>
+</hibernate-mapping>

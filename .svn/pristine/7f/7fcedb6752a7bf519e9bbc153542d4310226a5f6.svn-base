@@ -1,0 +1,135 @@
+<%-- 
+    Document   : userManage
+    Created on : 2018-5-23, 23:20:38
+    Author     : hasee
+用户管理
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/css/manage.css"/>
+    <link rel="stylesheet" type="text/css" href="../js/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
+    <title>Document</title>
+    <style type="text/css">
+    	#dialog table label,#dialog table input{
+    		display: block;    		
+    	}
+    	#dialog table input{
+    		margin-bottom: 12px;
+    		width: 100%;
+    		padding: .4em;
+    	}
+    	#dialog table input:focus{
+    		outline: 0;
+    		border: 1px solid #ffa200;
+            box-shadow: 0 0 5px #ffa200;
+    		transition-duration: 0.5s;
+    	}
+    </style>
+</head>
+<body>
+    <div class="contentManage">
+        <div class="t-title">User Manage</div>
+        <div class="table-head">
+            <div class="operate">
+                <img src="../imags/icon/search.png" class="icon-search" width="20px" height="20px" alt="">
+                <input type="text" name="search" id="search" class="search" placeholder="Search want you want" />
+                <button type="button" class="find">Search</button>
+                <button type="button" class="add">Add</button>
+                <div id="dialog" title="New User">
+                	<from>
+                		<table>
+                			<tr>
+                				<td>
+                					<label for="uid">User ID:&nbsp;</label>
+                				</td>
+                				<td>
+                					<input type="text" id="uid" class="ui-widget-content ui-corner-all"/>
+                				</td>
+                			</tr>
+                			<tr>
+                				<td>
+                					<label for="email">E-mail:&nbsp;</label>
+                				</td>
+                				<td>
+                					<input type="text" id="email" class="ui-widget-content ui-corner-all"/>
+                				</td>
+                			</tr>
+                			<tr>
+                				<td>
+                					<label for="level">Level:&nbsp;</label>
+                				</td>
+                				<td>
+                					<input type="text" id="level" class="ui-widget-content ui-corner-all"/>
+                				</td>
+                			</tr>
+                			<tr>
+                				<td>
+                					<label for="tel">Tel:&nbsp;</label>
+                				</td>
+                				<td>
+                					<input type="text" id="tel" class="ui-widget-content ui-corner-all"/>
+                				</td>
+                			</tr>
+                		</table>
+                	</from>
+                </div>
+            </div>
+        </div>
+        <div class="table-content">
+            <table border="1" cellpadding="0" cellspacing="0">
+                <tr class="t-head ui-widget-header">
+                    <th>User ID</th>
+                    <th>E-mail</th>
+                    <th>Level</th>
+                    <th>Tel</th>
+                    <th>Freeze</th>
+                    <th>Operate</th>
+                </tr>
+                <tr>
+                    <td>001</td>
+                    <td>980639151@qq.com</td>
+                    <td>12</td>
+                    <td>17863955547</td>
+                    <td>no</td>
+                    <td class="btn-operate">
+                        <button type="button" class="edit">Edit</button>
+                        <button type="button" class="freeze">Freeze</button>
+                        <button type="button" class="delete">Delete</button>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
+<script type="text/javascript" src="../js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+<script>
+	$(function(){
+		$('.add').click(function(){
+			$('#dialog').dialog('open');
+		});
+		$('#dialog').dialog({
+			height: 360,
+			width: 400,
+			autoOpen: false,
+			modal: true,
+			buttons:{
+				"Create":function(){
+					
+				},
+				"Cancel":function(){
+					$(this).dialog("close");
+				}
+			}
+		});
+	})
+</script>
+
+</html>

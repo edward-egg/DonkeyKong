@@ -1,0 +1,73 @@
+<%@page import="POJO.Author"%>
+<%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <title>Welcome to Spring Web MVC project</title>
+    </head>
+    <style>
+        .td{
+            background-color: #ffffcc;
+        }
+        .td:hover{
+            background-color: #ffff00;
+        }
+    </style>
+    <body>
+        <%
+            ApplicationContext ctx = new ClassPathXmlApplicationContext("Booking_config.xml");
+            Author a1 = (Author)ctx.getBean("autBean1");
+            Author a2 = (Author)ctx.getBean("autBean2");
+            Author a3 = (Author)ctx.getBean("autBean3");
+        %>
+        
+        <table border="2" style="text-align: center">
+            <tr style="background-color: #cccccc;width: 30px;">
+                <th>Author ID</th>
+                <th>Author First Name</th>
+                <th>Author Last Name</th>
+                <th>Author Gender</th>
+                <th>Author of Books</th>
+                <th>Author DOB</th>
+                <th>Author Order</th>
+                <th>Book Details</th>
+            </tr>
+            <tr class="td">
+                <td><%=a1.getAut_id()%></td>
+                <td><%=a1.getAut_fname()%></td>
+                <td><%=a1.getAut_lname()%></td>
+                <td><%=a1.getAut_gender()%></td>
+                <td><%=a1.getAut_no_books()%></td>
+                <td><%=a1.getAut_dob()%></td>
+                <td><%=a1.getAut_ord().toString()%></td>
+                <td><%=a1.getAut_ord().getOrd_books().toString()%></td>
+            </tr>
+            <tr class="td">
+                <td><%=a2.getAut_id()%></td>
+                <td><%=a2.getAut_fname()%></td>
+                <td><%=a2.getAut_lname()%></td>
+                <td><%=a2.getAut_gender()%></td>
+                <td><%=a2.getAut_no_books()%></td>
+                <td><%=a2.getAut_dob()%></td>
+                <td><%=a2.getAut_ord().toString()%></td>
+                <td><%=a2.getAut_ord().getOrd_books().toString()%></td>
+            </tr>
+            <tr class="td">
+                <td><%=a3.getAut_id()%></td>
+                <td><%=a3.getAut_fname()%></td>
+                <td><%=a3.getAut_lname()%></td>
+                <td><%=a3.getAut_gender()%></td>
+                <td><%=a3.getAut_no_books()%></td>
+                <td><%=a3.getAut_dob()%></td>
+                <td><%=a3.getAut_ord().toString()%></td>
+                <td><%=a3.getAut_ord().getOrd_books().toString()%></td>
+            </tr>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package util;
+
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ *
+ * @author Jason
+ */
+public class DateUtils {
+    //生成当前时间的时间戳
+    public static Timestamp getTimestamp() {
+        return new Timestamp(new Date().getTime());
+    }
+    public static Date StringToDate(String str) throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.parse(str);
+    }
+}

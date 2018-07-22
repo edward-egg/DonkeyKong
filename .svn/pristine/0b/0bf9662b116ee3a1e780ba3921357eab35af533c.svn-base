@@ -1,0 +1,91 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package POJO;
+
+import java.util.Date;
+
+/**
+ *
+ * @author hasee
+ */
+public class Author {
+    private String aut_id;
+    private String aut_fname;
+    private String aut_lname;
+    private String aut_gender;
+    private int aut_no_books;
+    private Date aut_dob;
+    private Order aut_ord;
+    
+//    @Override
+//    public String toString(){
+//        return "Author ID:"+aut_id+"<br/>"+
+//                "Author First Name:"+aut_fname+"<br/>"+
+//                "Author Last Name:"+aut_lname+"<br/>"+
+//                "Author Gender:"+aut_gender+"<br/>"+
+//                "Author Number of Books:"+aut_no_books+"<br/>"+
+//                "Author Date:"+aut_dob+"<br/>"+
+//                "Author Order:"+aut_ord+"<br/>";
+//    }
+    
+    public String getAut_id() {
+        return aut_id;
+    }
+
+    public void setAut_id(String aut_id) {
+        this.aut_id = aut_id;
+    }
+
+    public String getAut_fname() {
+        return aut_fname;
+    }
+
+    public void setAut_fname(String aut_fname) {
+        this.aut_fname = aut_fname;
+    }
+
+    public String getAut_lname() {
+        return aut_lname;
+    }
+
+    public void setAut_lname(String aut_lname) {
+        this.aut_lname = aut_lname;
+    }
+
+    public String getAut_gender() {
+        return aut_gender;
+    }
+
+    public void setAut_gender(String aut_gender) {
+        this.aut_gender = aut_gender;
+    }
+
+    public int getAut_no_books() {
+        return aut_no_books;
+    }
+
+    public void setAut_no_books(int aut_no_books) {
+        this.aut_no_books = aut_no_books;
+    }
+
+    public Date getAut_dob() {
+        return aut_dob;
+    }
+
+    public void setAut_dob(Date aut_dob) {
+        this.aut_dob = aut_dob;
+    }
+
+    public Order getAut_ord() {
+        return aut_ord;
+    }
+
+    public void setAut_ord(Order aut_ord) {
+        this.aut_ord = aut_ord;
+    }
+    
+    
+}

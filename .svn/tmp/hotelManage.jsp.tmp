@@ -1,0 +1,323 @@
+<%-- 
+    Document   : hotelManage
+    Created on : 2018-5-23, 23:06:12
+    Author     : hasee
+酒店管理
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="resource/css/css/manage.css">
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" type="text/css" href="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
+        <title>Hotel Manage</title>
+        <style type="text/css">
+            .dialog table label,.dialog table input{
+                display: block;    		
+            }
+            .dialog table input{
+                margin-bottom: 12px;
+                width: 100%;
+                padding: .4em;
+            }
+            .dialog table textarea{
+                resize: none;
+            }
+            .dialog table input:focus{
+                outline: 0;
+                border: 1px solid #ffa200;
+                box-shadow: 0 0 5px #ffa200;
+                transition-duration: 0.5s;
+            }
+            .dialog table textarea:focus{
+                outline: 0;
+                border: 1px solid #ffa200;
+                box-shadow: 0 0 5px #ffa200;
+                transition-duration: 0.5s;
+            }
+        </style>
+    </head>
+
+    <body>
+        <%@include file="adminTemplate.jsp" %>
+        <div class="contentManage">
+            <div class="t-title">Hotel Manage</div>
+            <div class="table-head">
+                <div class="operate">
+                    <img src="resource/imags/icon/search.png" class="icon-search" width="20px" height="20px" alt="">
+                    <input type="text" name="search" id="search" class="search" placeholder="Search want you want" />
+                    <button type="button" class="find" onclick="sortByLike()">Search</button>
+                    <button type="button" class="add">Add</button>
+                    <div class="dialog" id="dialog" title="New Hotel">
+                        <p class="validateTips">All input should be valid.</p>
+                        <form action="hotel/add">
+                            <table>
+                                <!--                                <tr>
+                                                                    <td><label for="hid">Hotel ID:&nbsp;</label></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input name="hotelId" type="text" id="hid" class="ui-widget-content ui-corner-all id"/></td>
+                                                                </tr>-->
+                                <tr>
+                                    <td><label for="hname">Hotel Name:&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input name="hotelName" type="text" id="hname" class="ui-widget-content ui-corner-all name"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="harea">Area:&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input name="areas" type="text" id="harea" class="ui-widget-content ui-corner-all area"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="haddress">Hotel Address:&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input name="hotelAddress" type="text" id="haddress" class="ui-widget-content ui-corner-all address"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="hcontent">Hotel Content:&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                    <td><textarea name="hotelContent" cols="50"
+                                                  rows="7" id="hcontent" class="ui-widget-content ui-corner-all content"></textarea></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="table-content">
+                <table border="1" cellpadding="0" cellspacing="0">
+                    <tr class="t-head ui-widget-header">
+                        <th>Hotel ID</th>
+                        <th>Hotel Name</th>
+                        <th>Area</th>
+                        <th>Hotel Address</th>
+                        <th>Hotel Like</th>
+                        <th>Operate</th>
+                    </tr>
+                    <c:forEach items="${hotelList}" var="h">
+                        <tr id="${h.hotelId}">
+<<<<<<< .mine
+                            <td>${h.hotelId}</td>
+                            <td>${h.hotelName}</td>
+                            <td>${h.areas.areaId}</td>
+                            <td>${h.hotelAddress}</td>
+                            <td>${h.hotelContent}</td>
+                            <td>
+                                <button type="button" class="edit">Edit</button>
+                                <button type="button" class="delete" onclick="delHotel('${h.hotelId}')">Delete</button>
+                            </td>
+                        </tr>
+=======
+                        <td>${h.hotelId}</td>
+                        <td>${h.hotelName}</td>
+                        <td>${h.areas.areaId}</td>
+                        <td>${h.hotelAddress}</td>
+                        <td>${h.hotelLike}</td>
+                        <td>
+                            <button type="button" class="edit">Edit</button>
+                            <button type="button" class="delete" onclick="delHotel('${h.hotelId}')">Delete</button>
+                        </td>
+                    </tr>
+>>>>>>> .r148
+                    </c:forEach>
+                </table>
+                <div class="dialog" id="edit-dialog" title="Edit Scenic">
+                    <p class="validateTips">All input should be valid.</p>
+                    <from action="users/editUser" method="POST">
+                        <table>
+                            <!--                            <tr>
+                                                                <td><label for="e-hid">Hotel ID:&nbsp;</label></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input name="hotelId" type="text" id="e-hid" class="ui-widget-content ui-corner-all "/></td>
+                                                            </tr>-->
+                            <tr>
+                                <td><label for="e-hname">Hotel Name:&nbsp;</label></td>
+                            </tr>
+                            <tr>
+                                <td><input name="hotelName" type="text" id="e-hname" class="ui-widget-content ui-corner-all name"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="e-harea">Area:&nbsp;</label></td>
+                            </tr>
+                            <tr>
+                                <td><input name="areas" type="text" id="e-harea" class="ui-widget-content ui-corner-all area"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="e-haddress">Hotel Address:&nbsp;</label></td>
+                            </tr>
+                            <tr>
+                                <td><input name="hotelAddress" type="text" id="e-haddress" class="ui-widget-content ui-corner-all hotel"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="e-hcontent">Hotel Content:&nbsp;</label></td>
+                            </tr>
+                            <tr>
+                                <td><textarea name="hotelContent" cols="50"
+                                              rows="7" id="e-hcontent" class="ui-widget-content ui-corner-all content"></textarea></td>
+                            </tr> 
+                        </table>
+                    </from>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="resource/js/jquery-2.1.0.js" ></script>
+    <script type="text/javascript" src="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+    <script>
+                                    $(function () {
+                                        var name = $('.name'),
+                                                area = $('.area'),
+                                                address = $('.address'),
+                                                content = $('.content'),
+                                                all = $([]).add(name).add(area).add(address).add(content),
+                                                tips = $('.validateTips');
+                                        function updateTips(t) {
+                                            tips.text(t).addClass("ui-state-highlight");
+                                            setTimeout(function () {
+                                                tips.removeClass("ui-state-highlight", 1500);
+                                            }, 500);
+                                        }
+                                        function checkLength(o, n, min, max) {
+                                            if (o.val().length > max || o.val().length < min) {
+                                                o.addClass("ui-state-error");
+                                                updateTips("The length of " + n + " should between " + min + " and " + max + ".");
+                                                return false;
+                                            } else {
+                                                return true;
+                                            }
+                                        }
+
+                                        $('.add').click(function () {
+                                            $('#dialog').dialog('open');
+                                        });
+                                        $('#dialog').dialog({
+                                            height: 500,
+                                            width: 500,
+                                            autoOpen: false,
+                                            modal: true,
+                                            buttons: {
+                                                "Create": function () {
+                                                    var bValid = true;
+                                                    all.removeClass("ui-state-error");
+                                                    bValid = bValid && checkLength(name, "Hotel Name", 4, 16);
+
+                                                    bValid = bValid && checkLength(area, "Area", 4, 20);
+                                                    bValid = bValid && checkRegexp(content, /^\w*$/, "Invalid Content");
+                                                    bValid = bValid && checkRegexp(address, /^\w*$/, "Invalid Address");
+                                                    if (bValid) {
+                                                        console.log("create");
+                                                        $.ajax({
+                                                            url: 'hotel/add',
+                                                            type: 'POST',
+                                                            data: {
+                                                                "hotelId": $('#hid').val(),
+                                                                "hotelName": $('#hname').val(),
+                                                                "areas": $('#harea').val(),
+                                                                "hotelAddress": $('#haddress').val(),
+                                                                "hotelContent": $('#hcontent').val()
+                                                            },
+                                                            success: function () {
+                                                                console.log('success');
+                                                                location.reload();
+                                                            },
+                                                            error: function () {
+                                                                console.log('error!');
+                                                            }
+                                                        });
+                                                    }
+                                                },
+                                                "Cancel": function () {
+                                                    $(this).dialog("close");
+                                                }
+                                            }
+                                        });
+                                        $('.edit').click(function () {
+                                            $('#edit-dialog').dialog('open');
+                                        });
+                                        $('#edit-dialog').dialog({
+                                            height: 500,
+                                            width: 600,
+                                            autoOpen: false,
+                                            modal: true,
+                                            buttons: {
+                                                "Edit": function () {
+                                                    var bValid = true;
+                                                    all.removeClass("ui-state-error");
+                                                    bValid = bValid && checkLength(name, "Hotel Name", 4, 16);
+
+                                                    bValid = bValid && checkLength(area, "Area", 4, 20);
+                                                    bValid = bValid && checkRegexp(content, /^\w*$/, "Invalid Content");
+                                                    bValid = bValid && checkRegexp(address, /^\w*$/, "Invalid Address");
+                                                    if (bValid) {
+                                                        console.log('edit');
+                                                        $.ajax({
+                                                            url: 'hotel/edit',
+                                                            type: 'POST',
+                                                            data: {
+                                                                "hotelId": $('#e-hid').val(),
+                                                                "hotelName": $('#e-hname').val(),
+                                                                "areas": $('#e-harea').val(),
+                                                                "hotelAddress": $('#e-haddress').val(),
+                                                                "hotelContent": $('#e-hcontent').val()
+                                                            },
+                                                            success: function (result) {
+                                                                console.log(result);
+                                                                if (result.resultCode == 200) {
+                                                                    console.log("SUCCESS");
+                                                                    window.location.href = 'toHotelManage';
+                                                                }
+                                                            },
+                                                            error: function () {
+                                                                console.log("error！");
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            }
+                                        });
+
+                                    });
+                                    function delHotel(hid) {
+                                        confirm("Are You Sure?");
+                                        $.ajax({
+                                            url: 'hotel/delete',
+                                            type: 'POST',
+                                            data: {"hid": hid},
+                                            success: function () {
+                                                console.log("delete success!");
+                                                $('#' + hid).remove();
+                                            },
+                                            error: function () {
+                                                console.log('error!!!!!!');
+                                            }
+                                        });
+                                    }
+        function sortByLike() {
+            $.ajax({
+                url: 'redirect/hotelPageSort',
+                type: 'POST',
+                data: {},
+                dataType: "json",
+                success: function () {
+                    alert("success");
+                    location.reload();
+                },
+                error: function () {
+                    location.reload();
+                }
+            });
+        }
+    </script>
+
+</html>

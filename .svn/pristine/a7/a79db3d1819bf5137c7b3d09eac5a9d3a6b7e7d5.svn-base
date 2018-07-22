@@ -1,0 +1,75 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ *
+ * @author hasee
+ */
+@Controller
+public class IndexController {
+    @RequestMapping({"/","/main.htm"})
+    public String showMain(){
+        return "main";
+    }
+    @RequestMapping(value = "redirect/main")
+    public String mainPage(){
+        return "main";
+    }
+    
+    @RequestMapping(value = "redirect/login")
+    public String loginPage(){
+        return "login";
+    }
+    
+    @RequestMapping(value = "redirect/register")
+    public String registerPage(){
+        return "register";
+    }
+    
+    @RequestMapping(value = "redirect/scenicPage")
+    public String scenicPage(){
+        return "scenicPage";
+    }
+    
+    @RequestMapping(value = "redirect/foodPage")
+    public String foodPage(){
+        return "foodPage";
+    }
+    
+    @RequestMapping(value = "redirect/notePage")
+    public String notePage(){
+        return "notePage";
+    }
+    
+    @RequestMapping(value = "redirect/travelPage")
+    public String travelPage(){
+        return "travelPage";
+    }
+    
+    @RequestMapping(value = "redirect/hotelPage")
+    public String hotelPage(){
+        return "hotelPage";
+    }
+    
+    @RequestMapping(value = "redirect/manager")
+    public String manager(){
+        return "manager/manager";
+    }
+    
+    @RequestMapping(value = "toChangePass")
+    public String toChangePass(){
+        return "manager/changePass";
+    }
+    
+    @RequestMapping(value = "toUserManage")
+    public String toUserManage(){
+        return "manager/userManage";
+    }
+}

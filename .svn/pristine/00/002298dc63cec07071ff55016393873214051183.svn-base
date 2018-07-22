@@ -1,0 +1,555 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : MySQL
+Source Server Version : 50041
+Source Host           : localhost:3306
+Source Database       : donkeykong
+
+Target Server Type    : MYSQL
+Target Server Version : 50041
+File Encoding         : 65001
+
+Date: 2018-06-10 21:43:33
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `admin`
+-- ----------------------------
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin` (
+  `admin_id` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `regist_time` datetime NOT NULL,
+  `update_time` datetime NOT NULL,
+  PRIMARY KEY  (`admin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of admin
+-- ----------------------------
+INSERT INTO `admin` VALUES ('admin', '21232f297a57a5a743894a0e4a801fc3', '980639151@qq.com', '2018-05-28 15:03:48', '2018-05-28 15:03:53');
+
+-- ----------------------------
+-- Table structure for `areas`
+-- ----------------------------
+DROP TABLE IF EXISTS `areas`;
+CREATE TABLE `areas` (
+  `area_id` varchar(64) NOT NULL,
+  `area_details` longblob,
+  `area_img` blob,
+  PRIMARY KEY  (`area_id`),
+  UNIQUE KEY `area_id_UNIQUE` (`area_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of areas
+-- ----------------------------
+INSERT INTO `areas` VALUES ('Guangdong', 0x4775616E67646F6E672070726F76696E636520697320612070726F76696E6365206F6E2074686520736F75746865726E20656E64206F6620746865206D61696E6C0D0A09616E64206F66204368696E612E204974206973206C6F636174656420736F757468206F662074686520536F75746820526964676520616E642074686520636F617374206F662074686520536F757468204368696E61205365612E20546865204368616F7A686F7520616E64200D0A095368616E746F7520706C61696E206973206B6E6F776E20617320746865202273656173686F7265205A6F75204C75222E2054686520506561726C2052697665722044656C74612C206C6F636174656420616C6F6E672074686520506561726C20526976657220636F6173742C0D0A09686173206265656E206B6E6F776E2061732074686520226C616E64206F66206669736820616E6420726963652220696E2074686520536F75746865726E204368696E6120726567696F6E2E, '');
+INSERT INTO `areas` VALUES ('Shandong', 0x5368616E646F6E672C206120706C616365206F6620516920616E64204C752C206861732061206C6F6E6720686973746F72792E2049742069732074686520736F75726365206F660D0A094368696E6573652063756C7475726520616E64206F6E65206F662074686520696D706F7274616E74206269727468706C61636573206F6620746865204368696E657365206E6174696F6E2E20436F6E66756369757320616E642068697320436F6E66756369616E2074686F75676874732C0D0A097468652074656E206D6F73742066616D6F75732063756C747572616C2063656C656272697469657320696E2074686520776F726C642C207765726520626F726E20686572652E, '');
+INSERT INTO `areas` VALUES ('Sichuan', 0x5369636875616E206861732061206C6F6E6720686973746F72792C2062656175746966756C207363656E6572792C206162756E64616E742070726F64756374732C0D0A09616E6420656E6A6F7973207468652072657075746174696F6E206F662022746865206C616E64206F66206162756E64616E6365222E20497420697320746865206761746577617920746F20746865205765737465726E204368696E6120616E642074686520686F6D65746F776E0D0A096F66206769616E742070616E6461732E204974732067656F6C6F676963616C2073747275637475726520697320636F6D706C65782C206974732067656F6C6F676963616C20616E642067656F6D6F7270686F6C6F676963616C206C616E647363617065732061726520726963682C0D0A0969747320776F726C64206865726974616765206973206E756D65726F75732C20616E642069747320746F75726973742061747472616374696F6E732061726520646976657273652E, '');
+INSERT INTO `areas` VALUES ('Yunnan', 0x496E20746865206D6F726E696E67206D697374206F6620746865206D6F726E696E67206F6620746865206D6F726E696E67206F66204C696A69616E672C0D0A0974686520616E6369656E7420677265656E2073746F6E6520726F616420776173207061737365642C20616E642074686520666C6F77657273206F662074686520666F757220736561736F6E7320696E204B756E6D696E672077657265207265616C697A65640D0A09696E20746865207761726D20737072696E67206461793B206C697374656E696E6720746F2061204E61786920616E6369656E74206D757369632C206665656C696E672074686520756E6971756520637573746F6D73206F6620746865203236206E6174696F6E732C0D0A096F722073696D706C792077616C6B696E672C2064617A652C20616E642073756E2C2065766572796F6E652068616420612059756E6E616E20647265616D2C20616E64207468657920646964206E6F742077616E7420746F206C656176652E, '');
+INSERT INTO `areas` VALUES ('Zhejiang', 0x5A68656A69616E672070726F76696E6365206973206C6F636174656420696E2074686520736F7574686561737420636F617374206F66204368696E6120616E640D0A0974686520736F75746865726E2077696E67206F66207468652059616E67747A652052697665722044656C74612E2049742062656C6F6E677320746F205775205975652063756C747572652E2046726F6D2048616E677A686F7520746F204E696E67626F2C0D0A09746865207761746572206E6574776F726B20696E74657277656176657320616E6420637269737363726F737320666F6F7470617468732E205A686F757368616E20697320616E2069736C616E642C20616E6420746865207363656E657279206F66206D6F756E7461696E730D0A09616E64207365612069732062656175746966756C20616E642073706563746163756C61722E20546865207265736964656E747320686572652063686F6F73652077617465722C206C69766520696E2073746F6E6520616E64206272696467652C20616E642068617665206120756E69717565206C6966657374796C652E0D0A094E61747572616C206C616E64736361706520616E642063756C747572616C206865726974616765206172652061626E6F726D616C6C7920726963682E, '');
+
+-- ----------------------------
+-- Table structure for `food_store`
+-- ----------------------------
+DROP TABLE IF EXISTS `food_store`;
+CREATE TABLE `food_store` (
+  `food_store_id` varchar(64) NOT NULL,
+  `food_store_name` varchar(255) NOT NULL,
+  `avg_price` double(10,2) NOT NULL,
+  `area_id` varchar(64) NOT NULL,
+  `store_address` text NOT NULL,
+  `liked` int(10) default NULL,
+  `store_img` longblob,
+  `store_content` text,
+  PRIMARY KEY  (`food_store_id`),
+  KEY `fsa__fk_idx` (`area_id`),
+  CONSTRAINT `fsa__fk` FOREIGN KEY (`area_id`) REFERENCES `areas` (`area_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of food_store
+-- ----------------------------
+INSERT INTO `food_store` VALUES ('f01', 'ChaoXiangSiHai', '86.00', 'Guangdong', 'No. 105, No. 106 Nan Hai Mansion, No. 1110 Nanshan Road, Nanshan District (line 11, south mountain station, D exit, right rear, 300 meters, next to Zhongyou building)', '0', null, null);
+INSERT INTO `food_store` VALUES ('f02', 'JinYueXuanHai', '175.00', 'Guangdong', '1-3 floor, B District, 265, South China Commercial Plaza, No. 1-3 lovers\' South Road, Xiangzhou District, Zhuhai', '0', null, null);
+INSERT INTO `food_store` VALUES ('f03', 'XiaoBingSheng', '77.00', 'Guangdong', 'No. 168, No. 168, Beijing Road, Beijing, Yuexiu District, Guangdong sea, Yang Zhong Hui, six layer B605', '0', null, null);
+INSERT INTO `food_store` VALUES ('f04', 'ZhuRouPO', '213.00', 'Guangdong', 'No. 31, fine cellar exhibition hall, Shunde District, Foshan (beside Guangxi high school)', '0', null, null);
+INSERT INTO `food_store` VALUES ('f05', 'JianBingJuanDaCong', '51.00', 'Shandong', 'Tai\'an Taishan Avenue Veterans Hospital West (Taishan Long Li supermarket next to)', '0', null, null);
+INSERT INTO `food_store` VALUES ('f06', 'JingXiangYuJiaLe', '83.00', 'Shandong', 'No. 333, tsuankou village, Penglai, Penglai (north of Xinghai Road)', '0', null, null);
+INSERT INTO `food_store` VALUES ('f07', 'LuChengWangShi', '63.00', 'Shandong', 'Qufu tourist center on the west side of the hospital', '0', null, null);
+INSERT INTO `food_store` VALUES ('f08', 'XinCaoTangGuoWuLiaoLi', '154.00', 'Shandong', '6 layers of West Wing of Heng Long square, No. 188, Quancheng Road, Ji\'nan', '0', null, null);
+INSERT INTO `food_store` VALUES ('f09', 'YanXiaoGuan', '135.00', 'Shandong', 'A, block A, No. 18, Hongkong Road, Middle Road, Qingdao', '0', null, null);
+INSERT INTO `food_store` VALUES ('f10', 'ChengDuChiKe', '80.00', 'Sichuan', 'No. 8, quay Tower Street, Chengdu', '0', null, null);
+INSERT INTO `food_store` VALUES ('f11', 'HaiDiLao', '114.00', 'Sichuan', 'No. 5, No. 5, Hao Hao Plaza, No. 998, Jiannan Avenue, Wuhou District high tech Zone, Chengdu, C507', '0', null, null);
+INSERT INTO `food_store` VALUES ('f12', 'MaWangZi', '99.00', 'Sichuan', 'No. 1, East chaff street, Chunxi Road, Jinjiang District, Chengdu', '0', null, null);
+INSERT INTO `food_store` VALUES ('f13', 'FangZhouPanZi', '97.00', 'Yunnan', 'No. 498, lower section of Renmin Road, Dali (east corner of Yujie street and southwest corner of Renmin Road)', '0', null, null);
+INSERT INTO `food_store` VALUES ('f14', 'YunHaiYao', '92.00', 'Yunnan', 'No. 88, south strong street and lanes of Wuhua District, Kunming', '0', null, null);
+INSERT INTO `food_store` VALUES ('f15', 'YunXueLi', '94.00', 'Yunnan', 'No. 95, 71 street, Xingwen lane, 71 street in the ancient city area of the city', '0', null, null);
+INSERT INTO `food_store` VALUES ('f16', 'BaoRongYuGuan', '94.00', 'Zhejiang', 'Qiandao Lake scenic area fishing port bridge and Cultural Park intersection No. 54-10 Meng Gu Road', '0', null, null);
+INSERT INTO `food_store` VALUES ('f17', 'HangZhouJiuJia', '89.00', 'Zhejiang', '1-3 floor, 205 Yanan Road, Hangzhou (Yanan Road Post Office junction)', '0', null, null);
+INSERT INTO `food_store` VALUES ('f18', 'QiZhangZhuo', '77.00', 'Zhejiang', 'No. 11, North Gate Street, Jiashan County, Jiaxing, Zhejiang', '0', null, null);
+INSERT INTO `food_store` VALUES ('f19', 'QiuJiSiFangCai', '77.00', 'Zhejiang', '305--307, South Street, Wuzhen (South Gate old street, Wuzhen bridge, Hedong step bridge 100 meters south)', '0', null, null);
+INSERT INTO `food_store` VALUES ('f20', 'SiJiaXiaoChuFang', '91.00', 'Zhejiang', 'Room 101, room 101, room No. 82, Shanxi mountain, Putuo, Putuo', '0', null, null);
+
+-- ----------------------------
+-- Table structure for `food_store_comment`
+-- ----------------------------
+DROP TABLE IF EXISTS `food_store_comment`;
+CREATE TABLE `food_store_comment` (
+  `store_comment_id` varchar(64) NOT NULL,
+  `food_store_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `comment_content` varchar(200) NOT NULL,
+  `comment_time` datetime NOT NULL,
+  PRIMARY KEY  (`store_comment_id`),
+  KEY `fst_fk_idx` (`food_store_id`),
+  KEY `fcu_fk_idx` (`user_id`),
+  CONSTRAINT `fcu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fst_fk` FOREIGN KEY (`food_store_id`) REFERENCES `food_store` (`food_store_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of food_store_comment
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `hotel`
+-- ----------------------------
+DROP TABLE IF EXISTS `hotel`;
+CREATE TABLE `hotel` (
+  `hotel_id` varchar(64) NOT NULL,
+  `hotel_name` varchar(255) NOT NULL,
+  `area_id` varchar(64) NOT NULL,
+  `hotel_address` text NOT NULL,
+  `hotel_like` int(255) default NULL,
+  `hotel_comment` varchar(100) default NULL,
+  `is_reserve` int(5) NOT NULL,
+  `hotel_img` longblob,
+  `hotel_content` text,
+  PRIMARY KEY  (`hotel_id`),
+  KEY `ha_fk_idx` (`area_id`),
+  CONSTRAINT `ha_fk` FOREIGN KEY (`area_id`) REFERENCES `areas` (`area_id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hotel
+-- ----------------------------
+INSERT INTO `hotel` VALUES ('h01', 'BiGuiHuaCheng', 'Guangdong', 'Foshan Shunde District Chen Cun town Chen Chen bridge side, near Chen Village Flower world, South China Sea Road South passes Buddha Chen bridge, Foshan third middle, Vanke Crystal City.', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h02', 'FaGe', 'Guangdong', 'Twelve floor, Wan Yi square, 12 overseas Chinese road, Yuexiu District, Yuexiu District, Guangzhou, China', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h03', 'JinPeng', 'Guangdong', 'Jinpeng Commercial Plaza, 252 people\'s road, Longhua street, Longhua District, Shenzhen, opposite to Longhua\'s land tax.', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h04', 'GreenTree Inn', 'Shandong', 'No. 7, Hai Shi Road, Penglai, near three fairy hill, Ou Le Bao.', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h05', 'HanTing', 'Shandong', 'No. 162 Luyuan street, Lixia District, Ji\'nan (opposite to Baotu Spring South Gate)', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h06', 'JiuShuiShuYuan', 'Shandong', 'Qingdao Laoshan District North residence Street View Lao community north nine water scenic area', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h07', 'QueLi', 'Shandong', 'No. 1 que street, Qufu', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h08', 'BaiYunJu', 'Shandong', 'The eastern part of Taishan Ding Ding Tian Jie street, Taishan District, Tai\'an, is near the top of Tai mountain.', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h09', 'DuZi', 'Sichuan', 'No. 123, Wuhou Temple street, Wuhou District, Chengdu, Chengdu, No. 9, No. 20 (Sichuan traffic department diagonally opposite, facing 20 meters on the right side of Jinli Street)', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h10', 'EmeiShan Hotel', 'Sichuan', '322 scenic road, Mount Emei, Leshan', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h11', 'QianHe', 'Sichuan', 'Aba Tibetan and Qiang Autonomous Prefecture, Jiuzhaigou zhangzha Zhenlong Kang Town Fire dam', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h12', 'HongYanHaiJing', 'Yunnan', 'E1, Dali, shaguan Town, ManJiang District, Shing House Hill Golden Coast Manor', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h13', 'JiangYe', 'Yunnan', 'Kunming Xishan District Gate Road 16-2 yuan (Dianchi resort area)', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h14', 'AiJinRong', 'Yunnan', 'Old Town of Lijiang District Shuhe ancient town Dongkang village six group 15, near Sifang street.', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h15', 'Shilin mountain villa', 'Yunnan', 'Shilin Yi Autonomous County, Kunming City, Yunnan Province', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h16', 'YuLongYueGuang', 'Yunnan', 'Six group 5 of Yuhu village, the village committee of ERON jade lake in Lijiang', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h17', 'LongTingKaiYuan', 'Zhejiang', '1 South Ring Road, near Qiandao Lake square, Chunan.', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h18', 'LiJingYuan', 'Zhejiang', 'No. 3, Sujia lane, Jiashan County, Jiaxing', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h19', 'LinJiaBieYuan', 'Zhejiang', 'No. 78-80, Chang Xin Street, Wuzhen, Tongxiang, near North Huaqiao.', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h20', 'XingYuan', 'Zhejiang', 'Zhoushan Putuo District Putuo Shanxi mountain two district 10 buildings, 4 buildings, near Financial Street.', '0', null, '0', null, null);
+INSERT INTO `hotel` VALUES ('h21', 'WenHua', 'Zhejiang', 'No. 38, Wen two road, Xihu District, Hangzhou, near Mogan Shan Road, metro line two (Shentang Bridge Station) near B exit.', '0', null, '0', null, null);
+
+-- ----------------------------
+-- Table structure for `hotel_book`
+-- ----------------------------
+DROP TABLE IF EXISTS `hotel_book`;
+CREATE TABLE `hotel_book` (
+  `book_id` varchar(64) NOT NULL,
+  `hotel_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `room_id` varchar(64) NOT NULL,
+  `check_in_time` datetime NOT NULL,
+  `check_out_time` datetime NOT NULL,
+  PRIMARY KEY  (`book_id`),
+  KEY `bkh_fk_idx` (`hotel_id`),
+  KEY `bkr_fk_idx` (`room_id`),
+  KEY `bku_fk_idx` (`user_id`),
+  KEY `bkuser_fk_idx` (`user_id`),
+  CONSTRAINT `bkh_fk` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`hotel_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `bkr_fk` FOREIGN KEY (`room_id`) REFERENCES `hotel_room` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `bku_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hotel_book
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `hotel_room`
+-- ----------------------------
+DROP TABLE IF EXISTS `hotel_room`;
+CREATE TABLE `hotel_room` (
+  `room_id` varchar(20) NOT NULL COMMENT '房间id',
+  `hotel_id` varchar(64) NOT NULL COMMENT '酒店id',
+  `room_num` varchar(20) NOT NULL COMMENT '房间号',
+  `room_type` varchar(20) NOT NULL COMMENT '房间类型',
+  `room_price` double(10,2) NOT NULL COMMENT '价格',
+  `is_use` int(4) NOT NULL COMMENT '是否可用',
+  PRIMARY KEY  (`room_id`),
+  KEY `rh_fk_idx` (`hotel_id`),
+  CONSTRAINT `rh_fk` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`hotel_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hotel_room
+-- ----------------------------
+INSERT INTO `hotel_room` VALUES ('h10r01', 'h10', 'A01', 'normal', '219.00', '0');
+INSERT INTO `hotel_room` VALUES ('h11r01', 'h11', 'A01', 'normal', '256.00', '0');
+INSERT INTO `hotel_room` VALUES ('h11r02', 'h11', 'B02', 'luxury', '256.00', '0');
+INSERT INTO `hotel_room` VALUES ('h12r01', 'h12', 'A01', 'normal', '338.00', '0');
+INSERT INTO `hotel_room` VALUES ('h12r02', 'h12', 'B02', 'lover', '398.00', '0');
+INSERT INTO `hotel_room` VALUES ('h12r03', 'h12', 'C03', 'luxury', '428.00', '0');
+INSERT INTO `hotel_room` VALUES ('h12r04', 'h12', 'D04', 'Open sea view', '698.00', '0');
+INSERT INTO `hotel_room` VALUES ('h13r01', 'h13', 'A01', 'normal', '155.00', '0');
+INSERT INTO `hotel_room` VALUES ('h13r02', 'h13', 'B02', 'double', '194.00', '0');
+INSERT INTO `hotel_room` VALUES ('h13r03', 'h13', 'C03', 'luxury', '263.00', '0');
+INSERT INTO `hotel_room` VALUES ('h13r04', 'h13', 'D04', 'luxury family', '294.00', '0');
+INSERT INTO `hotel_room` VALUES ('h14r01', 'h14', 'A01', 'normal', '298.00', '0');
+INSERT INTO `hotel_room` VALUES ('h14r02', 'h14', 'B02', 'luxury', '358.00', '0');
+INSERT INTO `hotel_room` VALUES ('h14r03', 'h14', 'C03', 'aesthetical', '398.00', '0');
+INSERT INTO `hotel_room` VALUES ('h14r04', 'h14', 'D04', 'luxury', '446.00', '0');
+INSERT INTO `hotel_room` VALUES ('h15r01', 'h15', 'A01', 'normal', '158.00', '0');
+INSERT INTO `hotel_room` VALUES ('h15r02', 'h15', 'B02', 'luxury', '188.00', '0');
+INSERT INTO `hotel_room` VALUES ('h15r03', 'h15', 'C03', 'more luxury', '228.00', '0');
+INSERT INTO `hotel_room` VALUES ('h15r04', 'h15', 'D04', 'very luxury', '359.00', '0');
+INSERT INTO `hotel_room` VALUES ('h15r05', 'h15', 'E06', 'super luxury', '410.00', '0');
+INSERT INTO `hotel_room` VALUES ('h16r01', 'h16', 'A01', 'normal', '330.00', '0');
+INSERT INTO `hotel_room` VALUES ('h16r02', 'h16', 'B02', 'suite', '461.00', '0');
+INSERT INTO `hotel_room` VALUES ('h17r01', 'h17', 'A01', 'normal', '346.00', '0');
+INSERT INTO `hotel_room` VALUES ('h17r02', 'h17', 'B02', 'double', '336.00', '0');
+INSERT INTO `hotel_room` VALUES ('h17r03', 'h17', 'C03', 'senior', '436.00', '0');
+INSERT INTO `hotel_room` VALUES ('h17r04', 'h17', 'D04', 'luxury', '538.00', '0');
+INSERT INTO `hotel_room` VALUES ('h18r01', 'h18', 'A01', 'normal', '208.00', '0');
+INSERT INTO `hotel_room` VALUES ('h18r02', 'h18', 'B02', 'double', '228.00', '0');
+INSERT INTO `hotel_room` VALUES ('h18r03', 'h18', 'C03', 'courtyard', '300.00', '0');
+INSERT INTO `hotel_room` VALUES ('h18r04', 'h18', 'D04', 'by the river', '580.00', '0');
+INSERT INTO `hotel_room` VALUES ('h19r01', 'h19', 'A01', 'normal', '84.00', '0');
+INSERT INTO `hotel_room` VALUES ('h19r02', 'h19', 'B02', 'circular bed', '112.00', '0');
+INSERT INTO `hotel_room` VALUES ('h19r03', 'h19', 'C03', 'European', '131.00', '0');
+INSERT INTO `hotel_room` VALUES ('h19r04', 'h19', 'D04', 'Tatami', '136.00', '0');
+INSERT INTO `hotel_room` VALUES ('h1r01', 'h01', 'A01', 'normal', '246.00', '0');
+INSERT INTO `hotel_room` VALUES ('h1r02', 'h01', 'B02', 'garden', '347.00', '0');
+INSERT INTO `hotel_room` VALUES ('h1r03', 'h01', 'C03', 'luxury', '497.00', '0');
+INSERT INTO `hotel_room` VALUES ('h20r01', 'h20', 'A01', 'normal', '287.00', '0');
+INSERT INTO `hotel_room` VALUES ('h20r02', 'h20', 'B02', 'double', '389.00', '0');
+INSERT INTO `hotel_room` VALUES ('h20r03', 'h20', 'C03', 'family', '446.00', '0');
+INSERT INTO `hotel_room` VALUES ('h21r01', 'h21', 'A01', 'normal', '296.00', '0');
+INSERT INTO `hotel_room` VALUES ('h21r02', 'h21', 'B02', 'double', '358.00', '0');
+INSERT INTO `hotel_room` VALUES ('h21r03', 'h21', 'C03', 'senior', '496.00', '0');
+INSERT INTO `hotel_room` VALUES ('h2r01', 'h02', 'A01', 'normal', '386.00', '0');
+INSERT INTO `hotel_room` VALUES ('h2r02', 'h02', 'B02', 'double', '426.00', '0');
+INSERT INTO `hotel_room` VALUES ('h3r01', 'h03', 'A01', 'normal', '242.00', '0');
+INSERT INTO `hotel_room` VALUES ('h3r02', 'h03', 'B02', 'Janpan', '348.00', '0');
+INSERT INTO `hotel_room` VALUES ('h3r03', 'h03', 'C03', 'British', '372.00', '0');
+INSERT INTO `hotel_room` VALUES ('h4r01', 'h04', 'A01', 'normal', '118.00', '0');
+INSERT INTO `hotel_room` VALUES ('h4r02', 'h04', 'B02', 'trio', '158.00', '0');
+INSERT INTO `hotel_room` VALUES ('h4r03', 'h04', 'C03', 'luxury', '256.00', '0');
+INSERT INTO `hotel_room` VALUES ('h4r04', 'h04', 'D05', 'marriage', '529.00', '0');
+INSERT INTO `hotel_room` VALUES ('h5r01', 'h05', 'A01', 'normal', '246.00', '0');
+INSERT INTO `hotel_room` VALUES ('h5r02', 'h05', 'B02', 'double', '284.00', '0');
+INSERT INTO `hotel_room` VALUES ('h5r03', 'h05', 'C03', 'family', '303.00', '0');
+INSERT INTO `hotel_room` VALUES ('h6r01', 'h06', 'A01', 'normal', '380.00', '0');
+INSERT INTO `hotel_room` VALUES ('h6r02', 'h06', 'B02', 'family', '480.00', '0');
+INSERT INTO `hotel_room` VALUES ('h6r03', 'h06', 'C03', 'quad', '560.00', '0');
+INSERT INTO `hotel_room` VALUES ('h7r01', 'h07', 'A01', 'normal', '346.00', '0');
+INSERT INTO `hotel_room` VALUES ('h7r02', 'h07', 'B02', 'business', '488.00', '0');
+INSERT INTO `hotel_room` VALUES ('h7r03', 'h07', 'C03', 'luxury', '880.00', '0');
+INSERT INTO `hotel_room` VALUES ('h8r01', 'h08', 'A01', 'normal', '560.00', '0');
+INSERT INTO `hotel_room` VALUES ('h8r02', 'h08', 'B02', 'trio', '660.00', '0');
+INSERT INTO `hotel_room` VALUES ('h8r03', 'h08', 'C03', 'quad', '980.00', '0');
+INSERT INTO `hotel_room` VALUES ('h9r01', 'h09', 'A01', 'normal', '183.00', '0');
+INSERT INTO `hotel_room` VALUES ('h9r02', 'h09', 'B02', 'double', '248.00', '0');
+
+-- ----------------------------
+-- Table structure for `note`
+-- ----------------------------
+DROP TABLE IF EXISTS `note`;
+CREATE TABLE `note` (
+  `note_id` varchar(64) NOT NULL,
+  `note_title` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `note_like` int(255) default NULL,
+  `report` int(10) default NULL,
+  `note_content` longtext,
+  `publish_time` datetime NOT NULL,
+  `update_time` datetime NOT NULL,
+  PRIMARY KEY  (`note_id`),
+  KEY `nu_fk_idx` (`user_id`),
+  CONSTRAINT `nu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of note
+-- ----------------------------
+INSERT INTO `note` VALUES ('58cdbd3327754a6a857f1fbd3facd435', 'WECX', 'asd', '0', null, 'WQEASD', '2018-06-10 16:19:09', '2018-06-10 16:19:09');
+INSERT INTO `note` VALUES ('d840e540a1514c5b8686e9e0aadf407a', 'AA', 'asd', '0', null, 'AAAAAAA', '2018-06-10 16:18:17', '2018-06-10 16:18:17');
+INSERT INTO `note` VALUES ('e0d63db302db4c7c9014c6943a0e8c13', 'asd', 'asdasd', '0', null, 'asdasd', '2018-06-08 08:23:06', '2018-06-08 08:23:06');
+
+-- ----------------------------
+-- Table structure for `note_comment`
+-- ----------------------------
+DROP TABLE IF EXISTS `note_comment`;
+CREATE TABLE `note_comment` (
+  `note_comment_id` varchar(64) NOT NULL,
+  `note_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `comment_content` varchar(255) NOT NULL,
+  `comment_time` datetime NOT NULL,
+  PRIMARY KEY  (`note_comment_id`),
+  KEY `ntc_fk_idx` (`note_id`),
+  KEY `ncu_fk_idx` (`user_id`),
+  CONSTRAINT `ncu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `ntc_fk` FOREIGN KEY (`note_id`) REFERENCES `note` (`note_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of note_comment
+-- ----------------------------
+INSERT INTO `note_comment` VALUES ('02a15106590944ea901a7addabe41f64', 'e0d63db302db4c7c9014c6943a0e8c13', 'asd', 'sdafsd', '2018-06-08 20:07:12');
+INSERT INTO `note_comment` VALUES ('608e72571d32498f8006b46fddf236cd', 'e0d63db302db4c7c9014c6943a0e8c13', 'asd', 'asfdsdfsdafasdf', '2018-06-08 20:07:23');
+
+-- ----------------------------
+-- Table structure for `notification`
+-- ----------------------------
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE `notification` (
+  `notify_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `notify_content` varchar(64) NOT NULL,
+  `send_time` datetime NOT NULL,
+  PRIMARY KEY  (`notify_id`),
+  KEY `ntfu_fk_idx` (`user_id`),
+  CONSTRAINT `ntfu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of notification
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `scenic`
+-- ----------------------------
+DROP TABLE IF EXISTS `scenic`;
+CREATE TABLE `scenic` (
+  `scenic_id` varchar(64) NOT NULL,
+  `scenic_name` varchar(64) NOT NULL,
+  `area_id` varchar(64) NOT NULL,
+  `scenic_address` text NOT NULL,
+  `scenic_like` int(255) NOT NULL,
+  `scenic_comment` varchar(255) default NULL,
+  `scenic_img` longblob,
+  `scenic_content` text NOT NULL,
+  PRIMARY KEY  (`scenic_id`),
+  KEY `sa_fk_idx` (`area_id`),
+  CONSTRAINT `sa_fk` FOREIGN KEY (`area_id`) REFERENCES `areas` (`area_id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of scenic
+-- ----------------------------
+INSERT INTO `scenic` VALUES ('s01', 'DanXia Mountain', 'Guangdong', 'Northeast suburb of Shaoguan, Guangdong', '0', 'null', null, 'The Mount Danxia World Geopark is located in the Northeast suburb of Shaoguan, Guangdong, China. The Jinjiang gallery and the Ba Zhai scenic area are mainly scenic spots with natural scenery and sightseeing, which include science popularization, rock climbing, expedition, adventure and leisure.');
+INSERT INTO `scenic` VALUES ('s02', 'Guangzhou', 'Guangdong', 'southern China, south of Guangdong Province', '0', null, null, 'Guangzhou, for short, is called \"Yangcheng\", \"Sui Cheng\", \"Hogaki\", \"Xian Cheng\" and \"Flower City\". Located in southern China, south of Guangdong Province, the northern edge of the Pearl River Delta, the Xijiang, Beijiang and Dongjiang waterways are confluence, it is near the South China Sea, the Pearl River enters the mouth of the sea, adjacent to Hong Kong and Macao, the geographical position is superior, and Guangzhou is the starting point of the maritime Silk Road, which is called the \"South Grand gate\" of China.');
+INSERT INTO `scenic` VALUES ('s03', 'Nanaodao', 'Guangdong', 'Shantou,Guangdong', '0', null, null, 'Nanaodao is the only island county in Guangdong province. It is also the only county under the jurisdiction of Shantou. Blue sky, blue sea, green island, golden sand and white wave are the main hue of Nan\'ao\'s ecotourism. The Green Bay, known as \"Hawaii of the East\", is a rare shallow sea beach in China. The sand is white and the sea water is clean and free from pollution. It is one of the two bathing beaches in Guangdong province.');
+INSERT INTO `scenic` VALUES ('s04', 'Shenzhen', 'Guangdong', 'Guangdong', '0', null, null, 'Shenzhen is the first special economic zone in China. Now it has become the fourth largest city in the country and the fifth largest financial center in the world. Shenzhen is the city with the largest and only sea, land and air ports in China. It is one of the main portals of China\'s communication with the world. It has strong economic support and modern urban infrastructure.');
+INSERT INTO `scenic` VALUES ('s05', 'Ranking seventy', 'Shandong', 'Jinan,Shandong', '0', null, null, 'Ranking seventy-two in the spring of Ji\'nan, it is known as \"the first spring in the world\" and the earliest known spring in Ji\'nan. Located in the downtown area of Ji\'nan, the middle section of Baotu Spring South Road and Yuan Yuan Street, south of Qianfo Hill, east of Quancheng Square, and north facing Daming Lake. Baotu Spring Park was built in 1956. Its historic sites and cultural connotation are very rich. It is one of the most representative landscape gardens with the characteristics of South and North Garden art.');
+INSERT INTO `scenic` VALUES ('s06', 'Laoshan', 'Shandong', 'Qingdao,Shandong', '0', null, null, 'Located in the eastern part of Qingdao, Laoshan is the main mountain range of Shandong peninsula. The highest peak is 1133 meters above sea level. Laoshan stands on the shore of the Yellow Sea. Its mountains and seas are connected. Laoshan is the only mountain in the country that rises in the seaside. It has the reputation of \"the first famous mountain on the sea\". It is said that Qin Shihuang and Emperor Wudi all come to ask for the immortals.');
+INSERT INTO `scenic` VALUES ('s07', 'Temple and Cemetery of Confucius', 'Shandong', 'Qufu,Shandong', '0', null, null, 'Qufu is located in the southwest of Shandong Province, the ancient name Lu County, the birthplace of Confucius, the great thinker, educator and founder of the Confucian School of ancient China, and the birthplace of Confucianism. Published by the State Council as the first famous historical and cultural city in 1982, it was praised by western people as \"Jerusalem of the East\" and one of the four great holy cities in the world. Thousands of Chinese and foreign tourists have been attracted to Pilgrims for thousands of years.');
+INSERT INTO `scenic` VALUES ('s08', 'Taishan', 'Shandong', 'Taian,Shandong', '0', null, null, 'Taishan is the first of the five mountains in China. It is one of the first batch of state-level scenic spots in China. It is also a natural museum of art and history. Many pine and cypress trees in Taishan are more solemn, lofty and luxuriant. There are ten natural wonders, such as the rising sun, the jade plate of the cloud sea, the sunset glow of the sunset glow, the the Yellow River gold belt and so on, and the ten natural landscapes, such as the stone dock, the pine and the pine, the peach garden, the soul rock and so on.');
+INSERT INTO `scenic` VALUES ('s09', 'Penglai', 'Shandong', 'Yantai,Shandong', '0', null, null, 'Penglai, in Yantai, Shandong Province, is located at the north end of the Jiaodong peninsula. It is an ancient city that leans the mountains and holds the sea. It has been known as \"the fairyland of the world\" since ancient times. The legend of the eight fairy tales of the sea took place here. The most immortal place in Penglai is Penglaige. Penglaige is located on the northern part of Penglai city on the cliff mountain, and Yellow Crane Tower, Yueyang Tower, Pavilion of Prince Teng, also known as the \"four famous buildings in the country\".');
+INSERT INTO `scenic` VALUES ('s10', 'Dujiangyan', 'Sichuan', 'Chengdu,Sichuan', '0', null, null, 'Dujiangyan is located in the west of Chengdu City, Sichuan Province, 48km from Chengdu. Known as the famous Dujiangyan water conservancy project, in the west of the Chengdu plain, over 2200 years ago, the Minjiang River is known as the \"ancestor of world water conservancy culture\", and is a famous tourist resort in the country.');
+INSERT INTO `scenic` VALUES ('s11', 'Mount Emei', 'Sichuan', 'southwest of Sichuan basin', '0', null, null, 'Mount Emei is located in the southwest of Sichuan basin. It is 7 kilometers west of Mount Emei and 37 kilometers east of Leshan. It is one of the four famous Buddhist mountains in China. Mount Emei Leshan Giant Buddha, as a dual heritage of culture and nature, was listed in the world heritage list by UNESCO in 1996. The highest peak is 3099 meters above sea level.');
+INSERT INTO `scenic` VALUES ('s12', 'Jinli', 'Sichuan', 'Chengdu,Sichuan', '0', null, null, 'The Jinli Street is restored by the Wuhou Temple Museum in Chengdu. As part of Wuhou Temple (the Three Kingdoms historical sites, the folk custom area, the west area), the street is 550 meters long. It is now the famous pedestrian mall in Chengdu. It is known as \"the first street of West Shu\" and is known as the \"Chengdu version of the Qingming River map\".');
+INSERT INTO `scenic` VALUES ('s13', 'Jiuzhaigou', 'Sichuan', 'Zhangzha Town,Jiuzhaigou County', '0', null, null, 'Jiuzhaigou is named after nine Tibetan stockade in the ditch. Located in zhangzha Town, Jiuzhaigou County, Aba Tibetan and Qiang Autonomous Prefecture, Sichuan, it is 540 kilometers away from Chengdu and 8-10 hours drive. In 1992, Jiuzhaigou was officially included in the list of world natural heritage. \"The return of the Jiuzhai does not look at the water\" is a true interpretation of the scenery of Jiuzhaigou.');
+INSERT INTO `scenic` VALUES ('s14', 'Mount Qingcheng', 'Sichuan', 'southwest of Dujiangyan City, Sichuan', '0', null, null, 'Qingchengshan is located in the southwest of Dujiangyan City, Sichuan province. It is one of the birthplaces of Taoism in China. It is a famous Taoist mountain and a national 5A scenic spot. In 2000, together with Dujiangyan as a world cultural heritage, it has been listed in the world heritage list. The main peak of Qingchengshan is 1260 meters above sea level. All the forest trees are evergreen all the year round, so it is known as Qingchengshan.');
+INSERT INTO `scenic` VALUES ('s15', 'Erhai', 'Yunnan', 'northwest of Dali city of Yunnan', '0', null, null, 'Erhai is located in the northwest of Dali city of Yunnan. It is the second largest freshwater lake in Yunnan province. It is long and narrow. The lake water is clear and transparent. It has been known as \"the flawless jade of the mountains\" since ancient times. It is the place of \"Erhai month\", one of the four scenes of \"wind and snow moon\" in Dali. It is said that it is called \"Erhai\" because of its shape like an ear, and is known for its \"Plateau Pearl\".');
+INSERT INTO `scenic` VALUES ('s16', 'Dianchi', 'Yunnan', 'southwest of Yunnan', '0', null, null, 'Dianchi is located in the southwest of Yunnan Province, the largest fresh water lake, known as Plateau Pearl. Dianchi is an earthquake fault subsided lake, its shape is like a crescent moon. The lakes and mountains in Dianchi are different in their evaluation. Perhaps there are no picturesque scenery such as Guilin, but it is rare to have such broad waters on the plateau. Standing in Longmen, commanding heights, Dianchi has a panoramic view, with the name of \"Plateau Pearl\".');
+INSERT INTO `scenic` VALUES ('s17', 'Shilin', 'Yunnan', 'Shilin Yi Autonomous County, Kunming City, Yunnan', '0', null, null, 'Shilin is a scenic area in Shilin Yi Autonomous County, Kunming City, Yunnan Province, and also a world natural heritage. It has the oldest, most widely distributed, complete and unique Palaeozoic karst geomorphology community in Karst geomorphology, which is known as the \"first wonders of the world\".');
+INSERT INTO `scenic` VALUES ('s18', 'Jade Dragon Snow Mountain', 'Yunnan', 'Naxi Autonomous County of ERON', '0', null, null, 'Jade Dragon Snow Mountain is located in the Naxi Autonomous County of ERON. It is the most southern snowy mountain in the northern hemisphere. Mountain snow area is located at 4000 meters above sea level. It is famous for its dangers, wonders, beauty and show.');
+INSERT INTO `scenic` VALUES ('s19', 'The ancient town of Shuhe', 'Yunnan', 'Lijiang,Yunnan', '0', null, null, 'The ancient town of Shuhe in the ancient town of Shuhe is located at 26 degrees 55 points in the north latitude and 100 degrees to 12 in the East. The core of all the scenic spots in Lijiang is the hub of visiting Old Town of Lijiang, Jade Dragon Snow Mountain, Lugu Lake, the first bay of the Yangtze River and the Sanjiang scenic area. The ancient town of Shuhe is an important market town, which is well preserved on the ancient tea horse road. It is also a model of the building of the town of Naxi, which is the living specimen of the transition from farming civilization to commercial civilization, and the construction of the town. Shuhe is an important part of the world cultural heritage Old Town of Lijiang. In 2005, it was selected as the \"charming town of China\" in CCTV.');
+INSERT INTO `scenic` VALUES ('s20', 'Mount Putuo', 'Zhejiang', 'eastern part of the Zhoushan archipelago', '0', null, null, 'Mount Putuo is located in the eastern part of the Zhoushan archipelago, and belongs to Zhoushan, Zhejiang. It is one of the four famous Buddhist mountains in China. In the 19th day of the second month of the Chinese lunar calendar, June, nineteen and September, nineteen were Avalokiteshvara\'s three major incense sessions, namely, the birthday, the monks and the way. Mount Putuo is the most famous Guanyin Taoist site in China. The sacred site of Buddhism is surrounded by the sea and has beautiful scenery. It is known as \"the first world\'s clean land\".');
+INSERT INTO `scenic` VALUES ('s21', 'Qingdao Lake', 'Zhejiang', 'Chunan County, Zhejiang', '0', null, null, 'Qiandao Lake, located in Chunan County, Zhejiang Province, is the first artificial lake built by China in 1959, which is the first self designed and self-made hydraulic power station. It is the first level water body of the country. Due to the importance of environmental protection, Thousand Island Lake is the highest quality water in China\'s big rivers and lakes.');
+INSERT INTO `scenic` VALUES ('s22', 'Wuzhen', 'Zhejiang', 'north end of Tongxiang City, Zhejiang', '0', null, null, 'Wuzhen is located at the north end of Tongxiang City, Zhejiang Province, 13 kilometers away from Tongxiang City, and is known as \"the land of fish and rice and the house of silk\". Wuzhen is a national 5A level scenic spot, one of the twenty golden week forecast sites in the country, with a history of over six thousand years.');
+INSERT INTO `scenic` VALUES ('s23', 'West Lake', 'Zhejiang', 'south of Hangzhou, Zhejiang', '0', null, null, 'West Lake, a few of the world heritage list, is the only cultural heritage of lakes in China. West Lake, Hangzhou, located in the south of Hangzhou, Zhejiang Province, has become a famous tourist resort with its beautiful lake and mountain color and many famous historic sites, and has been endowed with the reputation of \"paradise on earth\" by the world.');
+INSERT INTO `scenic` VALUES ('s24', 'Xitang', 'Zhejiang', 'junction of Jiangsu, Zhejiang and Shanghai', '0', null, null, 'Xitang ancient town is located at the junction of Jiangsu, Zhejiang and Shanghai provinces in Jiashan County, Zhejiang Province, the ancient name of the slope pond, Hirakawa, 10 kilometers away from Jiashan city. As the first batch of historical and cultural towns in China, the ancient AAAA town of Xitang has been included in the world\'s historical and cultural heritage reserve list. Xitang has won the favor of the vast number of tourists with the three characteristics of \"bridge, multi lane and corridor shed\".');
+
+-- ----------------------------
+-- Table structure for `tour`
+-- ----------------------------
+DROP TABLE IF EXISTS `tour`;
+CREATE TABLE `tour` (
+  `tour_id` varchar(64) NOT NULL,
+  `tour_title` varchar(30) NOT NULL,
+  `scenic_name` varchar(64) NOT NULL,
+  `tour_price` double(10,2) NOT NULL,
+  `limit_num` int(10) NOT NULL,
+  `trip_mode` varchar(64) NOT NULL,
+  `hotel_name` varchar(64) NOT NULL,
+  `is_approve` int(4) NOT NULL,
+  `tour_begin_time` datetime NOT NULL,
+  `tour_end_time` datetime NOT NULL,
+  `apply_end_time` datetime NOT NULL,
+  PRIMARY KEY  (`tour_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tour
+-- ----------------------------
+INSERT INTO `tour` VALUES ('0eb81875532d40cf9298c39fae79b4cb', 'Tii', 'GuangZ', '123.00', '12', 'qwe', 'qwe', '0', '2018-06-14 12:00:00', '2018-06-14 12:00:00', '2018-06-14 12:00:00');
+INSERT INTO `tour` VALUES ('5bb516f97b1546899a5510a7c5de2922', 'QWE', 'AAX', '43.00', '24', 'qwe', 'qwe', '0', '2018-06-14 12:00:00', '2018-06-14 12:00:00', '2018-06-14 12:00:00');
+INSERT INTO `tour` VALUES ('77413c9fe9044eabbc396de6008287c1', '1', '1', '43.00', '24', 'qwe', 'qwe', '0', '2018-06-13 12:00:00', '2018-06-13 12:00:00', '2018-06-13 12:00:00');
+
+-- ----------------------------
+-- Table structure for `tour_apply`
+-- ----------------------------
+DROP TABLE IF EXISTS `tour_apply`;
+CREATE TABLE `tour_apply` (
+  `apply_id` varchar(64) NOT NULL,
+  `tour_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  PRIMARY KEY  (`apply_id`),
+  KEY `at_fk_idx` (`tour_id`),
+  KEY `au_fk_idx` (`user_id`),
+  CONSTRAINT `at_fk` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`tour_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `au_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tour_apply
+-- ----------------------------
+INSERT INTO `tour_apply` VALUES ('c7fa94db82ee47fb936c760f0d23f064', '5bb516f97b1546899a5510a7c5de2922', 'asd');
+INSERT INTO `tour_apply` VALUES ('d9563de5c90e42f58490e063ca07456b', '77413c9fe9044eabbc396de6008287c1', 'asd');
+
+-- ----------------------------
+-- Table structure for `tour_comment`
+-- ----------------------------
+DROP TABLE IF EXISTS `tour_comment`;
+CREATE TABLE `tour_comment` (
+  `tour_comment_id` varchar(64) NOT NULL,
+  `tour_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `comment_content` varchar(255) NOT NULL,
+  `comment_time` datetime NOT NULL,
+  PRIMARY KEY  (`tour_comment_id`),
+  KEY `tour_fk_idx` (`tour_id`),
+  KEY `tcu_fk_idx` (`user_id`),
+  CONSTRAINT `tcu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tour_fk` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`tour_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tour_comment
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `tour_join`
+-- ----------------------------
+DROP TABLE IF EXISTS `tour_join`;
+CREATE TABLE `tour_join` (
+  `tj_id` varchar(64) character set utf8 NOT NULL,
+  `tour_id` varchar(64) character set utf8 NOT NULL,
+  `user_id` varchar(64) character set utf8 NOT NULL,
+  PRIMARY KEY  (`tj_id`),
+  KEY `tjt_fk_idx` USING BTREE (`tour_id`),
+  KEY `tju_fk_idx` USING BTREE (`user_id`),
+  CONSTRAINT `tjt_fk` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`tour_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tju_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of tour_join
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `users`
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `user_id` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `freeze` int(11) default NULL,
+  `level` int(11) default NULL,
+  `tel` varchar(64) NOT NULL,
+  `user_regist_time` datetime default NULL,
+  `user_update_time` datetime NOT NULL,
+  PRIMARY KEY  (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES ('Aaron', 'a8f5f167f44f4964e6c998dee827110c', 'ds825456885@163.com', null, null, '17806239011', '2018-06-10 15:55:26', '2018-06-10 15:55:26');
+INSERT INTO `users` VALUES ('asd', '7815696ecbf1c96e6894b779456d330e', 'ds825456885@163.com', '0', '0', '178062390111', '2018-06-05 17:02:00', '2018-06-05 17:02:00');
+INSERT INTO `users` VALUES ('asdasd', '7815696ecbf1c96e6894b779456d330e', 'ds825456885@163.com', '0', '0', '17806239022', '2018-06-05 19:50:10', '2018-06-05 20:48:37');
+INSERT INTO `users` VALUES ('Edward', '827ccb0eea8a706c4c34a16891f84e7b', '980639151@qq.com', '0', '1', '17863955547', '2018-05-29 19:16:49', '2018-05-29 19:16:52');
+INSERT INTO `users` VALUES ('Jack', '827ccb0eea8a706c4c34a16891f84e7b', '980639151@qq.com', '0', '0', '17863955547', '2018-06-02 20:33:58', '2018-06-02 20:33:58');
+DROP TRIGGER IF EXISTS `area_AFTER_DELETE`;
+DELIMITER ;;
+CREATE TRIGGER `area_AFTER_DELETE` AFTER DELETE ON `areas` FOR EACH ROW BEGIN
+delete from food_store where area_id = old.area_id;
+delete from hotel where area_id = old.area_id;
+delete from scenic where area_id = old.area_id;
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `food_store_AFTER_DELETE`;
+DELIMITER ;;
+CREATE TRIGGER `food_store_AFTER_DELETE` AFTER DELETE ON `food_store` FOR EACH ROW BEGIN
+delete from food_store_comment where food_store_id = old.food_store_id;
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `hotel_AFTER_DELETE`;
+DELIMITER ;;
+CREATE TRIGGER `hotel_AFTER_DELETE` AFTER DELETE ON `hotel` FOR EACH ROW BEGIN
+delete from hotel_book where hotel_id = old.hotel.id;
+delete from hotel_room where hotel_id = old.hotel.id;
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `hotel_room_AFTER_DELETE`;
+DELIMITER ;;
+CREATE TRIGGER `hotel_room_AFTER_DELETE` AFTER DELETE ON `hotel_room` FOR EACH ROW BEGIN
+delete from hotel_book where room_id = old.room_id;
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `note_AFTER_DELETE`;
+DELIMITER ;;
+CREATE TRIGGER `note_AFTER_DELETE` AFTER DELETE ON `note` FOR EACH ROW BEGIN
+	delete from note_comment where note_id = old.note_id;
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `tour_AFTER_DELETE`;
+DELIMITER ;;
+CREATE TRIGGER `tour_AFTER_DELETE` AFTER DELETE ON `tour` FOR EACH ROW BEGIN
+delete from tour_apply where tour_id = old.tour_id;
+delete from tour_comment where tour_id = old.tour_id;
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `users_AFTER_DELETE`;
+DELIMITER ;;
+CREATE TRIGGER `users_AFTER_DELETE` AFTER DELETE ON `users` FOR EACH ROW BEGIN
+delete from food_store_comment where user_id = old.user_id;
+delete from hotel_book where user_id = old.user_id;
+delete from note where user_id = old.user_id;
+delete from notification where user_id = old.user_id;
+delete from tour_apply where user_id = old.user_id;
+delete from tour_comment where user_id = old.user_id;
+END
+;;
+DELIMITER ;

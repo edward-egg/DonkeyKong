@@ -1,0 +1,37 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.util.ArrayList;
+import pojo.Report;
+import pojo.Scenic;
+import pojo.ScenicComment;
+import pojo.Users;
+
+/**
+ *
+ * @author hasee
+ */
+public interface ScenicDao {
+    ArrayList<Scenic> getAllScenic();
+    ArrayList<Scenic> getTopScenic();
+    ArrayList<Scenic> getScenicByQD();
+    Scenic getScenic(String sid);
+    ScenicComment getScenicCommentById(String cid);
+    void insert(Scenic scenic);
+    void delete(String sid);
+    void update(Scenic scenic);
+
+    public void insertScenicComment(ScenicComment scenicComment);
+
+    public ArrayList<ScenicComment> getAllComments(Scenic scenic);
+
+    public void updatePic(Scenic scenic);
+    public void addNoteReport(Report report);
+    public void deleteScenicCommentById(String scenicCommentId);
+    public boolean findReportComment(Users user, ScenicComment comment);
+    
+}

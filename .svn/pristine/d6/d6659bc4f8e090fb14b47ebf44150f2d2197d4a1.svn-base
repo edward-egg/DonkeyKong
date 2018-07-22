@@ -1,0 +1,131 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import services.FoodService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import services.HotelService;
+import services.NoteService;
+import services.ScenicService;
+import services.TravelService;
+import services.UsersService;
+
+/**
+ *
+ * @author hasee
+ */
+@Controller
+public class IndexController {
+     @Autowired
+     FoodService fs;
+     @Autowired
+     UsersService us;
+     @Autowired
+     HotelService hs;
+     @Autowired
+     ScenicService ss;
+     @Autowired
+     NoteService ns;
+     @Autowired
+     TravelService ts;
+     
+     
+    @RequestMapping({"/","/main.htm"})
+    public String showMain(){
+        return "main";
+    }
+    @RequestMapping(value = "redirect/main")
+    public String mainPage(){
+        return "main";
+    }
+    
+    @RequestMapping(value = "redirect/login")
+    public String loginPage(){
+        return "login";
+    }
+    
+    @RequestMapping(value = "redirect/register")
+    public String registerPage(){
+        return "register";
+    }
+    
+    @RequestMapping(value = "redirect/scenicPage")
+    public String scenicPage(){
+        return "scenicPage";
+    }
+    
+    @RequestMapping(value = "redirect/foodPage")
+    public String foodPage(){
+        return "foodPage";
+    }
+    
+    @RequestMapping(value = "redirect/notePage")
+    public String notePage(){
+        return "notePage";
+    }
+    
+    @RequestMapping(value = "redirect/travelPage")
+    public String travelPage(){
+        return "travelPage";
+    }
+    
+    @RequestMapping(value = "redirect/hotelPage")
+    public String hotelPage(){
+        return "hotelPage";
+    }
+    
+    @RequestMapping(value = "redirect/manager")
+    public String manager(){
+        return "manager/manager";
+    }
+    
+    @RequestMapping(value = "toChangePass")
+    public String toChangePass(){
+        return "manager/changePass";
+    }
+    
+    @RequestMapping(value = "toUserManage")
+    public String toUserManage(Model model){
+        model.addAttribute("userList",us.getUsers());
+        System.out.println("Controller Layer");
+        return "manager/userManage";
+    }
+    
+    @RequestMapping(value = "toFoodManage")
+    public String toFoodManage(Model model){
+         model.addAttribute("foodList",fs.getAllFood());
+         System.out.println(fs.getAllFood());
+        return "manager/foodManage";
+    }
+    
+    @RequestMapping(value = "toHotelManage")
+    public String toHotelManage(Model model){
+        model.addAttribute("hotelList", hs.getAllHotel());
+        return "manager/hotelManage";
+    }
+    
+    @RequestMapping(value = "toScenicManage")
+    public String toScenicManage(Model model){
+        model.addAttribute("scenicList", ss.getAllScenic());
+        return "manager/scenicManage";
+    }
+    
+    @RequestMapping(value = "toNoteManage")
+    public String toNoteManage(Model model){
+        model.addAttribute("noteList", ns.getAllNotes());
+        return "manager/noteManage";
+    }
+    
+    @RequestMapping(value = "toTravelManage")
+    public String toTravelManage(Model model){
+        model.addAttribute("travelList", ts.getAllTravel());
+        return "manager/travelManage";
+        
+    }
+}

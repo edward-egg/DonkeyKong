@@ -1,0 +1,107 @@
+<%-- 
+    Document   : userPage
+    Created on : 2018-5-23, 23:21:12
+    Author     : hasee
+    用户主页
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>User Page</title>
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/userPage.css">
+        <style>
+            .body .content {
+                display: none;
+                width: 100%;
+                height: inherit;
+                overflow: hidden;
+            }
+
+            iframe {
+                width: 100%;
+                min-height: 1000px;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="header">
+            <div class="title">
+                <img src="resource/imags/logo.png" width="100px" height="100px"/>
+                <span id="">
+                    DonkeyKong
+                </span>
+            </div>
+            <button type="button" class="to-main">Main Page</button>
+            <button type="button" class="logout">Log Out</button>
+            <div class="header-content">
+                <div class="avatar">
+                    <img src="resource/imags/2JMZXTyFUOg.jpg" alt="">
+                </div>
+                <span class="user-name">Hello Edward!</span>
+            </div>
+
+
+        </div>
+        <div class="banner">
+            <nav>
+                <ul id="tabs">
+                    <li>
+                        <a href="javascript:void(0)" onclick="selectTab('content0', this)">
+                            <img src="resource/imags/icon/menu.png" class="icon-menu" alt="" />个人信息</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="selectTab('content1', this)">
+                            <img src="resource/imags/icon/menu.png" class="icon-menu" alt="" />我的游记</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="selectTab('content2', this)">
+                            <img src="resource/imags/icon/menu.png" class="icon-menu" alt="" />组团游申请</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="body">
+            <div id="content0" class="content" style="display: block">
+                <iframe src="userDetail.html" frameborder="0"></iframe>
+            </div>
+            <div id="content1" class="content">
+                <iframe src="myNote.html" frameborder="0"></iframe>
+            </div>
+            <div id="content2" class="content">
+                <iframe src="goTravel.html" frameborder="0"></iframe>
+            </div>
+        </div>
+    </body>
+    <script src="resource/js/jquery-2.1.0.js"></script>
+    <script>
+                            function selectTab(thisContent, thisObj) {
+
+                                thisObj.blur();
+                                var tab = document.getElementById('tabs').getElementsByTagName('li');
+                                var tabLen = tab.length;
+                                for (i = 0; i < tabLen; i++) {
+                                    tab[i].className = "";
+                                }
+                                thisObj.parentNode.className = 'selectTab';
+                                for (i = 0; j = document.getElementById('content' + i); i++) {
+                                    j.style.display = "none";
+                                }
+                                document.getElementById(thisContent).style.display = "block";
+                            }
+                            $(function () {
+                                $('.to-main').click(function () {
+                                    window.location.href = 'main.html';
+                                })
+                            })
+    </script>
+
+
+</html>

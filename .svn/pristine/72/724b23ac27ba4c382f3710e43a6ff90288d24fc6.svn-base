@@ -1,0 +1,50 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.util.ArrayList;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pojo.Scenic;
+
+/**
+ *
+ * @author hasee
+ */
+@Repository
+public class ScenicDaoImpl implements ScenicDao{
+    
+    @Autowired
+    SessionFactory factory;
+    
+    @Override
+    public ArrayList<Scenic> getAllScenic() {
+        String hql = "select sc.scenicId,sc.scenicName,sc.areas,sc.scenicAddress,sc.scenicContent from Scenic as sc";
+        return (ArrayList<Scenic>) factory.getCurrentSession().createQuery(hql).list();
+    }
+
+    @Override
+    public void insert(Scenic scenic) {
+        factory.getCurrentSession().save(scenic);
+    }
+
+    @Override
+    public void delete(String sid) {
+        factory.getCurrentSession().delete(getScenic(sid));
+    }
+
+    @Override
+    public void update(Scenic scenic) {
+        factory.getCurrentSession().update(scenic);
+    }
+
+    @Override
+    public Scenic getScenic(String sid) {
+        return (Scenic)factory.getCurrentSession().get(Scenic.class, sid);
+    }
+    
+}

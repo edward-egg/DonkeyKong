@@ -1,0 +1,149 @@
+<%-- 
+    Document   : hotelPage
+    Created on : 2018-5-23, 23:06:49
+    Author     : hasee
+酒店主页
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/hotelPage.css">
+        <link rel="stylesheet" href="resource/css/swiper-4.1.6.min.css"/>
+        <link rel="stylesheet" type="text/css" href="resource/css/css/weather.css"/>
+        <title>Hotel Page</title>
+    </head>
+    <body>
+        <!--导航模块-->
+        <div class="header">
+            <div class="title">
+                <img src="resource/imags/logo.png" width="80px" height="80px" alt="">
+                <span>DonkeyKong</span>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li>
+                        <a href="redirect/main">首页</a>
+                    </li>
+                    <li>
+                        <a href="redirect/scenicPage">景点</a>
+                    </li>
+                    <li>
+                        <a href="redirect/foodPage">美食</a>
+                    </li>
+                    <li>
+                        <a href="redirect/notePage">游记</a>
+                    </li>
+                    <li>
+                        <a href="redirect/hotelPage">酒店</a>
+                    </li>
+                    <li>
+                        <a href="redirect/travelPage">组团游</a>
+                    </li>
+                </ul>
+                <div class="to-login">
+                    <button type="button" class="btn login">Login</button>
+                    <button type="button" class="btn register">Register</button>
+                </div>
+                <div id="demo">
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="search">
+            <input type="text" name="city" class="in-city" placeholder="city"/>
+            <input type="text" name="book-in" id="from" class="in-day-in" placeholder="book in day"/>
+            <input type="text" name="book-out" id="to" class="in-day-out" placeholder="book out day"/>
+            <button type="button" class="search">Search</button>
+        </div>
+
+        <div class="hotel-content">
+            <div class="toolbar">
+                <div class="hotel-search">
+                    <img src="resource/imags/icon/search.png" class="icon-search" width="20px" height="20px" />
+                    <input class="in-find" type="text" placeholder="Enter the note name" />
+                    <button type="button" class="find">Search</button>
+                </div>
+                <div class="hotel-sort">
+                    <span>
+                        Sort
+                    </span>
+                    <button type="button" class="sort-btn cost">Cost</button>
+                    <button type="button" class="sort-btn like">Like</button>
+                </div>
+            </div>
+            <div class="hotel-list">
+                <div class="hotel-item">
+                    <img src="resource/imags/2JMZXTyFUOg.jpg" />
+                    <div class="content">
+                        <dl>
+                            <dt>
+                                <span>Shanghai yeyeye!</span>
+                            </dt>
+                            <dd>
+                                <span>时值北大120周年（1898-2018）校庆，谨以此文献予母校，生日快乐！大家也可以趁此机会去北大看看，应该有不少活动，校园也会特别布置，听说最近一个月博雅塔的灯都亮着。 北京 大学作为旅游resource.</span>
+                            </dd>
+                        </dl>
+                        <div class="info">
+                            <span class="place">
+                                <img src="resource/imags/icon/address.png" class="icon address" />Shanghai</span>
+                            <span class="money">
+                                <img src="resource/imags/icon/rmb.png" class="icon cash" alt="">999</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+
+        </div>
+    </body>
+    <script src="resource/js/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+    <script type="text/javascript" src="resource/js/jquery.leoweather.min.js"></script>
+    <script type="text/javascript" src="resource/js/swiper-4.1.6.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.login').click(function () {
+                window.location.href = 'login.html';
+            });
+            $('.register').click(function () {
+                window.location.href = 'register.html';
+            });
+            $('.hotel-item').click(function () {
+                window.location.href = 'hotelDetail.html';
+            });
+            $('#demo').leoweather({
+                format: '<i class="icon-{图标}">{气温}℃</i><p>{城市}<span>|</span>{天气}<span>|</span>{风向}{风级}级</p>'
+            });
+        });
+        $(function () {
+            $('#from').datepicker({
+                defaultDate: '+1w',
+                changeMonth: true,
+                dateFormat: "yy-mm-dd",
+                numberOfMonth: 1,
+                onClose: function (selectDate) {
+                    $('#to').datepicker('option', 'minDate', selectDate);
+                }
+            });
+            $('#to').datepicker({
+                defaultDate: '+1w',
+                changeMonth: true,
+                dateFormat: "yy-mm-dd",
+                numberOfMonth: 1,
+                onClose: function (selectDate) {
+                    $('#from').datepicker('option', 'maxDate', selectDate);
+                }
+            });
+        })
+    </script>
+
+</html>

@@ -1,0 +1,87 @@
+body{
+    font-family: Arial, Helvetica, sans-serif !important;
+    background-image: url("../../imags/login-bg.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    // text-align: center;
+    .login{
+        margin-left: 37%;
+        width: 23%;
+        height: auto;
+        background-color:#FFFFFF;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 5%;
+        padding:2%;
+        box-shadow: 0 0 10px #434A50;
+        .welcome-login{
+            font-size: 30px;
+            font-weight: bolder;
+            color:dimgray;
+            display: block;
+            border-bottom: 1px solid #ee7700;
+            width: 100%;
+        }
+        .id-input,.pass-input,.tel-input,.mail-input,.name-input{
+            border-radius: 5px;
+            line-height: 28px;
+            border: 1px solid #d8d8d8;
+            color: #666;
+            box-shadow: 0 0 5px #fff;
+            height: 35px;
+            width: 70%;
+            margin-top: 5%;
+            padding-left: 5px;
+            &:focus{
+                transition-duration: 0.5s;
+                border: 1px solid #ffa200;
+                box-shadow: 0 0 5px #ffa200;
+                outline: 0;
+            }
+        }
+        .error{
+            display: block;
+            font-size: 13px;
+            color: red;
+            position: relative;
+            top: 10px;
+        }
+        .wrong{
+            font-size: 13px;
+            color: red;
+            position: relative;
+            left: 20%;
+        }
+        .btn-regist,.btn-reset{
+            outline: 0;
+            width: 70%;
+            height: 40px;
+            margin-top: 7%;
+            font-size: 18px;
+            background-color: #ffa800;
+            color: whitesmoke;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            &:hover{
+                background-color:#ffb01e;
+                color: whitesmoke;
+                font-weight: bold;
+                transition-duration: 0.3s;
+            }
+        }
+    }
+    .title{
+        color: black;
+        font-size: 28px;
+        font-weight: bolder;
+        position: relative;
+        top: 80px;
+        left: 120px;
+        letter-spacing: 2px;
+        span {
+            position: relative;
+            bottom: 20px;
+        }
+    }
+}

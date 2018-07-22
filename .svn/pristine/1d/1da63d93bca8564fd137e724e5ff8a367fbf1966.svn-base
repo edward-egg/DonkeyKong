@@ -1,0 +1,66 @@
+body .header {
+  background-color: #fff;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  height: 80px; }
+  body .header .title {
+    display: block;
+    float: left;
+    font-size: 20px;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    margin-left: 6%; }
+    body .header .title span {
+      position: relative;
+      bottom: 25px; }
+  body .header .nav {
+    padding-top: 1%;
+    display: block;
+    margin-left: 20%;
+    width: auto;
+    height: inherit; }
+    body .header .nav ul {
+      list-style-type: none; }
+      body .header .nav ul li {
+        float: left; }
+        body .header .nav ul li a {
+          color: black;
+          width: 80px;
+          height: 30px;
+          font-size: 18px;
+          line-height: 30px;
+          display: block;
+          text-align: center;
+          text-decoration: none;
+          margin-left: 8px;
+          border-bottom: 2px #EEB422 solid; }
+          body .header .nav ul li a:link {
+            color: black; }
+          body .header .nav ul li a:hover {
+            background-color: #EEB422;
+            transition-duration: 0.3s;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px; }
+    body .header .nav .to-login {
+      width: 200px;
+      float: left;
+      height: 50px;
+      margin-left: 10%; }
+      body .header .nav .to-login .btn {
+        border: none;
+        width: 100px;
+        background-color: #66CD00;
+        color: whitesmoke;
+        font-size: 18px;
+        border-radius: 5px;
+        height: 30px; }
+        body .header .nav .to-login .btn:hover {
+          background-color: #90EE90; }
+      body .header .nav .to-login .register {
+        position: relative;
+        bottom: 30px;
+        left: 130px; }
+
+/*# sourceMappingURL=hotelPage.css.map */

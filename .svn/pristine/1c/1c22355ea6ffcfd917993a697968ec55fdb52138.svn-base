@@ -1,0 +1,266 @@
+<%-- 
+    Document   : foodPage
+    Created on : 2018-5-23, 23:02:01
+    Author     : hasee
+美食主页
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="../css/css/foodPage.css">
+        <link rel="stylesheet" type="text/css" href="../css/css/weather.css" />
+        <link rel="stylesheet" type="text/css" href="../css/swiper-4.1.6.min.css" />
+        <title>Food Page</title>
+    </head>
+
+    <body>
+        <!--导航模块-->
+        <div class="header">
+            <div class="title">
+                <img src="../imags/logo.png" width="80px" height="80px" alt="">
+                <span>DonkeyKong</span>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li>
+                        <a href="main.html">首页</a>
+                    </li>
+                    <li>
+                        <a href="scenicPage.html">景点</a>
+                    </li>
+                    <li>
+                        <a href="foodPage.html">美食</a>
+                    </li>
+                    <li>
+                        <a href="notePage.html">游记</a>
+                    </li>
+                    <li>
+                        <a href="hotelPage.html">酒店</a>
+                    </li>
+                    <li>
+                        <a href="travelPage.html">组团游</a>
+                    </li>
+                </ul>
+                <div class="to-login">
+                    <button type="button" class="btn login">Login</button>
+                    <button type="button" class="btn register">Register</button>
+                </div>
+                <div id="demo">
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="swiper-container swiper-header">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide hot-img">
+                    <span class="img-info">Beautiful Place!</span>
+                    <img src="../imags/2JMZXTyFUOg.jpg" alt="">
+                </div>
+                <div class="swiper-slide hot-img">
+                    <span class="img-info">Beautiful Place!</span>
+                    <img src="../imags/Akz00I_GGjU.jpg" alt="">
+                </div>
+                <div class="swiper-slide hot-img">
+                    <span class="img-info">Beautiful Place!</span>
+                    <img src="../imags/c4Fvlp63yAQ.jpg" alt="">
+                </div>
+                <div class="swiper-slide hot-img">
+                    <span class="img-info">Beautiful Place!</span>
+                    <img src="../imags/DpPutJwgyW8.jpg" alt="">
+                </div>
+                <div class="swiper-slide hot-img">
+                    <span class="img-info">Beautiful Place!</span>
+                    <img src="../imags/dPSc8w2zn-A.jpg" alt="">
+                </div>
+                <div class="swiper-slide hot-img">
+                    <span class="img-info">Beautiful Place!</span>
+                    <img src="../imags/saxby7Bioxc.jpg" alt="">
+                </div>
+            </div>
+            <div class="swiper-pagination swiper-btn"></div>
+            <div class="swiper-button-prev swiper-btn"></div>
+            <div class="swiper-button-next swiper-btn"></div>
+
+        </div>
+
+        <div class="food-remomend">
+            <span id="r-title">
+                Food Remomend
+            </span>
+            <div class="r-item swiper-container swiper-remomend">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide r-img">
+
+                        <img src="../imags/2JMZXTyFUOg.jpg" alt="">
+                        <span class="r-info">Beautiful Place!</span>
+                    </div>
+
+                </div>
+                <div class="swiper-pagination swiper-btn"></div>
+            </div>
+        </div>
+
+        <div class="food-content">
+            <div class="sousuo">
+                <img src="../imags/icon/search.png" class="icon-search" width="20px" height="20px" alt="">
+                <input class="in-find" type="text" placeholder="Search the food" />
+                <button type="button" class="find">Search</button>
+            </div>
+            <div class="food-list">
+                <div class="food-item">
+                    <div class="s-img">
+                        <img src="../imags/Akz00I_GGjU.jpg" width="300px" height="200px" />
+                    </div>
+                    <div class="s-info">
+                        <span id="s-name">
+                            外滩
+                        </span>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="s-img">
+                        <img src="../imags/Akz00I_GGjU.jpg" width="300px" height="200px" />
+                    </div>
+                    <div class="s-info">
+                        <span id="s-name">
+                            外滩
+                        </span>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="s-img">
+                        <img src="../imags/Akz00I_GGjU.jpg" width="300px" height="200px" />
+                    </div>
+                    <div class="s-info">
+                        <span id="s-name">
+                            外滩
+                        </span>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="s-img">
+                        <img src="../imags/Akz00I_GGjU.jpg" width="300px" height="200px" />
+                    </div>
+                    <div class="s-info">
+                        <span id="s-name">
+                            外滩
+                        </span>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="s-img">
+                        <img src="../imags/Akz00I_GGjU.jpg" width="300px" height="200px" />
+                    </div>
+                    <div class="s-info">
+                        <span id="s-name">
+                            外滩
+                        </span>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="s-img">
+                        <img src="../imags/Akz00I_GGjU.jpg" width="300px" height="200px" />
+                    </div>
+                    <div class="s-info">
+                        <span id="s-name">
+                            外滩
+                        </span>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="s-img">
+                        <img src="../imags/Akz00I_GGjU.jpg" width="300px" height="200px" />
+                    </div>
+                    <div class="s-info">
+                        <span id="s-name">
+                            外滩
+                        </span>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="s-img">
+                        <img src="../imags/Akz00I_GGjU.jpg" width="300px" height="200px" />
+                    </div>
+                    <div class="s-info">
+                        <span id="s-name">
+                            外滩
+                        </span>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="s-img">
+                        <img src="../imags/Akz00I_GGjU.jpg" width="300px" height="200px" />
+                    </div>
+                    <div class="s-info">
+                        <span id="s-name">
+                            外滩
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <script src="../js/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="../js/swiper-4.1.6.min.js" ></script>
+    <script type="text/javascript" src="../js/jquery.leoweather.min.js"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper-header', {
+            loop: true,
+            speed: 500,
+            pagination: {
+                el: '.swiper-pagination'
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            autoplay: true,
+            effect: 'coverflow'
+        });
+
+        var rSwiper = new Swiper('.swiper-remomend', {
+            loop: true,
+            speed: 400,
+            autoplay: true,
+            pagination: {
+                el: '.swiper-pagination'
+            }
+        });
+
+        $(document).ready(function () {
+            $('.login').click(function () {
+                window.location.href = 'login.html';
+            });
+            $('.register').click(function () {
+                window.location.href = 'register.html';
+            });
+            $('.food-item').click(function () {
+                window.location.href = 'foodDetail.html';
+            })
+        });
+        $(document).ready(function () {
+            $('.login').click(function () {
+                window.location.href = 'login.html';
+            });
+            $('.register').click(function () {
+                window.location.href = 'register.html';
+            });
+            $('.hot-img').click(function () {
+                window.location.href = 'cityDetail.html';
+            });
+            $('#demo').leoweather({
+                format: '<i class="icon-{图标}">{气温}℃</i><p>{城市}<span>|</span>{天气}<span>|</span>{风向}{风级}级</p>'
+            });
+        })
+    </script>
+
+
+</html>

@@ -1,0 +1,182 @@
+<%-- 
+    Document   : notePage
+    Created on : 2018-5-23, 23:11:04
+    Author     : hasee
+    游记主页
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <base href="${pageContext.request.contextPath}/"/>
+    <link rel="stylesheet" href="resource/css/css/notePage.css">
+    <link rel="stylesheet" type="text/css" href="resource/css/css/weather.css"/>
+    <link rel="stylesheet" type="text/css" href="resource/css/swiper-4.1.6.min.css" />
+    <title>Note Page</title>
+</head>
+<body>
+    <!--导航模块-->
+    <%@include file="header.jsp" %>
+    <div class="note-body">
+		<!--
+        	游记推荐轮播
+        -->
+        <div class="carousel">
+        	<div class="note-swiper swiper-container">
+        		<div class="swiper-wrapper">
+        			<div class="swiper-slide hot-note">
+        				<img src="resource/imags/2JMZXTyFUOg.jpg" />
+        				<span class="hot-note-info">
+        					Shanghai!!!
+        				</span>
+        			</div>
+        			<div class="swiper-slide hot-note">
+        				<img src="resource/imags/2JMZXTyFUOg.jpg" />
+        				<span class="hot-note-info">
+        					Shanghai!!!
+        				</span>
+        			</div>
+        			<div class="swiper-slide hot-note">
+        				<img src="resource/imags/2JMZXTyFUOg.jpg" />
+        				<span class="hot-note-info">
+        					Shanghai!!!
+        				</span>
+        			</div>
+        			<div class="swiper-slide hot-note">
+        				<img src="resource/imags/2JMZXTyFUOg.jpg" />
+        				<span class="hot-note-info">
+        					Shanghai!!!
+        				</span>
+        			</div>
+        			<div class="swiper-slide hot-note">
+        				<img src="resource/imags/2JMZXTyFUOg.jpg" />
+        				<span class="hot-note-info">
+        					Shanghai!!!
+        				</span>
+        			</div>
+        		</div>
+        		<div class="swiper-button-prev swiper-btn"></div>
+        		<div class="swiper-button-next swiper-btn"></div>
+        	</div>
+        </div>
+        
+        <!--
+        	游记列表
+        -->
+        <div class="note-list">
+        	<div class="toolbar">
+        		<div class="note-search">
+        			<img src="resource/imags/icon/search.png" class="icon-search" width="20px" height="20px"/>
+        			<input class="in-find" type="text" placeholder="Enter the note name" />
+        			<button type="button" class="find">Search</button>
+        		</div>
+        		<div class="note-sort">
+        			<span>
+        				Sort
+        			</span>
+        			<button type="button" class="sort-btn recommend">Recommend</button>
+        			<button type="button" class="sort-btn like">Like</button>
+        			<button type="button" class="sort-btn time">Release Time</button>
+        		</div>
+        	</div>
+        	<div class="travel-note">
+        		<div class="note-item">
+	                <a href="noteDetail.html">
+	                    <img src="resource/imags/2JMZXTyFUOg.jpg" />
+	                </a>
+	                <div class="content">
+	                    <dl>
+	                        <dt>
+	                            <a href="noteDetail.html">Shanghai yeyeye!</a>
+	                        </dt>
+	                        <dd>
+	                            <a href="noteDetail.html">时值北大120周年（1898-2018）校庆，谨以此文献予母校，生日快乐！大家也可以趁此机会去北大看看，应该有不少活动，校园也会特别布置，听说最近一个月博雅塔的灯都亮着。 北京 大学作为旅游resource.</a>
+	                        </dd>
+	                    </dl>
+	                    <div class="info">
+	                        <span class="place">
+	                            <img src="resource/imags/icon/address.png" class="icon address" />Shanghai</span>
+	                        <span class="user">
+	                            <img src="resource/imags/icon/account.png" class="icon account" alt=""> Edward</span>
+	                        <span class="like">
+	                            <img src="resource/imags/icon/browse.png" class="icon browse" alt=""> 999</span>
+	                    </div>
+	                </div>
+            	</div>
+        		<div class="note-item">
+	                <a href="noteDetail.html">
+	                    <img src="resource/imags/2JMZXTyFUOg.jpg" />
+	                </a>
+	                <div class="content">
+	                    <dl>
+	                        <dt>
+	                            <a href="noteDetail.html">Shanghai yeyeye!</a>
+	                        </dt>
+	                        <dd>
+	                            <a href="noteDetail.html">时值北大120周年（1898-2018）校庆，谨以此文献予母校，生日快乐！大家也可以趁此机会去北大看看，应该有不少活动，校园也会特别布置，听说最近一个月博雅塔的灯都亮着。 北京 大学作为旅游resource.</a>
+	                        </dd>
+	                    </dl>
+	                    <div class="info">
+	                        <span class="place">
+	                            <img src="resource/imags/icon/address.png" class="icon address" />Shanghai</span>
+	                        <span class="user">
+	                            <img src="resource/imags/icon/account.png" class="icon account" alt=""> Edward</span>
+	                        <span class="like">
+	                            <img src="resource/imags/icon/browse.png" class="icon browse" alt=""> 999</span>
+	                    </div>
+	                </div>
+            	</div>
+        		<div class="note-item">
+	                <a href="noteDetail.html">
+	                    <img src="resource/imags/2JMZXTyFUOg.jpg" />
+	                </a>
+	                <div class="content">
+	                    <dl>
+	                        <dt>
+	                            <a href="noteDetail.html">Shanghai yeyeye!</a>
+	                        </dt>
+	                        <dd>
+	                            <a href="noteDetail.html">时值北大120周年（1898-2018）校庆，谨以此文献予母校，生日快乐！大家也可以趁此机会去北大看看，应该有不少活动，校园也会特别布置，听说最近一个月博雅塔的灯都亮着。 北京 大学作为旅游resource.</a>
+	                        </dd>
+	                    </dl>
+	                    <div class="info">
+	                        <span class="place">
+	                            <img src="resource/imags/icon/address.png" class="icon address" />Shanghai</span>
+	                        <span class="user">
+	                            <img src="resource/imags/icon/account.png" class="icon account" alt=""> Edward</span>
+	                        <span class="like">
+	                            <img src="resource/imags/icon/browse.png" class="icon browse" alt=""> 999</span>
+	                    </div>
+	                </div>
+            	</div>
+        	
+    		</div>
+        </div>
+	</div>
+
+</body>
+<script src="resource/js/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="resource/js/jquery.leoweather.min.js" ></script>
+<script type="text/javascript" src="resource/js/swiper-4.1.6.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.login').click(function () {
+            window.location.href = 'redirect/login';
+        });
+        $('.register').click(function () {
+            window.location.href = 'redirect/register';
+        });
+        $('.hot-img').click(function () {
+            window.location.href = 'redirect/scenicDetail';
+        });
+		$('#demo').leoweather({
+			format: '<i class="icon-{图标}">{气温}℃</i><p>{城市}<span>|</span>{天气}<span>|</span>{风向}{风级}级</p>'
+		});
+    })
+</script>
+
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-5-28 23:08:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Users" table="users" catalog="donkeykong" optimistic-lock="version">
+        <id name="userId" type="string">
+            <column name="user_id" length="64" />
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="string">
+            <column name="password" length="64" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="freeze" type="int">
+            <column name="freeze"/>
+        </property>
+        <property name="level" type="int">
+            <column name="level"/>
+        </property>
+        <property name="tel" type="string">
+            <column name="tel" length="64" />
+        </property>
+        <property name="userRegistTime" type="timestamp">
+            <column name="user_regist_time" length="19"/>
+        </property>
+        <property name="userUpdateTime" type="timestamp">
+            <column name="user_update_time" length="19"/>
+        </property>
+<!--        <set name="foodStoreComments" table="food_store_comment" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="user_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.FoodStoreComment" />
+        </set>
+        <set name="tourComments" table="tour_comment" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="user_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.TourComment" />
+        </set>
+        <set name="notes" table="note" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="user_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Note" />
+        </set>
+        <set name="noteComments" table="note_comment" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="user_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.NoteComment" />
+        </set>
+        <set name="notifications" table="notification" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="user_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Notification" />
+        </set>
+        <set name="hotelBooks" table="hotel_book" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="user_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.HotelBook" />
+        </set>
+        <set name="tourApplies" table="tour_apply" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="user_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.TourApply" />
+        </set>-->
+    </class>
+</hibernate-mapping>

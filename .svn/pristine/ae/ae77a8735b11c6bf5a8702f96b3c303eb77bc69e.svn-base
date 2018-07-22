@@ -1,0 +1,89 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package POJO;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ *
+ * @author hasee
+ */
+public class Order {
+    private String ord_id;
+    private Date ord_date;
+    private Date ord_time;
+    private int ord_qty;
+    private float ord_cost;
+    private List<Book> ord_books;
+    
+    @Override
+    public String toString() {
+//        String info = "";
+//        for(int i=0;i<ord_books.size();i++){
+//            info += ord_books.get(i)+"<br>";
+//        }
+        
+        return "Order ID:"+ord_id+"<br/>"+
+                "Order Date:"+ord_date+"<br/>"+
+                "Order Time:"+ord_time+"<br/>"+
+                "Order qty:"+ord_qty+"<br/>"+
+                "Order Cost:"+ord_cost+"<br/>"+
+                "Order Books:"+ord_books+"<br/>";
+    }
+
+    
+    
+    public String getOrd_id() {
+        return ord_id;
+    }
+
+    public void setOrd_id(String ord_id) {
+        this.ord_id = ord_id;
+    }
+
+    public Date getOrd_date() {
+        return ord_date;
+    }
+
+    public void setOrd_date(Date ord_date) {
+        this.ord_date = ord_date;
+    }
+
+    public Date getOrd_time() {
+        return ord_time;
+    }
+
+    public void setOrd_time(Date ord_time) {
+        this.ord_time = ord_time;
+    }
+
+    public int getOrd_qty() {
+        return ord_qty;
+    }
+
+    public void setOrd_qty(int ord_qty) {
+        this.ord_qty = ord_qty;
+    }
+
+    public float getOrd_cost() {
+        return ord_cost;
+    }
+
+    public void setOrd_cost(float ord_cost) {
+        this.ord_cost = ord_cost;
+    }
+
+    public List<Book> getOrd_books() {
+        return ord_books;
+    }
+
+    public void setOrd_books(List<Book> ord_books) {
+        this.ord_books = ord_books;
+    }
+    
+    
+}

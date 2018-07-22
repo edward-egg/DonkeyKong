@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/dao/ScenicDaoImpl.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>63</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/myapp/DonkeyKong/src/java/dao/UserDaoImpl.java</file>
+            <file>file:/D:/myapp/DonkeyKong/src/java/dao/UserDao.java</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/manager/scenicManage.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/src/java/services/UsersService.java</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/user/userPage.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/foodDetail.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/src/java/services/NoteService.java</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/user/myNote.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/fail.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/resource/css/css/userDetail.css</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/register.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/manager/changePass.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/manager/hotelManage.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/user/userTemplate.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/manager/manager.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/manager/userManage.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/src/java/controllers/UsersController.java</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/manager/travelManage.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/src/java/services/UsersServiceImpl.java</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/user/goTravel.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/user/userDetail.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/src/java/dao/NoteDao.java</file>
+            <file>file:/D:/myapp/DonkeyKong/src/java/dao/NoteDaoImpl.java</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/manager/adminTemplate.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/src/java/services/NoteServiceImpl.java</file>
+        </group>
+    </open-files>
+</project-private>

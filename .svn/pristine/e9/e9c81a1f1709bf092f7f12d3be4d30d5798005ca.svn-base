@@ -1,0 +1,166 @@
+body .header {
+  background-color: #fff;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  height: 80px; }
+  body .header .title {
+    display: block;
+    float: left;
+    font-size: 20px;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    margin-left: 6%; }
+    body .header .title span {
+      position: relative;
+      bottom: 25px; }
+  body .header .nav {
+    padding-top: 1%;
+    display: block;
+    margin-left: 20%;
+    width: auto;
+    height: inherit; }
+    body .header .nav ul {
+      list-style-type: none; }
+      body .header .nav ul li {
+        float: left; }
+        body .header .nav ul li a {
+          color: black;
+          width: 80px;
+          height: 30px;
+          font-size: 18px;
+          line-height: 30px;
+          display: block;
+          text-align: center;
+          text-decoration: none;
+          margin-left: 8px;
+          border-bottom: 2px #EEB422 solid; }
+          body .header .nav ul li a:link {
+            color: black; }
+          body .header .nav ul li a:hover {
+            background-color: #EEB422;
+            transition-duration: 0.3s;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px; }
+    body .header .nav .to-login {
+      width: 200px;
+      float: left;
+      height: 50px;
+      margin-left: 10%; }
+      body .header .nav .to-login .btn {
+        border: none;
+        width: 100px;
+        background-color: #66CD00;
+        color: whitesmoke;
+        font-size: 18px;
+        border-radius: 5px;
+        height: 30px; }
+        body .header .nav .to-login .btn:hover {
+          background-color: #90EE90; }
+      body .header .nav .to-login .register {
+        position: relative;
+        bottom: 30px;
+        left: 130px; }
+body .swiper-header {
+  width: 100%;
+  height: 600px; }
+  body .swiper-header img {
+    width: 100%;
+    height: 100%; }
+  body .swiper-header .img-info {
+    position: relative;
+    top: 40px;
+    left: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: bolder; }
+  body .swiper-header .swiper-btn {
+    color: white; }
+body .scenic-remomend {
+  float: left;
+  width: 300px;
+  height: auto;
+  border: 1px solid #C5C5C5;
+  box-shadow: 0 0 5px #D8D8D8;
+  border-radius: 4px;
+  margin-top: 10%;
+  margin-left: 2%;
+  padding: 8px; }
+  body .scenic-remomend #r-title {
+    font-size: 20px;
+    font-weight: bold; }
+  body .scenic-remomend .swiper-remomend {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-align: center; }
+    body .scenic-remomend .swiper-remomend img {
+      width: 100%;
+      height: 100%; }
+    body .scenic-remomend .swiper-remomend .r-info {
+      position: relative;
+      z-index: 100;
+      color: white;
+      bottom: 30px;
+      font-weight: bold;
+      font-size: 18px; }
+body .scenic-content {
+  margin: 0 auto;
+  margin-top: 2%;
+  width: 60%; }
+  body .scenic-content .sousuo {
+    background-color: #C5C5C5;
+    padding: 8px;
+    border-radius: 6px 6px 0 0;
+    text-align: center; }
+    body .scenic-content .sousuo .in-find {
+      padding-left: 30px;
+      width: 70%;
+      height: 40px;
+      border-radius: 7px;
+      outline: 0;
+      border: 1px solid #d8d8d8;
+      box-shadow: 0 0 5px #fff; }
+      body .scenic-content .sousuo .in-find:focus {
+        transition-duration: 0.5s;
+        border: 1px solid #ffa200;
+        box-shadow: 0 0 5px #ffa200;
+        outline: 0; }
+    body .scenic-content .sousuo .find {
+      border: none;
+      outline: 0;
+      background-color: #EEB422;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      height: 40px;
+      width: 80px;
+      border-radius: 7px; }
+      body .scenic-content .sousuo .find:hover {
+        background-color: #ffb01e;
+        cursor: pointer;
+        font-weight: bold;
+        transition-duration: 0.3s; }
+    body .scenic-content .sousuo .icon-search {
+      position: relative;
+      left: 36px;
+      top: 6px; }
+  body .scenic-content .scenic-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 1px solid #e5e5e5; }
+    body .scenic-content .scenic-list .scenic-item {
+      width: 300px;
+      margin: 15px 10px;
+      padding: 10px;
+      font-size: 20px;
+      line-height: 22px;
+      text-align: center; }
+      body .scenic-content .scenic-list .scenic-item:hover {
+        background-color: #F4F4F4;
+        cursor: pointer;
+        transition-duration: 0.5s; }
+
+/*# sourceMappingURL=scenicPage.css.map */

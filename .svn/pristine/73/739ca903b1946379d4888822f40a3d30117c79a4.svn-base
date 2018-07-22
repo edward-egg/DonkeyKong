@@ -1,0 +1,325 @@
+<%-- 
+    Document   : userManage
+    Created on : 2018-5-23, 23:20:38
+    Author     : hasee
+用户管理
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" type="text/css" href="resource/css/css/manage.css"/>
+        <link rel="stylesheet" type="text/css" href="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
+
+
+        <title>Document</title>
+        <style type="text/css">
+            .dialog table{
+                margin:0 auto;
+            }
+            .dialog table label,.dialog table input{
+                display: block;    		
+            }
+            .dialog table input{
+                margin-bottom: 12px;
+                width: 100%;
+                padding: .4em;
+            }
+            .dialog table input:focus{
+                outline: 0;
+                border: 1px solid #ffa200;
+                box-shadow: 0 0 5px #ffa200;
+                transition-duration: 0.5s;
+            }
+            #addUser{
+                background-color: #67c23a;
+                color: white;
+                font-size: 18px;
+                width: 100%;
+                height: 40px;
+                border-radius: 4px;
+                border: 1px #67c23a solid;
+            }
+            #addUser:hover{
+                border: 1px #85ce61;
+                background-color: #85ce61;
+            }
+            .select-freeze{
+                margin: 0 auto;
+                margin-top: 20px;
+                text-align: center;
+                width: 150px;
+                border-radius: 4px;
+
+            }
+            .select-freeze:focus{
+                border:1px #ffa200 solid;
+                transition-duration: 0.2s;
+            }
+        </style>
+    </head>
+    <body>
+        <%@include file="adminTemplate.jsp" %>
+        <div class="contentManage">
+            <div class="t-title">User Manage</div>
+            <div class="table-head">
+                <div class="operate">
+                    <img src="resource/imags/icon/search.png" class="icon-search" width="20px" height="20px" alt="">
+                    <input type="text" name="search" id="search" class="search" placeholder="Search want you want" />
+                    <button type="button" class="find">Search</button>
+                    <button type="button" class="add">Add</button>
+                    <div class="dialog" id="dialog" title="New User">
+                        <form action="users/addUser" method="POST">
+                            <table>
+                                <tr>
+                                    <td><label for="uid">User ID:</label></td>
+                                    <td><input type="text" id="uid" name="userId" class="ui-widget-content ui-corner-all"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="upass">User Password:</label></td>
+
+                                    <td><input type="text" id="upass" name="password" class="ui-widget-content ui-corner-all"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="uemail">E-mail:</label></td>
+
+                                    <td><input type="text" id="uemail" name="email" class="ui-widget-content ui-corner-all"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="ulevel">Level:</label></td>
+
+                                    <td><input type="text" id="ulevel" name="level" class="ui-widget-content ui-corner-all"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="utel">Tel:</label></td>
+
+                                    <td><input type="text" id="utel" name="tel" class="ui-widget-content ui-corner-all"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="ufreeze">Freeze:</label></td>
+                                    <td><input type="text" id="ufreeze" name="freeze" class="ui-widget-content ui-corner-all"/></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="table-content">
+                <table border="1" cellpadding="0" cellspacing="0">
+                    <tr class="t-head ui-widget-header">
+                        <th>User ID</th>
+                        <th>E-mail</th>
+                        <th>Level</th>
+                        <th>Tel</th>
+                        <th>Freeze</th>
+                        <th>Operate</th>
+                    </tr>
+
+                    <c:forEach items="${userList}" var="u">
+                        <tr id="${u.userId}">       
+                            <td>${u.userId}</td>
+                            <td>${u.email}</td>
+                            <td>${u.level}</td>
+                            <td>${u.tel}</td>
+                            <td>${u.freeze}</td>
+                            <td class="btn-operate">
+                                <button type="button" class="edit" id="editUser">Edit</button>
+                                <button type="button" class="freeze" id="freezeUser" onclick="freeze('${u.userId}')">Freeze</button>
+                                <button type="button" class="unfreeze" id="unFreezeUser" onclick="unfreeze('${u.userId}')">Unfreeze</button>
+                                <button type="button" class="delete" id="delUser" onclick="delUser('${u.userId}')">Delete</button>
+                            </td>
+                        </tr>
+                    </c:forEach>               
+                </table>
+
+                <div class="dialog" id="edit-dialog" title="Edit User">
+                    <c:forEach items="${userList}" var="u">
+                        <from>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="e-uid">User ID:&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="e-uid" class="ui-widget-content ui-corner-all" value="${u.userId}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="e-upass">User Password:&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="e-upass" class="ui-widget-content ui-corner-all" value="${u.password}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="e-email">E-mail:&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="e-email" class="ui-widget-content ui-corner-all" value="${u.email}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="e-level">Level:&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="e-level" class="ui-widget-content ui-corner-all" value="${u.level}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="e-tel">Tel:&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="e-tel" class="ui-widget-content ui-corner-all" value="${u.tel}"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </from>
+                    </c:forEach>
+                </div>
+
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="resource/js/jquery-2.1.0.js" ></script>
+    <script type="text/javascript" src="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+    <script>
+                                    $(function () {
+                                        $('.add').click(function () {
+                                            $('#dialog').dialog('open');
+                                        });
+                                        $('#dialog').dialog({
+                                            height: 460,
+                                            width: 400,
+                                            autoOpen: false,
+                                            modal: true,
+                                            buttons: {
+                                                "Add": function () {
+                                                    console.log("success");
+                                                    $.ajax({
+                                                        url: 'users/addUser',
+                                                        type: 'POST',
+                                                        data: {
+                                                            "userId": $('#uid').val(),
+                                                            "password": $('#upass').val(),
+                                                            "email": $('#uemail').val(),
+                                                            "level": $('#ulevel').val(),
+                                                            "tel": $('#utel').val(),
+                                                            "freeze": $('#ufreeze').val()
+                                                        },
+                                                        success: function () {
+                                                            console.log("Success insert!");
+                                                            window.location.href = 'toUsermanage';
+                                                        },
+                                                        error: function () {
+                                                            console.log("error！insert!");
+                                                            window.location.href = 'toUserManage';
+                                                        }
+                                                    });
+                                                },
+                                                "Cancel": function () {
+                                                    $(this).dialog("close");
+                                                }
+                                            }
+                                        });
+                                        $('.edit').click(function () {
+                                            $('#edit-dialog').dialog('open');
+                                        });
+                                        $('#edit-dialog').dialog({
+                                            height: 360,
+                                            width: 400,
+                                            autoOpen: false,
+                                            modal: true,
+                                            buttons: {
+                                                "Edit": function () {
+                                                    console.log("success");
+                                                    $.ajax({
+                                                        url: 'users/editUser',
+                                                        type: 'POST',
+                                                        data: {
+                                                            "userId": $('#e-uid').val(),
+                                                            "password": $('#e-upass').val(),
+                                                            "email": $('#e-email').val(),
+                                                            "level": $('#e-level').val(),
+                                                            "tel": $('#e-tel').val()
+                                                        },
+                                                        success: function () {
+                                                            console.log("SUCCESS update!!");
+                                                            window.location.href = 'toUserManage';
+                                                        },
+                                                        error: function () {
+                                                            console.log("error！update!!!");
+                                                            window.location.href = 'toUserManage';
+                                                        }
+                                                    });
+                                                },
+                                                "Cancel": function () {
+                                                    $(this).dialog("close");
+                                                }
+                                            }
+                                        });
+                                    });
+                                    $(function () {
+                                        delUser(uid);
+                                    });
+                                    function delUser(uid) {
+                                        $.ajax({
+                                            url: 'users/delUser',
+                                            type: 'POST',
+                                            data: {"uid": uid},
+                                            success: function () {
+                                                console.log('success delete!!!');
+                                                $("#" + uid).remove();
+                                            },
+                                            error: function () {
+                                                console.log("error ajax");
+                                            }
+                                        });
+                                    }
+                                    //冻结账户
+                                    $('.unfreeze').hide();
+                                    function freeze(uid) {
+                                        $.ajax({
+                                            url: '',
+                                            type: 'POST',
+                                            data: {"userId": uid},
+                                            success: function (e) {
+                                                alert('success freeze!');
+                                                
+                                                $('#'+uid+' '+".freeze").hide();
+                                                $('#'+uid+' '+'.unfreeze').show();
+                                            },
+                                            error: function () {
+                                                console.log('error freeze!');
+                                                alert('error freeze!');
+                                            }
+                                        });
+                                    }
+                                    function unfreeze(uid) {
+                                        $.ajax({
+                                            url: '',
+                                            type: 'POST',
+                                            data: {"userId": uid},
+                                            success: function () {
+                                                alert('success unfreeze!');
+                                                $('#'+uid+' '+'.unfreeze').hide();
+                                                $('#'+uid+' '+'.freeze').show();
+                                            },
+                                            error: function () {
+                                                alert('error unfreeze');
+                                            }
+                                        });
+                                    }
+                                    
+    </script>
+
+</html>

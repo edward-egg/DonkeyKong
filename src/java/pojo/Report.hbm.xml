@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="pojo.Report" table="report">
+        <id name="reportId" type="string">
+            <column name="report_id" length="64" />
+        </id>
+        <many-to-one name="user" class="pojo.Users" fetch="select">
+            <column name="user_id" length="64" not-null="true" />
+        </many-to-one>
+        <many-to-one name="foodStore" class="pojo.FoodStore" fetch="select">
+            <column name="food_id" length="64" />
+        </many-to-one>
+        <many-to-one name="hotel" class="pojo.Hotel" fetch="select">
+            <column name="hotel_id" length="64" />
+        </many-to-one>
+        <many-to-one name="note" class="pojo.Note" fetch="select">
+            <column name="note_id" length="64" />
+        </many-to-one>
+        <many-to-one name="foodStoreComment" class="pojo.FoodStoreComment" fetch="select">
+            <column name="food_comment_id" length="64" />
+        </many-to-one>
+        <many-to-one name="hotelComment" class="pojo.HotelComment" fetch="select">
+            <column name="hotel_comment_id" length="64" />
+        </many-to-one>
+        <many-to-one name="noteComment" class="pojo.NoteComment" fetch="select">
+            <column name="note_comment_id" length="64" />
+        </many-to-one>
+        <many-to-one name="scenicComment" class="pojo.ScenicComment" fetch="select">
+            <column name="scenic_comment_id" length="64" />
+        </many-to-one>
+        <property name="reportContent" type="string">
+            <column name="report_content" not-null="true" />
+        </property>
+        <property name="reportTime">
+            <column name="report_time" sql-type="datetime" />
+        </property>
+    </class>
+</hibernate-mapping>

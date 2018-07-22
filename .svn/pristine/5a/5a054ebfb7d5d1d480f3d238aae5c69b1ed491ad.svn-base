@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/login.css" />
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script>
+        $.validator.setDefaults({
+            submitHandler: function () {
+                alert("提交事件!");
+            }
+        });
+        $().ready(function () {
+            $('#valid-form').validate({
+                rules: {
+                    id: {
+                        required: true,
+                        rangelength: [3, 15]
+                    },
+                    pass: {
+                        required: true,
+                        rangelength: [3, 15]
+                    }
+                },
+                messages: {
+                    id: {
+                        required: "Please Enter your id",
+                        rangelength: "Please Enter the id from 3 to 15",
+
+                    },
+                    pass: {
+                        required: "Please Enter your password",
+                        rangelength: "Please Enter the password from 3 to 15",
+
+                    },
+                }
+
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div class="title">
+        <span>
+            DonkeyKong
+        </span>
+    </div>
+    <div class="slogan">
+        <span>To Meet the Most Beautiful Yourself</span>
+    </div>
+    <div class="login">
+        <form class="valid-form" id="valid-form" method="POST" action="">
+            <span class="welcome-login">Login</span>
+            <br>
+            <input id="id" name="id" class="id-input" type="text" placeholder="Enter your ID" required/>
+            <br>
+            <br>
+            <input id="pass" name="pass" class="pass-input" type="password" placeholder="Enter your Password" required/>
+            <br>
+            <br>
+            <button type="submit" class="btn-login">Login</button>
+            <br>
+            <span class="to-regist">No Account?
+                <a href="register.html">Come and Regist!</a>
+            </span>
+        </form>
+    </div>
+</body>
+
+
+</html>

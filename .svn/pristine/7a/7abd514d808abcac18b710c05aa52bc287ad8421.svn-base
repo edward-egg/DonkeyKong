@@ -1,0 +1,280 @@
+<%-- 
+    Document   : goTravel
+    Created on : 2018-5-23, 23:05:18
+    Author     : hasee
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Travelling</title>
+        <link rel="stylesheet" type="text/css" href="../css/css/goTravel.css" />
+        <link rel="stylesheet" type="text/css" href="../js/jquery-ui-1.12.1.custom/jquery-ui.min.css" />
+    </head>
+
+    <body>
+        <div id="tabs">
+            <div class="travel-head">
+                <span id="">
+                    Go Travelling!
+                </span>
+                <ul>
+                    <li>
+                        <a href="#tab1">go travel</a>
+                    </li>
+                    <li>
+                        <a href="#tab2">travel list</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="tab1" class="travel-content">
+                <form action="" method="post">
+                    <table border="0" cellspacing="2" cellpadding="2">
+                        <tr>
+                            <th>title:</th>
+                            <td><input type="text" id="" class="t-title" value="" /></td>
+                        </tr>
+                        <tr>
+                            <th>place:</th>
+                            <td><input type="text" id="" class="t-place" value="" /></td>
+                        </tr>
+                        <tr>
+                            <th>time:</th>
+                            <td>from&nbsp;<input type="text" id="from" class="t-from" value="" /></td>
+                            <td>to&nbsp;<input type="text" id="to" class="t-to" value="" /></td>
+                        </tr>
+                        <tr>
+                            <th>cost:</th>
+                            <td><input type="text" id="" class="t-cost" value="" /></td>
+                        </tr>
+                        <tr>
+                            <th>person limit:</th>
+                            <td><input type="text" id="" class="t-num" value="" /></td>
+                        </tr>
+                        <tr>
+                            <th>trip mode:</th>
+                            <td><input type="text" id="" class="t-mode" value="" /></td>
+                        </tr>
+                        <tr>
+                            <th>hotel:</th>
+                            <td><input type="text" id="" class="t-hotel" value="" /></td>
+                        </tr>
+                        <tr>
+                            <th>final time:</th>
+                            <td><input type="text" id="" class="t-final-time" value="" /></td>
+                        </tr>
+                    </table>
+                    <div id="t-submit">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div id="tab2" class="travel-list">
+                <div class="list">
+                    <dl class="toggle">
+                        <dt class="item-content">
+                            <span class="item-title">ShangHai</span>
+                            <span class="start-time">创建时间:2018年3月3日</span>
+                        </dt>
+                        <dd>
+                            <div class="person">
+                                <form action="" method="post">
+                                    <table border="0" cellspacing="2" cellpadding="2">
+                                        <tr>
+                                            <th>title:</th>
+                                            <td class="finish">shanghai</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-title" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>place:</th>
+                                            <td class="finish">Zhanjiang</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-place" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>time:</th>
+                                            <td class="finish">from&nbsp; 2018/3/4</td>
+                                            <td class="unfinish">from&nbsp;		
+                                                <input type="text" id="from" class="t-from" value="" />
+                                            </td>
+                                            <td class="finish">to&nbsp; 2018/3/4</td>
+                                            <td class="unfinish">to&nbsp;
+                                                <input type="text" id="to" class="t-to" value="" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>cost:</th>
+                                            <td class="finish">2005</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-cost" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>person limit:</th>
+                                            <td class="finish">20</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-num" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>trip mode:</th>
+                                            <td class="finish">Plane</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-mode" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>hotel:</th>
+                                            <td class="finish">hhhh</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-hotel" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>final time:</th>
+                                            <td class="finish">2018/6/4</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-final-time" value="" /></td>
+                                        </tr>
+                                    </table>
+                                    <div id="t-submit">
+                                        <button type="button" class="edit editInfo">
+                                            Edit
+                                        </button>
+                                        <button type="button" class="cancel cancelInfo">
+                                            Cancel
+                                        </button>
+                                        <button type="button" class="submit saveInfo">
+                                            Submit
+                                        </button>										
+                                        <button type="button" class="delete">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </dd>
+                        <dt class="item-content">
+                            <span class="item-title">ShangHai</span>
+                            <span class="start-time">创建时间:2018年3月3日</span>
+                        </dt>
+                        <dd>
+                            <div class="person">
+                                <form action="" method="post">
+                                    <table border="0" cellspacing="2" cellpadding="2">
+                                        <tr>
+                                            <th>title:</th>
+                                            <td class="finish">shanghai</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-title" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>place:</th>
+                                            <td class="finish">Zhanjiang</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-place" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>time:</th>
+                                            <td class="finish">from&nbsp; 2018/3/4</td>
+                                            <td class="unfinish">from&nbsp;		
+                                                <input type="text" id="from" class="t-from" value="" />
+                                            </td>
+                                            <td class="finish">to&nbsp; 2018/3/4</td>
+                                            <td class="unfinish">to&nbsp;
+                                                <input type="text" id="to" class="t-to" value="" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>cost:</th>
+                                            <td class="finish">2005</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-cost" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>person limit:</th>
+                                            <td class="finish">20</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-num" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>trip mode:</th>
+                                            <td class="finish">Plane</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-mode" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>hotel:</th>
+                                            <td class="finish">hhhh</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-hotel" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>final time:</th>
+                                            <td class="finish">2018/6/4</td>
+                                            <td class="unfinish"><input type="text" id="" class="t-final-time" value="" /></td>
+                                        </tr>
+                                    </table>
+                                    <div id="t-submit">
+                                        <button type="button" class="edit editInfo">
+                                            Edit
+                                        </button>
+                                        <button type="button" class="cancel cancelInfo">
+                                            Cancel
+                                        </button>
+                                        <button type="button" class="submit saveInfo">
+                                            Submit
+                                        </button>										
+                                        <button type="button" class="delete">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="../js/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.cancelInfo').hide();
+            $('.saveInfo').hide();
+            $('td.unfinish').hide();
+            $('.editInfo').click(function () {
+                $('td.finish').hide();
+                $('td.unfinish').show();
+                $(this).hide();
+                $('.cancelInfo').show();
+                $('.saveInfo').show();
+            });
+            $('.cancelInfo').click(function () {
+                $(this).hide();
+                $('.editInfo').show();
+                $('td.finish').show();
+                $('td.unfinish').hide();
+                $('.saveInfo').hide();
+            })
+        });
+        $(function () {
+            $('#tabs').tabs();
+            $('#from').datepicker({
+                defaultDate: '+1w',
+                changeMonth: true,
+                dateFormat: "yy-mm-dd",
+                numberOfMonth: 1,
+                onClose: function (selectDate) {
+                    $('#to').datepicker('option', 'minDate', selectDate);
+                }
+            });
+            $('#to').datepicker({
+                defaultDate: '+1w',
+                changeMonth: true,
+                dateFormat: "yy-mm-dd",
+                numberOfMonth: 1,
+                onClose: function (selectDate) {
+                    $('#from').datepicker('option', 'maxDate', selectDate);
+                }
+            });
+            $('.list dl dd').hide();
+            $('.list dl dt').click(function () {
+                $('.list dl dd').not($(this).next()).hide();
+                $(this).next().slideToggle(300);
+
+            });
+        })
+    </script>
+
+
+</html>

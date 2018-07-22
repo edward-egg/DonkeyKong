@@ -1,0 +1,60 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import pojo.Hotel;
+import pojo.Scenic;
+import services.HotelService;
+
+/**
+ *
+ * @author hasee
+ */
+@Controller
+@RequestMapping(value = "/hotel")
+public class HotelController {
+    @Autowired
+    HotelService hs;
+    
+    @RequestMapping(value = "/add" ,method = RequestMethod.POST)
+    public String addHotel(Hotel hotel,Model model){
+        hs.addHotel(hotel);
+        model.addAttribute("hotelList", hs.getAllHotel());
+        return "manager/hotelManager";
+    }
+    
+    @RequestMapping(value = "/delete" , method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteHotel(String hid){
+        hs.deleteHotel(hid);
+    }
+    
+    @RequestMapping(value ="/edit" ,method = RequestMethod.POST)
+    public String editHotel(Hotel hotel,Model model){
+        hs.updateHotel(hotel);
+        model.addAttribute("hotelList", hs.getAllHotel());
+        return "manager/hotelManager";
+    }
+    
+    @RequestMapping(value = "/showAll",method = RequestMethod.GET)
+    public String showAllHotel(Model model){
+        model.addAttribute("hotelList",hs.getAllHotel());
+        return "manager/hotelManager";
+    }
+    
+    @RequestMapping(value = "/getAHotel",method = RequestMethod.POST)
+    public String getAHotel(String hid,Model model){
+        Hotel hotel = hs.getAHotel(hid);
+        model.addAttribute("getHotel", hotel);
+        return "manager/hotelManager";
+    }
+}

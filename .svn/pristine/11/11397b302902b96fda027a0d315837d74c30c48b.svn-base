@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/template.css">
+</head>
+<body>
+    <div class="header">
+        <span class="title">
+            DonkeyKong
+        </span>
+        <span class="admin">Hello Edward!</span>
+    </div>
+    <div class="banner">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#"><img src="../imags/icon/menu.png" class="icon-menu" alt=""/>修改密码</a>
+                </li>
+                <li>
+                    <a href="#"><img src="../imags/icon/menu.png" class="icon-menu" alt=""/>用户管理</a>
+                </li>
+                <li>
+                    <a href="#"><img src="../imags/icon/menu.png" class="icon-menu" alt=""/>景点管理</a>
+                </li>
+                <li>
+                    <a href="#"><img src="../imags/icon/menu.png" class="icon-menu" alt=""/>酒店管理</a>
+                </li>
+                <li>
+                    <a href="#"><img src="../imags/icon/menu.png" class="icon-menu" alt=""/>美食管理</a>
+                </li>
+                <li>
+                    <a href="#"><img src="../imags/icon/menu.png" class="icon-menu" alt=""/>团游申请</a>
+                </li>
+                <li>
+                    <a href="#"><img src="../imags/icon/menu.png" class="icon-menu" alt=""/>游记管理</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="body"></div>
+</body>
+</html>

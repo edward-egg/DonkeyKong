@@ -1,0 +1,187 @@
+body .header {
+  background-color: #fff;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  height: 80px; }
+  body .header .title {
+    display: block;
+    float: left;
+    font-size: 20px;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    margin-left: 6%; }
+    body .header .title span {
+      position: relative;
+      bottom: 25px; }
+  body .header .nav {
+    padding-top: 1%;
+    display: block;
+    margin-left: 20%;
+    width: auto;
+    height: inherit; }
+    body .header .nav ul {
+      list-style-type: none; }
+      body .header .nav ul li {
+        float: left; }
+        body .header .nav ul li a {
+          color: black;
+          width: 80px;
+          height: 30px;
+          font-size: 18px;
+          line-height: 30px;
+          display: block;
+          text-align: center;
+          text-decoration: none;
+          margin-left: 8px;
+          border-bottom: 2px #EEB422 solid; }
+          body .header .nav ul li a:link {
+            color: black; }
+          body .header .nav ul li a:hover {
+            background-color: #EEB422;
+            transition-duration: 0.3s;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px; }
+    body .header .nav .to-login {
+      width: 200px;
+      float: left;
+      height: 50px;
+      margin-left: 10%; }
+      body .header .nav .to-login .btn {
+        outline: 0;
+        border: none;
+        width: 100px;
+        background-color: #66CD00;
+        color: whitesmoke;
+        font-size: 18px;
+        border-radius: 5px;
+        height: 30px; }
+        body .header .nav .to-login .btn:hover {
+          background-color: #90EE90; }
+      body .header .nav .to-login .register {
+        position: relative;
+        bottom: 30px;
+        left: 130px; }
+body .swiper-container {
+  width: 100%;
+  height: 600px; }
+  body .swiper-container img {
+    width: 100%;
+    height: 100%; }
+  body .swiper-container .img-info {
+    position: relative;
+    top: 40px;
+    left: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: bolder; }
+  body .swiper-container .swiper-btn {
+    color: white; }
+body .search {
+  color: white;
+  text-align: center;
+  position: absolute;
+  margin-left: 28%;
+  top: 48%;
+  z-index: 999;
+  width: 40%;
+  height: 90px;
+  padding-top: 60px;
+  background-color: rgba(0, 0, 0, 0.5); }
+  body .search .radio-bar input {
+    width: 20px;
+    height: 20px; }
+  body .search .radio-bar label {
+    font-size: 16px; }
+  body .search .in-find {
+    padding-left: 30px;
+    width: 70%;
+    height: 40px;
+    border-radius: 7px;
+    outline: 0;
+    border: 1px solid #d8d8d8;
+    box-shadow: 0 0 5px #fff; }
+    body .search .in-find:focus {
+      transition-duration: 0.5s;
+      border: 1px solid #ffa200;
+      box-shadow: 0 0 5px #ffa200;
+      outline: 0; }
+  body .search .find {
+    border: none;
+    outline: 0;
+    background-color: #EEB422;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    height: 40px;
+    width: 80px;
+    border-radius: 7px; }
+    body .search .find:hover {
+      background-color: #ffb01e;
+      cursor: pointer;
+      font-weight: bold;
+      transition-duration: 0.3s; }
+  body .search .icon-search {
+    position: relative;
+    left: 36px;
+    top: 6px; }
+body .notes {
+  margin-left: 15%;
+  margin-top: 2%;
+  padding: 10px;
+  width: 70%;
+  min-height: 1200px;
+  height: auto; }
+  body .notes .topic {
+    font-size: 20px;
+    font-weight: bold;
+    color: #EEB422;
+    display: block;
+    width: 160px;
+    text-align: center;
+    border-bottom: 2px #EEB422 solid; }
+  body .notes .travel-note {
+    margin-top: 8px; }
+    body .notes .travel-note .note-item {
+      border-bottom: 2px #EEB422 solid;
+      height: 220px;
+      padding: 8px;
+      width: 100%; }
+      body .notes .travel-note .note-item:hover {
+        background-color: #F5F5F5; }
+      body .notes .travel-note .note-item a {
+        text-decoration: none; }
+      body .notes .travel-note .note-item img {
+        width: 25%;
+        height: 180px;
+        margin-top: 2%; }
+      body .notes .travel-note .note-item .content {
+        float: right;
+        width: 70%;
+        height: 180px;
+        margin-top: 2%;
+        margin-right: 3%; }
+        body .notes .travel-note .note-item .content dt {
+          color: black;
+          font-size: 28px;
+          position: relative;
+          top: 20px;
+          margin-left:20%;
+          font-weight: bold; }
+        body .notes .travel-note .note-item .content .info {
+          width: 100%;
+          height: auto;
+          padding-left: 18px;
+          margin-top: 8%; }
+          body .notes .travel-note .note-item .content .info span {
+            position: relative;
+            top: 16px;
+            display: block;
+            float: left;
+            margin-right: 30px; }
+            body .notes .travel-note .note-item .content .info span .icon {
+              width: 20px;
+              height: 20px; }
+
+/*# sourceMappingURL=main.css.map */

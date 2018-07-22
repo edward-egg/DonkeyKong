@@ -1,0 +1,38 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package services;
+
+import java.util.ArrayList;
+import pojo.FoodStore;
+import pojo.FoodStoreComment;
+import pojo.Report;
+import pojo.Users;
+
+/**
+ *
+ * @author hasee
+ */
+public interface FoodService {
+    void addFood(FoodStore food);
+    void deleteFood(String fid);
+    void updateFood(FoodStore food);
+    ArrayList<FoodStore> getAllFood();
+    ArrayList<FoodStore> getTopFood();
+    ArrayList<FoodStore> getFoodByQD();
+    FoodStore getFoodById(String fid);
+
+    public void addStoreComment(FoodStoreComment storeComment);
+
+    public ArrayList<FoodStoreComment> getAllComments(FoodStore store);
+    
+    public void  updatePic(FoodStore food);
+
+    public void deleteFoodCommentById(String storeCommentId);
+    
+    public void addFoodReport(Report report);
+    
+    public boolean findReport(Users user,FoodStore food);
+}

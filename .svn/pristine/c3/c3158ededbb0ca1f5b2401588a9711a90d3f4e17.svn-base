@@ -1,0 +1,49 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package services;
+
+import dao.HotelDao;
+import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pojo.Hotel;
+
+/**
+ *
+ * @author hasee
+ */
+@Service
+public class HotelServiceImpl implements HotelService{
+    
+    @Autowired
+    HotelDao hotelDao;
+    
+    @Override
+    public void addHotel(Hotel hotel) {
+        hotelDao.insertHotel(hotel);
+    }
+
+    @Override
+    public void updateHotel(Hotel hotel) {
+        hotelDao.update(hotel);
+    }
+
+    @Override
+    public void deleteHotel(String hid) {
+        hotelDao.deleteHotel(hid);
+    }
+
+    @Override
+    public ArrayList<Hotel> getAllHotel() {
+        return hotelDao.getAllHotel();
+    }
+
+    @Override
+    public Hotel getAHotel(String hid) {
+        return hotelDao.getHotelById(hid);
+    }
+    
+}

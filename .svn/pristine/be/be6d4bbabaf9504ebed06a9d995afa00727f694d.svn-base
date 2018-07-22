@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/dao/ScenicDaoImpl.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>63</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/myapp/DonkeyKong/src/java/dao/UserDaoImpl.java</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/foodPage.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/src/java/controllers/UsersController.java</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/scenicDetail.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/hotelDetail.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/manager/scenicManage.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/manager/foodManage.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/foodDetail.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/hotelPage.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/main.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/noteDetail.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/manager/changePass.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/notePage.jsp</file>
+            <file>file:/D:/myapp/DonkeyKong/web/resource/css/css/noteDetail.css</file>
+            <file>file:/D:/myapp/DonkeyKong/web/resource/css/css/foodDetail.css</file>
+            <file>file:/D:/myapp/DonkeyKong/web/WEB-INF/jsp/travelPage.jsp</file>
+        </group>
+    </open-files>
+</project-private>

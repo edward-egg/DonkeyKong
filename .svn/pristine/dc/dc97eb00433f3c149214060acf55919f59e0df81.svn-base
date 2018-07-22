@@ -1,0 +1,478 @@
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+--
+-- Host: localhost    Database: donkeykong
+-- ------------------------------------------------------
+-- Server version	5.7.17-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin` (
+  `admin_id` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `regist_time` datetime NOT NULL,
+  `update_time` datetime NOT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin`
+--
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES ('admin','21232f297a57a5a743894a0e4a801fc3','980639151@qq.com','2018-05-28 15:03:48','2018-05-28 15:03:53');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `areas`
+--
+
+DROP TABLE IF EXISTS `areas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `areas` (
+  `area_id` varchar(64) NOT NULL,
+  `area_details` longblob,
+  `area_img` blob,
+  PRIMARY KEY (`area_id`),
+  UNIQUE KEY `area_id_UNIQUE` (`area_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `areas`
+--
+
+LOCK TABLES `areas` WRITE;
+/*!40000 ALTER TABLE `areas` DISABLE KEYS */;
+INSERT INTO `areas` VALUES ('Guangdong','Guangdong province is a province on the southern end of the mainl\r\n	and of China. It is located south of the South Ridge and the coast of the South China Sea. The Chaozhou and \r\n	Shantou plain is known as the \"seashore Zou Lu\". The Pearl River Delta, located along the Pearl River coast,\r\n	has been known as the \"land of fish and rice\" in the Southern China region.',''),('Shandong','Shandong, a place of Qi and Lu, has a long history. It is the source of\r\n	Chinese culture and one of the important birthplaces of the Chinese nation. Confucius and his Confucian thoughts,\r\n	the ten most famous cultural celebrities in the world, were born here.',''),('Sichuan','Sichuan has a long history, beautiful scenery, abundant products,\r\n	and enjoys the reputation of \"the land of abundance\". It is the gateway to the Western China and the hometown\r\n	of giant pandas. Its geological structure is complex, its geological and geomorphological landscapes are rich,\r\n	its world heritage is numerous, and its tourist attractions are diverse.',''),('Yunnan','In the morning mist of the morning of the morning of Lijiang,\r\n	the ancient green stone road was passed, and the flowers of the four seasons in Kunming were realized\r\n	in the warm spring day; listening to a Naxi ancient music, feeling the unique customs of the 26 nations,\r\n	or simply walking, daze, and sun, everyone had a Yunnan dream, and they did not want to leave.',''),('Zhejiang','Zhejiang province is located in the southeast coast of China and\r\n	the southern wing of the Yangtze River Delta. It belongs to Wu Yue culture. From Hangzhou to Ningbo,\r\n	the water network interweaves and crisscross footpaths. Zhoushan is an island, and the scenery of mountains\r\n	and sea is beautiful and spectacular. The residents here choose water, live in stone and bridge, and have a unique lifestyle.\r\n	Natural landscape and cultural heritage are abnormally rich.','');
+/*!40000 ALTER TABLE `areas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `food_store`
+--
+
+DROP TABLE IF EXISTS `food_store`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `food_store` (
+  `food_store_id` varchar(64) NOT NULL,
+  `food_store_name` varchar(255) NOT NULL,
+  `avg_price` double(10,2) NOT NULL,
+  `area_id` varchar(64) NOT NULL,
+  `store_address` blob NOT NULL,
+  `liked` int(10) DEFAULT NULL,
+  `store_img` longblob,
+  `store_content` blob,
+  PRIMARY KEY (`food_store_id`),
+  KEY `fsa__fk_idx` (`area_id`),
+  CONSTRAINT `fsa__fk` FOREIGN KEY (`area_id`) REFERENCES `areas` (`area_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `food_store`
+--
+
+LOCK TABLES `food_store` WRITE;
+/*!40000 ALTER TABLE `food_store` DISABLE KEYS */;
+INSERT INTO `food_store` VALUES ('f01','ChaoXiangSiHai',86.00,'Guangdong','No. 105, No. 106 Nan Hai Mansion, No. 1110 Nanshan Road, Nanshan District (line 11, south mountain station, D exit, right rear, 300 meters, next to Zhongyou building)',0,NULL,NULL),('f02','JinYueXuanHai',175.00,'Guangdong','1-3 floor, B District, 265, South China Commercial Plaza, No. 1-3 lovers\' South Road, Xiangzhou District, Zhuhai',0,NULL,NULL),('f03','XiaoBingSheng',77.00,'Guangdong','No. 168, No. 168, Beijing Road, Beijing, Yuexiu District, Guangdong sea, Yang Zhong Hui, six layer B605',0,NULL,NULL),('f04','ZhuRouPO',213.00,'Guangdong','No. 31, fine cellar exhibition hall, Shunde District, Foshan (beside Guangxi high school)',0,NULL,NULL),('f05','JianBingJuanDaCong',51.00,'Shandong','Tai\'an Taishan Avenue Veterans Hospital West (Taishan Long Li supermarket next to)',0,NULL,NULL),('f06','JingXiangYuJiaLe',83.00,'Shandong','No. 333, tsuankou village, Penglai, Penglai (north of Xinghai Road)',0,NULL,NULL),('f07','LuChengWangShi',63.00,'Shandong','Qufu tourist center on the west side of the hospital',0,NULL,NULL),('f08','XinCaoTangGuoWuLiaoLi',154.00,'Shandong','6 layers of West Wing of Heng Long square, No. 188, Quancheng Road, Ji\'nan',0,NULL,NULL),('f09','YanXiaoGuan',135.00,'Shandong','A, block A, No. 18, Hongkong Road, Middle Road, Qingdao',0,NULL,NULL),('f10','ChengDuChiKe',80.00,'Sichuan','No. 8, quay Tower Street, Chengdu',0,NULL,NULL),('f11','HaiDiLao',114.00,'Sichuan','No. 5, No. 5, Hao Hao Plaza, No. 998, Jiannan Avenue, Wuhou District high tech Zone, Chengdu, C507',0,NULL,NULL),('f12','MaWangZi',99.00,'Sichuan','No. 1, East chaff street, Chunxi Road, Jinjiang District, Chengdu',0,NULL,NULL),('f13','FangZhouPanZi',97.00,'Yunnan','No. 498, lower section of Renmin Road, Dali (east corner of Yujie street and southwest corner of Renmin Road)',0,NULL,NULL),('f14','YunHaiYao',92.00,'Yunnan','No. 88, south strong street and lanes of Wuhua District, Kunming',0,NULL,NULL),('f15','YunXueLi',94.00,'Yunnan','No. 95, 71 street, Xingwen lane, 71 street in the ancient city area of the city',0,NULL,NULL),('f16','BaoRongYuGuan',94.00,'Zhejiang','Qiandao Lake scenic area fishing port bridge and Cultural Park intersection No. 54-10 Meng Gu Road',0,NULL,NULL),('f17','HangZhouJiuJia',89.00,'Zhejiang','1-3 floor, 205 Yanan Road, Hangzhou (Yanan Road Post Office junction)',0,NULL,NULL),('f18','QiZhangZhuo',77.00,'Zhejiang','No. 11, North Gate Street, Jiashan County, Jiaxing, Zhejiang',0,NULL,NULL),('f19','QiuJiSiFangCai',77.00,'Zhejiang','305--307, South Street, Wuzhen (South Gate old street, Wuzhen bridge, Hedong step bridge 100 meters south)',0,NULL,NULL),('f20','SiJiaXiaoChuFang',91.00,'Zhejiang','Room 101, room 101, room No. 82, Shanxi mountain, Putuo, Putuo',0,NULL,NULL);
+/*!40000 ALTER TABLE `food_store` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `food_store_comment`
+--
+
+DROP TABLE IF EXISTS `food_store_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `food_store_comment` (
+  `store_comment_id` varchar(64) NOT NULL,
+  `food_store_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `comment_content` varchar(200) NOT NULL,
+  `comment_time` datetime NOT NULL,
+  PRIMARY KEY (`store_comment_id`),
+  KEY `fst_fk_idx` (`food_store_id`),
+  KEY `fcu_fk_idx` (`user_id`),
+  CONSTRAINT `fcu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fst_fk` FOREIGN KEY (`food_store_id`) REFERENCES `food_store` (`food_store_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `food_store_comment`
+--
+
+LOCK TABLES `food_store_comment` WRITE;
+/*!40000 ALTER TABLE `food_store_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `food_store_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hotel`
+--
+
+DROP TABLE IF EXISTS `hotel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hotel` (
+  `hotel_id` varchar(64) NOT NULL,
+  `hotel_name` varchar(255) NOT NULL,
+  `area_id` varchar(64) NOT NULL,
+  `hotel_address` blob NOT NULL,
+  `hotel_like` int(255) DEFAULT NULL,
+  `hotel_comment` varchar(100) DEFAULT NULL,
+  `is_reserve` int(5) NOT NULL,
+  `hotel_img` longblob,
+  `hotel_content` blob,
+  PRIMARY KEY (`hotel_id`),
+  KEY `ha_fk_idx` (`area_id`),
+  CONSTRAINT `ha_fk` FOREIGN KEY (`area_id`) REFERENCES `areas` (`area_id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hotel`
+--
+
+LOCK TABLES `hotel` WRITE;
+/*!40000 ALTER TABLE `hotel` DISABLE KEYS */;
+INSERT INTO `hotel` VALUES ('h01','BiGuiHuaCheng','Guangdong','Foshan Shunde District Chen Cun town Chen Chen bridge side, near Chen Village Flower world, South China Sea Road South passes Buddha Chen bridge, Foshan third middle, Vanke Crystal City.',0,NULL,0,NULL,NULL),('h02','FaGe','Guangdong','Twelve floor, Wan Yi square, 12 overseas Chinese road, Yuexiu District, Yuexiu District, Guangzhou, China',0,NULL,0,NULL,NULL),('h03','JinPeng','Guangdong','Jinpeng Commercial Plaza, 252 people\'s road, Longhua street, Longhua District, Shenzhen, opposite to Longhua\'s land tax.',0,NULL,0,NULL,NULL),('h04','GreenTree Inn','Shandong','No. 7, Hai Shi Road, Penglai, near three fairy hill, Ou Le Bao.',0,NULL,0,NULL,NULL),('h05','HanTing','Shandong','No. 162 Luyuan street, Lixia District, Ji\'nan (opposite to Baotu Spring South Gate)',0,NULL,0,NULL,NULL),('h06','JiuShuiShuYuan','Shandong','Qingdao Laoshan District North residence Street View Lao community north nine water scenic area',0,NULL,0,NULL,NULL),('h07','QueLi','Shandong','No. 1 que street, Qufu',0,NULL,0,NULL,NULL),('h08','BaiYunJu','Shandong','The eastern part of Taishan Ding Ding Tian Jie street, Taishan District, Tai\'an, is near the top of Tai mountain.',0,NULL,0,NULL,NULL),('h09','DuZi','Sichuan','No. 123, Wuhou Temple street, Wuhou District, Chengdu, Chengdu, No. 9, No. 20 (Sichuan traffic department diagonally opposite, facing 20 meters on the right side of Jinli Street)',0,NULL,0,NULL,NULL),('h10','EmeiShan Hotel','Sichuan','322 scenic road, Mount Emei, Leshan',0,NULL,0,NULL,NULL),('h11','QianHe','Sichuan','Aba Tibetan and Qiang Autonomous Prefecture, Jiuzhaigou zhangzha Zhenlong Kang Town Fire dam',0,NULL,0,NULL,NULL),('h12','HongYanHaiJing','Yunnan','E1, Dali, shaguan Town, ManJiang District, Shing House Hill Golden Coast Manor',0,NULL,0,NULL,NULL),('h13','JiangYe','Yunnan','Kunming Xishan District Gate Road 16-2 yuan (Dianchi resort area)',0,NULL,0,NULL,NULL),('h14','AiJinRong','Yunnan','Old Town of Lijiang District Shuhe ancient town Dongkang village six group 15, near Sifang street.',0,NULL,0,NULL,NULL),('h15','Shilin mountain villa','Yunnan','Shilin Yi Autonomous County, Kunming City, Yunnan Province',0,NULL,0,NULL,NULL),('h16','YuLongYueGuang','Yunnan','Six group 5 of Yuhu village, the village committee of ERON jade lake in Lijiang',0,NULL,0,NULL,NULL),('h17','LongTingKaiYuan','Zhejiang','1 South Ring Road, near Qiandao Lake square, Chunan.',0,NULL,0,NULL,NULL),('h18','LiJingYuan','Zhejiang','No. 3, Sujia lane, Jiashan County, Jiaxing',0,NULL,0,NULL,NULL),('h19','LinJiaBieYuan','Zhejiang','No. 78-80, Chang Xin Street, Wuzhen, Tongxiang, near North Huaqiao.',0,NULL,0,NULL,NULL),('h20','XingYuan','Zhejiang','Zhoushan Putuo District Putuo Shanxi mountain two district 10 buildings, 4 buildings, near Financial Street.',0,NULL,0,NULL,NULL),('h21','WenHua','Zhejiang','No. 38, Wen two road, Xihu District, Hangzhou, near Mogan Shan Road, metro line two (Shentang Bridge Station) near B exit.',0,NULL,0,NULL,NULL);
+/*!40000 ALTER TABLE `hotel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hotel_book`
+--
+
+DROP TABLE IF EXISTS `hotel_book`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hotel_book` (
+  `book_id` varchar(64) NOT NULL,
+  `hotel_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `room_id` varchar(64) NOT NULL,
+  `check_in_time` datetime NOT NULL,
+  `check_out_time` datetime NOT NULL,
+  PRIMARY KEY (`book_id`),
+  KEY `bkh_fk_idx` (`hotel_id`),
+  KEY `bkr_fk_idx` (`room_id`),
+  KEY `bku_fk_idx` (`user_id`),
+  KEY `bkuser_fk_idx` (`user_id`),
+  CONSTRAINT `bkh_fk` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`hotel_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `bkr_fk` FOREIGN KEY (`room_id`) REFERENCES `hotel_room` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `bku_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hotel_book`
+--
+
+LOCK TABLES `hotel_book` WRITE;
+/*!40000 ALTER TABLE `hotel_book` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hotel_book` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hotel_room`
+--
+
+DROP TABLE IF EXISTS `hotel_room`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hotel_room` (
+  `room_id` varchar(20) NOT NULL COMMENT '房间id',
+  `hotel_id` varchar(64) NOT NULL COMMENT '酒店id',
+  `room_num` varchar(20) NOT NULL COMMENT '房间号',
+  `room_type` varchar(20) NOT NULL COMMENT '房间类型',
+  `room_price` double(10,2) NOT NULL COMMENT '价格',
+  `is_use` int(4) NOT NULL COMMENT '是否可用',
+  PRIMARY KEY (`room_id`),
+  KEY `rh_fk_idx` (`hotel_id`),
+  CONSTRAINT `rh_fk` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`hotel_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hotel_room`
+--
+
+LOCK TABLES `hotel_room` WRITE;
+/*!40000 ALTER TABLE `hotel_room` DISABLE KEYS */;
+INSERT INTO `hotel_room` VALUES ('h10r01','h10','A01','normal',219.00,0),('h11r01','h11','A01','normal',256.00,0),('h11r02','h11','B02','luxury',256.00,0),('h12r01','h12','A01','normal',338.00,0),('h12r02','h12','B02','lover',398.00,0),('h12r03','h12','C03','luxury',428.00,0),('h12r04','h12','D04','Open sea view',698.00,0),('h13r01','h13','A01','normal',155.00,0),('h13r02','h13','B02','double',194.00,0),('h13r03','h13','C03','luxury',263.00,0),('h13r04','h13','D04','luxury family',294.00,0),('h14r01','h14','A01','normal',298.00,0),('h14r02','h14','B02','luxury',358.00,0),('h14r03','h14','C03','aesthetical',398.00,0),('h14r04','h14','D04','luxury',446.00,0),('h15r01','h15','A01','normal',158.00,0),('h15r02','h15','B02','luxury',188.00,0),('h15r03','h15','C03','more luxury',228.00,0),('h15r04','h15','D04','very luxury',359.00,0),('h15r05','h15','E06','super luxury',410.00,0),('h16r01','h16','A01','normal',330.00,0),('h16r02','h16','B02','suite',461.00,0),('h17r01','h17','A01','normal',346.00,0),('h17r02','h17','B02','double',336.00,0),('h17r03','h17','C03','senior',436.00,0),('h17r04','h17','D04','luxury',538.00,0),('h18r01','h18','A01','normal',208.00,0),('h18r02','h18','B02','double',228.00,0),('h18r03','h18','C03','courtyard',300.00,0),('h18r04','h18','D04','by the river',580.00,0),('h19r01','h19','A01','normal',84.00,0),('h19r02','h19','B02','circular bed',112.00,0),('h19r03','h19','C03','European',131.00,0),('h19r04','h19','D04','Tatami',136.00,0),('h1r01','h01','A01','normal',246.00,0),('h1r02','h01','B02','garden',347.00,0),('h1r03','h01','C03','luxury',497.00,0),('h20r01','h20','A01','normal',287.00,0),('h20r02','h20','B02','double',389.00,0),('h20r03','h20','C03','family',446.00,0),('h21r01','h21','A01','normal',296.00,0),('h21r02','h21','B02','double',358.00,0),('h21r03','h21','C03','senior',496.00,0),('h2r01','h02','A01','normal',386.00,0),('h2r02','h02','B02','double',426.00,0),('h3r01','h03','A01','normal',242.00,0),('h3r02','h03','B02','Janpan',348.00,0),('h3r03','h03','C03','British',372.00,0),('h4r01','h04','A01','normal',118.00,0),('h4r02','h04','B02','trio',158.00,0),('h4r03','h04','C03','luxury',256.00,0),('h4r04','h04','D05','marriage',529.00,0),('h5r01','h05','A01','normal',246.00,0),('h5r02','h05','B02','double',284.00,0),('h5r03','h05','C03','family',303.00,0),('h6r01','h06','A01','normal',380.00,0),('h6r02','h06','B02','family',480.00,0),('h6r03','h06','C03','quad',560.00,0),('h7r01','h07','A01','normal',346.00,0),('h7r02','h07','B02','business',488.00,0),('h7r03','h07','C03','luxury',880.00,0),('h8r01','h08','A01','normal',560.00,0),('h8r02','h08','B02','trio',660.00,0),('h8r03','h08','C03','quad',980.00,0),('h9r01','h09','A01','normal',183.00,0),('h9r02','h09','B02','double',248.00,0);
+/*!40000 ALTER TABLE `hotel_room` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `note`
+--
+
+DROP TABLE IF EXISTS `note`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `note` (
+  `note_id` varchar(64) NOT NULL,
+  `note_title` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `is_browse` int(4) NOT NULL,
+  `report` int(10) DEFAULT NULL,
+  `publish_time` datetime NOT NULL,
+  `update_time` datetime NOT NULL,
+  PRIMARY KEY (`note_id`),
+  KEY `nu_fk_idx` (`user_id`),
+  CONSTRAINT `nu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `note`
+--
+
+LOCK TABLES `note` WRITE;
+/*!40000 ALTER TABLE `note` DISABLE KEYS */;
+/*!40000 ALTER TABLE `note` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `note_comment`
+--
+
+DROP TABLE IF EXISTS `note_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `note_comment` (
+  `note_comment_id` varchar(64) NOT NULL,
+  `note_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `comment_content` varchar(255) NOT NULL,
+  `comment_time` datetime NOT NULL,
+  PRIMARY KEY (`note_comment_id`),
+  KEY `ntc_fk_idx` (`note_id`),
+  KEY `ncu_fk_idx` (`user_id`),
+  CONSTRAINT `ncu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `ntc_fk` FOREIGN KEY (`note_id`) REFERENCES `note` (`note_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `note_comment`
+--
+
+LOCK TABLES `note_comment` WRITE;
+/*!40000 ALTER TABLE `note_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `note_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notification`
+--
+
+DROP TABLE IF EXISTS `notification`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notification` (
+  `notify_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `notify_content` varchar(64) NOT NULL,
+  `send_time` datetime NOT NULL,
+  PRIMARY KEY (`notify_id`),
+  KEY `ntfu_fk_idx` (`user_id`),
+  CONSTRAINT `ntfu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notification`
+--
+
+LOCK TABLES `notification` WRITE;
+/*!40000 ALTER TABLE `notification` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notification` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `scenic`
+--
+
+DROP TABLE IF EXISTS `scenic`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `scenic` (
+  `scenic_id` varchar(64) NOT NULL,
+  `scenic_name` varchar(64) NOT NULL,
+  `area_id` varchar(64) NOT NULL,
+  `scenic_address` varchar(255) NOT NULL,
+  `scenic_like` int(255) NOT NULL,
+  `scenic_comment` varchar(255) DEFAULT NULL,
+  `scenic_img` longblob,
+  `scenic_content` blob NOT NULL,
+  PRIMARY KEY (`scenic_id`),
+  KEY `sa_fk_idx` (`area_id`),
+  CONSTRAINT `sa_fk` FOREIGN KEY (`area_id`) REFERENCES `areas` (`area_id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `scenic`
+--
+
+LOCK TABLES `scenic` WRITE;
+/*!40000 ALTER TABLE `scenic` DISABLE KEYS */;
+INSERT INTO `scenic` VALUES ('s01','DanXia Mountain','Guangdong','Northeast suburb of Shaoguan, Guangdong',0,'null',NULL,'The Mount Danxia World Geopark is located in the Northeast suburb of Shaoguan, Guangdong, China. The Jinjiang gallery and the Ba Zhai scenic area are mainly scenic spots with natural scenery and sightseeing, which include science popularization, rock climbing, expedition, adventure and leisure.'),('s02','Guangzhou','Guangdong','southern China, south of Guangdong Province',0,NULL,NULL,'Guangzhou, for short, is called \"Yangcheng\", \"Sui Cheng\", \"Hogaki\", \"Xian Cheng\" and \"Flower City\". Located in southern China, south of Guangdong Province, the northern edge of the Pearl River Delta, the Xijiang, Beijiang and Dongjiang waterways are confluence, it is near the South China Sea, the Pearl River enters the mouth of the sea, adjacent to Hong Kong and Macao, the geographical position is superior, and Guangzhou is the starting point of the maritime Silk Road, which is called the \"South Grand gate\" of China.'),('s03','Nanaodao','Guangdong','Shantou,Guangdong',0,NULL,NULL,'Nanaodao is the only island county in Guangdong province. It is also the only county under the jurisdiction of Shantou. Blue sky, blue sea, green island, golden sand and white wave are the main hue of Nan\'ao\'s ecotourism. The Green Bay, known as \"Hawaii of the East\", is a rare shallow sea beach in China. The sand is white and the sea water is clean and free from pollution. It is one of the two bathing beaches in Guangdong province.'),('s04','Shenzhen','Guangdong','Guangdong',0,NULL,NULL,'Shenzhen is the first special economic zone in China. Now it has become the fourth largest city in the country and the fifth largest financial center in the world. Shenzhen is the city with the largest and only sea, land and air ports in China. It is one of the main portals of China\'s communication with the world. It has strong economic support and modern urban infrastructure.'),('s05','Ranking seventy','Shandong','Jinan,Shandong',0,NULL,NULL,'Ranking seventy-two in the spring of Ji\'nan, it is known as \"the first spring in the world\" and the earliest known spring in Ji\'nan. Located in the downtown area of Ji\'nan, the middle section of Baotu Spring South Road and Yuan Yuan Street, south of Qianfo Hill, east of Quancheng Square, and north facing Daming Lake. Baotu Spring Park was built in 1956. Its historic sites and cultural connotation are very rich. It is one of the most representative landscape gardens with the characteristics of South and North Garden art.'),('s06','Laoshan','Shandong','Qingdao,Shandong',0,NULL,NULL,'Located in the eastern part of Qingdao, Laoshan is the main mountain range of Shandong peninsula. The highest peak is 1133 meters above sea level. Laoshan stands on the shore of the Yellow Sea. Its mountains and seas are connected. Laoshan is the only mountain in the country that rises in the seaside. It has the reputation of \"the first famous mountain on the sea\". It is said that Qin Shihuang and Emperor Wudi all come to ask for the immortals.'),('s07','Temple and Cemetery of Confucius','Shandong','Qufu,Shandong',0,NULL,NULL,'Qufu is located in the southwest of Shandong Province, the ancient name Lu County, the birthplace of Confucius, the great thinker, educator and founder of the Confucian School of ancient China, and the birthplace of Confucianism. Published by the State Council as the first famous historical and cultural city in 1982, it was praised by western people as \"Jerusalem of the East\" and one of the four great holy cities in the world. Thousands of Chinese and foreign tourists have been attracted to Pilgrims for thousands of years.'),('s08','Taishan','Shandong','Taian,Shandong',0,NULL,NULL,'Taishan is the first of the five mountains in China. It is one of the first batch of state-level scenic spots in China. It is also a natural museum of art and history. Many pine and cypress trees in Taishan are more solemn, lofty and luxuriant. There are ten natural wonders, such as the rising sun, the jade plate of the cloud sea, the sunset glow of the sunset glow, the the Yellow River gold belt and so on, and the ten natural landscapes, such as the stone dock, the pine and the pine, the peach garden, the soul rock and so on.'),('s09','Penglai','Shandong','Yantai,Shandong',0,NULL,NULL,'Penglai, in Yantai, Shandong Province, is located at the north end of the Jiaodong peninsula. It is an ancient city that leans the mountains and holds the sea. It has been known as \"the fairyland of the world\" since ancient times. The legend of the eight fairy tales of the sea took place here. The most immortal place in Penglai is Penglaige. Penglaige is located on the northern part of Penglai city on the cliff mountain, and Yellow Crane Tower, Yueyang Tower, Pavilion of Prince Teng, also known as the \"four famous buildings in the country\".'),('s10','Dujiangyan','Sichuan','Chengdu,Sichuan',0,NULL,NULL,'Dujiangyan is located in the west of Chengdu City, Sichuan Province, 48km from Chengdu. Known as the famous Dujiangyan water conservancy project, in the west of the Chengdu plain, over 2200 years ago, the Minjiang River is known as the \"ancestor of world water conservancy culture\", and is a famous tourist resort in the country.'),('s11','Mount Emei','Sichuan','southwest of Sichuan basin',0,NULL,NULL,'Mount Emei is located in the southwest of Sichuan basin. It is 7 kilometers west of Mount Emei and 37 kilometers east of Leshan. It is one of the four famous Buddhist mountains in China. Mount Emei Leshan Giant Buddha, as a dual heritage of culture and nature, was listed in the world heritage list by UNESCO in 1996. The highest peak is 3099 meters above sea level.'),('s12','Jinli','Sichuan','Chengdu,Sichuan',0,NULL,NULL,'The Jinli Street is restored by the Wuhou Temple Museum in Chengdu. As part of Wuhou Temple (the Three Kingdoms historical sites, the folk custom area, the west area), the street is 550 meters long. It is now the famous pedestrian mall in Chengdu. It is known as \"the first street of West Shu\" and is known as the \"Chengdu version of the Qingming River map\".'),('s13','Jiuzhaigou','Sichuan','Zhangzha Town,Jiuzhaigou County',0,NULL,NULL,'Jiuzhaigou is named after nine Tibetan stockade in the ditch. Located in zhangzha Town, Jiuzhaigou County, Aba Tibetan and Qiang Autonomous Prefecture, Sichuan, it is 540 kilometers away from Chengdu and 8-10 hours drive. In 1992, Jiuzhaigou was officially included in the list of world natural heritage. \"The return of the Jiuzhai does not look at the water\" is a true interpretation of the scenery of Jiuzhaigou.'),('s14','Mount Qingcheng','Sichuan','southwest of Dujiangyan City, Sichuan',0,NULL,NULL,'Qingchengshan is located in the southwest of Dujiangyan City, Sichuan province. It is one of the birthplaces of Taoism in China. It is a famous Taoist mountain and a national 5A scenic spot. In 2000, together with Dujiangyan as a world cultural heritage, it has been listed in the world heritage list. The main peak of Qingchengshan is 1260 meters above sea level. All the forest trees are evergreen all the year round, so it is known as Qingchengshan.'),('s15','Erhai','Yunnan','northwest of Dali city of Yunnan',0,NULL,NULL,'Erhai is located in the northwest of Dali city of Yunnan. It is the second largest freshwater lake in Yunnan province. It is long and narrow. The lake water is clear and transparent. It has been known as \"the flawless jade of the mountains\" since ancient times. It is the place of \"Erhai month\", one of the four scenes of \"wind and snow moon\" in Dali. It is said that it is called \"Erhai\" because of its shape like an ear, and is known for its \"Plateau Pearl\".'),('s16','Dianchi','Yunnan','southwest of Yunnan',0,NULL,NULL,'Dianchi is located in the southwest of Yunnan Province, the largest fresh water lake, known as Plateau Pearl. Dianchi is an earthquake fault subsided lake, its shape is like a crescent moon. The lakes and mountains in Dianchi are different in their evaluation. Perhaps there are no picturesque scenery such as Guilin, but it is rare to have such broad waters on the plateau. Standing in Longmen, commanding heights, Dianchi has a panoramic view, with the name of \"Plateau Pearl\".'),('s17','Shilin','Yunnan','Shilin Yi Autonomous County, Kunming City, Yunnan',0,NULL,NULL,'Shilin is a scenic area in Shilin Yi Autonomous County, Kunming City, Yunnan Province, and also a world natural heritage. It has the oldest, most widely distributed, complete and unique Palaeozoic karst geomorphology community in Karst geomorphology, which is known as the \"first wonders of the world\".'),('s18','Jade Dragon Snow Mountain','Yunnan','Naxi Autonomous County of ERON',0,NULL,NULL,'Jade Dragon Snow Mountain is located in the Naxi Autonomous County of ERON. It is the most southern snowy mountain in the northern hemisphere. Mountain snow area is located at 4000 meters above sea level. It is famous for its dangers, wonders, beauty and show.'),('s19','The ancient town of Shuhe','Yunnan','Lijiang,Yunnan',0,NULL,NULL,'The ancient town of Shuhe in the ancient town of Shuhe is located at 26 degrees 55 points in the north latitude and 100 degrees to 12 in the East. The core of all the scenic spots in Lijiang is the hub of visiting Old Town of Lijiang, Jade Dragon Snow Mountain, Lugu Lake, the first bay of the Yangtze River and the Sanjiang scenic area. The ancient town of Shuhe is an important market town, which is well preserved on the ancient tea horse road. It is also a model of the building of the town of Naxi, which is the living specimen of the transition from farming civilization to commercial civilization, and the construction of the town. Shuhe is an important part of the world cultural heritage Old Town of Lijiang. In 2005, it was selected as the \"charming town of China\" in CCTV.'),('s20','Mount Putuo','Zhejiang','eastern part of the Zhoushan archipelago',0,NULL,NULL,'Mount Putuo is located in the eastern part of the Zhoushan archipelago, and belongs to Zhoushan, Zhejiang. It is one of the four famous Buddhist mountains in China. In the 19th day of the second month of the Chinese lunar calendar, June, nineteen and September, nineteen were Avalokiteshvara\'s three major incense sessions, namely, the birthday, the monks and the way. Mount Putuo is the most famous Guanyin Taoist site in China. The sacred site of Buddhism is surrounded by the sea and has beautiful scenery. It is known as \"the first world\'s clean land\".'),('s21','Qingdao Lake','Zhejiang','Chunan County, Zhejiang',0,NULL,NULL,'Qiandao Lake, located in Chunan County, Zhejiang Province, is the first artificial lake built by China in 1959, which is the first self designed and self-made hydraulic power station. It is the first level water body of the country. Due to the importance of environmental protection, Thousand Island Lake is the highest quality water in China\'s big rivers and lakes.'),('s22','Wuzhen','Zhejiang','north end of Tongxiang City, Zhejiang',0,NULL,NULL,'Wuzhen is located at the north end of Tongxiang City, Zhejiang Province, 13 kilometers away from Tongxiang City, and is known as \"the land of fish and rice and the house of silk\". Wuzhen is a national 5A level scenic spot, one of the twenty golden week forecast sites in the country, with a history of over six thousand years.'),('s23','West Lake','Zhejiang','south of Hangzhou, Zhejiang',0,NULL,NULL,'West Lake, a few of the world heritage list, is the only cultural heritage of lakes in China. West Lake, Hangzhou, located in the south of Hangzhou, Zhejiang Province, has become a famous tourist resort with its beautiful lake and mountain color and many famous historic sites, and has been endowed with the reputation of \"paradise on earth\" by the world.'),('s24','Xitang','Zhejiang','junction of Jiangsu, Zhejiang and Shanghai',0,NULL,NULL,'Xitang ancient town is located at the junction of Jiangsu, Zhejiang and Shanghai provinces in Jiashan County, Zhejiang Province, the ancient name of the slope pond, Hirakawa, 10 kilometers away from Jiashan city. As the first batch of historical and cultural towns in China, the ancient AAAA town of Xitang has been included in the world\'s historical and cultural heritage reserve list. Xitang has won the favor of the vast number of tourists with the three characteristics of \"bridge, multi lane and corridor shed\".');
+/*!40000 ALTER TABLE `scenic` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tour`
+--
+
+DROP TABLE IF EXISTS `tour`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour` (
+  `tour_id` varchar(20) NOT NULL,
+  `tour_title` varchar(30) NOT NULL,
+  `scenic_name` varchar(64) NOT NULL,
+  `tour_price` double(10,2) NOT NULL,
+  `limit_num` int(10) NOT NULL,
+  `trip_mode` varchar(64) NOT NULL,
+  `hotel_name` varchar(64) NOT NULL,
+  `is_approve` int(4) NOT NULL,
+  `tour_begin_time` datetime NOT NULL,
+  `tour_end_time` datetime NOT NULL,
+  `apply_end_time` datetime NOT NULL,
+  PRIMARY KEY (`tour_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour`
+--
+
+LOCK TABLES `tour` WRITE;
+/*!40000 ALTER TABLE `tour` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tour` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tour_apply`
+--
+
+DROP TABLE IF EXISTS `tour_apply`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour_apply` (
+  `apply_id` varchar(64) NOT NULL,
+  `tour_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  PRIMARY KEY (`apply_id`),
+  KEY `at_fk_idx` (`tour_id`),
+  KEY `au_fk_idx` (`user_id`),
+  CONSTRAINT `at_fk` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`tour_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `au_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour_apply`
+--
+
+LOCK TABLES `tour_apply` WRITE;
+/*!40000 ALTER TABLE `tour_apply` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tour_apply` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tour_comment`
+--
+
+DROP TABLE IF EXISTS `tour_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour_comment` (
+  `tour_comment_id` varchar(64) NOT NULL,
+  `tour_id` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `comment_content` varchar(255) NOT NULL,
+  `comment_time` datetime NOT NULL,
+  PRIMARY KEY (`tour_comment_id`),
+  KEY `tour_fk_idx` (`tour_id`),
+  KEY `tcu_fk_idx` (`user_id`),
+  CONSTRAINT `tcu_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tour_fk` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`tour_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour_comment`
+--
+
+LOCK TABLES `tour_comment` WRITE;
+/*!40000 ALTER TABLE `tour_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tour_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `user_id` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `freeze` int(11) DEFAULT NULL,
+  `level` int(11) DEFAULT NULL,
+  `tel` varchar(64) NOT NULL,
+  `user_regist_time` datetime DEFAULT NULL,
+  `user_update_time` datetime NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('Edward','827ccb0eea8a706c4c34a16891f84e7b','980639151@qq.com',0,1,'17863955547','2018-05-29 19:16:49','2018-05-29 19:16:52');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-05-31 23:03:09

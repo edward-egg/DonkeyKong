@@ -1,0 +1,126 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Main Page</title>
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/main.css">
+        <link rel="stylesheet" href="resource/css/swiper-4.1.6.min.css">
+        <style>
+            a{
+                color: black;
+                text-decoration: none;
+            }
+            a:link{
+                color: black;
+            }
+            a:visited{
+                color: black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--导航模块-->
+        <%@include file="header.jsp" %>
+        <!--热门城市-->
+        <div class="swiper-container ">
+            <div class="swiper-wrapper">
+                <c:forEach items="${topScenicList}" var="s">
+                <div class="swiper-slide hot-img">
+                    
+                        <a href="scenic/getAScenic?sid=${s.scenicId}">
+                            <span hidden="true">${s.scenicId}</span>
+                            <span class="img-info">${s.scenicName}!</span>
+                            <img src="resource/imags/saxby7Bioxc.jpg" alt="">
+                        </a>
+                    
+                </div>
+                </c:forEach>
+            </div>
+            <div class="swiper-pagination swiper-btn"></div>
+            <div class="swiper-button-prev swiper-btn"></div>
+            <div class="swiper-button-next swiper-btn"></div>
+
+        </div>
+        <!--热门游记-->
+        <div class="notes">
+            <span class="topic">
+                <img src="resource/imags/icon/hot-red.png" width="20px" height="20px" />Hot Topic
+                <img src="resource/imags/icon/hot-red.png" width="20px" height="20px" />
+            </span>
+            <div class="travel-note">
+                <c:forEach items="${noteTopList}" var="n">
+                    <a href="note/getANote?nid=${n.noteId}" id="note-nav">
+                        <div class="note-item">
+                            <img src="resource/imags/2JMZXTyFUOg.jpg" />
+                            <div class="content">
+                                <span hidden>${n.noteId}</span><!--隐藏id传数据-->
+                                <dl>
+                                    <dt>
+                                        ${n.noteTitle}
+                                    </dt>
+                                    <dd>
+                                        ${n.noteContent}
+                                    </dd>
+                                </dl>
+                                <div class="info">
+
+                                    <span class="user">
+                                        <img src="resource/imags/icon/account.png" class="icon account" alt="">${n.users.userId}</span>
+                                    <span class="like">
+                                        <img src="resource/imags/icon/favorites.png" class="icon browse" alt="">${n.noteLike}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </c:forEach>
+            </div>
+        </div>
+
+
+    </body>
+    <script src="resource/js/swiper-4.1.6.min.js"></script>
+    <script src="resource/js/jquery-2.1.0.js"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            loop: true,
+            speed: 500,
+            pagination: {
+                el: '.swiper-pagination'
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            autoplay: true,
+            effect: 'coverflow'
+        });
+
+        function radioShow() {
+            var myRadio = document.getElementsByName('thing');
+            var div = document.getElementById('c').getElementsByTagName('div');
+            for (i = 0; i < div.length; i++) {
+                if (myRadio[i].checked) {
+                    div[i].style.display = 'block';
+                } else {
+                    div[i].style.display = 'none';
+                }
+
+            }
+        }
+        ;
+        $(document).ready(function () {
+
+            $('.hot-img').click(function () {
+                window.location.href = 'toScenicDetail';
+            });
+        })
+    </script>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/css/register.css">
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script>
+        $.validator.setDefaults({
+            submitHandler: function () {
+                console.log("提交事件!");
+            }
+        });
+        $().ready(function () {
+            $('#valid-form').validate({
+                rules: {
+                    id: {
+                        required: true,
+                        rangelength: [3, 15]
+                    },
+                    name:{
+                        required:true,
+
+                    },
+                    pass: {
+                        required: true,
+                        rangelength: [3, 15]
+                    },
+                    tel:{
+                        required:true,
+
+                    },
+                    mail:{
+                        required:true,
+                        mail:true
+                    }
+                },
+                messages: {
+                    id: {
+                        required: "Please Enter your id",
+                        rangelength: "Please Enter the id from 3 to 15",
+
+                    },
+                    pass: {
+                        required: "Please Enter your password",
+                        rangelength: "Please Enter the password from 3 to 15",
+
+                    },
+                }
+
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div class="title">
+        <div>
+            <img src="../imags/logo.png" width="80px" height="80px" alt="">
+            <span>DonkeyKong</span> 
+        </div>
+    </div>
+    <div class="login">
+        <form id="valid-form">
+            <span class="welcome-login">Register</span>
+            <br>
+            <input id="id" name="id" class="id-input" type="text" placeholder="Enter your ID" />
+            <br>
+            <input id="name" name="name" class="name-input" type="text" placeholder="Enter your Name" />
+            <br>
+            <input id="pass" name="pass" class="pass-input" type="password" placeholder="Enter your Password" />
+            <br>
+            <input id="tel" name="tel" class="tel-input" type="text" placeholder="Enter your phone number" />
+            <br>
+            <input id="mail" name="mail" class="mail-input" type="text" placeholder="Enter your e-mail" />           
+            <br>
+            <button type="submit" class="btn-regist">Register</button>
+            <button type="reset" class="btn-reset">Reset</button>
+        </form>
+    </div>
+</body>
+
+</html>

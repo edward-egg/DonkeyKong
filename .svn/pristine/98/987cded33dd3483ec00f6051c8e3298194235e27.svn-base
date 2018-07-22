@@ -1,0 +1,57 @@
+body {
+  background-image: url("../imags/login-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat; }
+  body .login {
+    margin-left: 37%;
+    width: 23%;
+    height: auto;
+    background-color: rgba(240, 230, 140, 0.7);
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 10%;
+    padding: 2%; }
+    body .login .welcome-login {
+      font-size: 30px;
+      font-weight: bolder;
+      color: dimgray; }
+    body .login .id-input, body .login .pass-input, body .login .tel-input, body .login .mail-input, body .login .name-input {
+      border-radius: 5px;
+      height: 30px;
+      width: 70%;
+      margin-top: 8%;
+      padding-left: 5px; }
+    body .login .error {
+      display: block;
+      font-size: 13px;
+      color: red;
+      position: relative;
+      top: 10px; }
+    body .login .wrong {
+      font-size: 13px;
+      color: red;
+      position: relative;
+      left: 20%; }
+    body .login .btn-regist, body .login .btn-reset {
+      width: 70%;
+      height: 40px;
+      margin-top: 10%;
+      font-size: 18px;
+      background-color: #00008B;
+      color: whitesmoke;
+      border-radius: 8px; }
+      body .login .btn-regist:hover, body .login .btn-reset:hover {
+        background-color: #FFFFF0;
+        color: black;
+        font-weight: bold;
+        transition-duration: 0.3s; }
+  body .title {
+    color: black;
+    font-size: 28px;
+    font-weight: bolder;
+    position: relative;
+    top: 80px;
+    left: 120px;
+    letter-spacing: 2px; }
+
+/*# sourceMappingURL=register.css.map */

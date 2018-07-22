@@ -1,0 +1,81 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.util.ArrayList;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pojo.Areas;
+
+/**
+ *
+ * @author Jason
+ */
+@Repository
+public class AreaDaoImpl implements AreaDao{
+    @Autowired
+    SessionFactory factory;
+    
+    @Override
+    public void insertArea(Areas area) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.save(area);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void deleteArea(String aid) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.delete(getAreaById(aid));
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void update(Areas area) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.update(area);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public Areas getAreaById(String aid) {
+        Session session=factory.openSession();
+        Areas temp =  (Areas) session.get(Areas.class,aid);
+        session.close();
+        return temp;
+    }
+
+    @Override
+    public ArrayList<Areas> getAllAreas() {
+        String hql = "from Areas";
+        Session session=factory.openSession();
+        ArrayList<Areas> list = (ArrayList<Areas>) session.createQuery(hql).list();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public Areas getAreaByName(String areaName) {
+        String hql = "from Areas where areaName = ?";
+        Session session=factory.openSession();
+        Query q = session.createQuery(hql);
+        q.setString(0, areaName);
+        Areas area = (Areas) q.uniqueResult();
+        session.close();
+        return area != null ? area : null;
+    }
+    
+}

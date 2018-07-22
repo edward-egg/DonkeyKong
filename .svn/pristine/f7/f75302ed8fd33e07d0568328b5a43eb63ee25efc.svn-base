@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-5-28 23:08:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.TourApply" table="tour_apply" catalog="donkeykong" optimistic-lock="version">
+        <id name="applyId" type="string">
+            <column name="apply_id" length="64" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tour" class="pojo.Tour" fetch="select">
+            <column name="tour_id" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="users" class="pojo.Users" fetch="select">
+            <column name="user_id" length="64" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

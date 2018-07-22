@@ -1,0 +1,61 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package services;
+
+import dao.ManagerDao;
+import java.io.IOException;
+import java.sql.SQLException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import pojo.Admin;
+
+/**
+ *
+ * @author hasee
+ */
+@Service
+public class ManagerServiceImpl implements ManagerService{
+        @Autowired
+        ManagerDao managerDao;
+        
+        @Transactional(
+            //what type of propagation is needed for this type of transaction
+            propagation = Propagation.REQUIRED,
+            //is this transaction read only
+            readOnly = true,
+            timeout = 30,
+            //what are the rollback rules(When the transaction should roll back)
+            rollbackFor = {SQLException.class, IOException.class, RuntimeException.class},
+            //roll back the reansaction if the method gives any of these exception
+            //isolation level
+            isolation = Isolation.READ_COMMITTED
+    )
+    @Override
+    public Admin login(String mid, String mpass) {
+        Admin admin = managerDao.login(mid);
+        if(admin !=null && admin.getPassword().equals(mpass)){
+            return admin;
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public void update(Admin admin) {
+        managerDao.update(admin);
+    }
+
+    @Override
+    public void freezeUser(String uid, int value) {
+        managerDao.freezeUser(uid, value);
+    }
+
+    
+    
+}

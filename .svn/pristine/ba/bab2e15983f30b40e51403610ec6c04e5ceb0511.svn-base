@@ -1,0 +1,55 @@
+1/7 = 0.142857142... 是个无限循环小数。w
+任何有理数都可以表示为无限循环小数的形式。
+本题目要求即是：给出一个数字的循环小数表示法。
+
+例如：
+
+输入：
+1,5
+则输出：
+0.2
+输入：
+1,7
+则输出：
+0.[142857]
+输入：
+7,6
+则输出:
+1.1[6]
+用户输入的格式是：
+整数,整数
+每个整数范围均为：1~1000
+
+程序输出两个整数做除法产生的小数或无限循环小数（循环节用方括号括起）。
+import java.util.*;
+public class Main{
+	static Scanner sc = new Scanner(System.in);
+	static int start=0;
+	static int f(int n, int m)
+    {
+
+        n = n % m;    
+        Vector v = new Vector();
+        
+        for(;;)
+        {	
+            v.add(n);
+            n *= 10;
+            n = n % m;
+            if(n==0) return 0;
+            if(v.indexOf(n)>=0) {start=v.indexOf(n);return v.size()-v.indexOf(n);}  //填空
+        }
+    }
+	public static void main(String[] args){
+		double n=sc.nextDouble(),m=sc.nextDouble();
+		String s="",str;
+		s+=n/m;
+		int l=f((int)n,(int)m);
+		if(l>0){
+		str=s.substring(0,s.indexOf("."))+s.substring(s.indexOf("."),s.indexOf(".")+start+1)+"["+s.substring(s.indexOf(".")+start+1,s.indexOf(".")+start+1+l)+"]";
+		System.out.println(str);}
+		else{
+			System.out.println(s);
+		}
+	}
+}

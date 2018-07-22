@@ -1,0 +1,74 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.util.ArrayList;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pojo.Hotel;
+
+/**
+ *
+ * @author hasee
+ */
+@Repository
+public class HotelDaoImpl implements HotelDao{
+
+    @Autowired
+    SessionFactory factory;
+    
+    @Override
+    public void insertHotel(Hotel hotel) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.save(hotel);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void deleteHotel(String hid) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.delete(getHotelById(hid));
+        trans.commit();
+        session.close();
+    }
+       
+
+    @Override
+    public void update(Hotel hotel) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.update(hotel);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public Hotel getHotelById(String hid) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        Hotel temp =  (Hotel) session.get(Hotel.class,hid);
+        trans.commit();
+        session.close();
+        return temp;
+    }
+
+    @Override
+    public ArrayList<Hotel> getAllHotel() {
+        String hql = "select ht.hotelId,ht.hotelName,ht.hotelAddress,ht.areas,ht.hotelContent from Hotel as ht";
+        Session session=factory.openSession();
+        ArrayList<Hotel> list = (ArrayList<Hotel>) session.createQuery(hql).list();
+        System.out.println("LIST----------------->"+list);
+        session.close();
+        return list;
+    }
+    
+}

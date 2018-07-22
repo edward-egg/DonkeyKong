@@ -1,0 +1,186 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.util.ArrayList;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pojo.FoodStore;
+import pojo.FoodStoreComment;
+import pojo.Note;
+import pojo.Report;
+import pojo.Users;
+
+/**
+ *
+ * @author hasee
+ */
+@Repository
+public class FoodDaoImpl implements FoodDao{
+    
+    @Autowired
+    SessionFactory factory;
+    
+    @Override
+    public void insertFood(FoodStore food) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.save(food);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void deleteFood(String fid) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.delete(getFoodById(fid));
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void updateFood(FoodStore food) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.update(food);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public FoodStore getFoodById(String fid) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        FoodStore temp=  (FoodStore) session.get(FoodStore.class, fid);
+        trans.commit();
+        session.close();
+        return temp;
+    }
+
+    @Override
+    public ArrayList<FoodStore> getAllFood() {
+        String hql = "from FoodStore";
+        Session session=factory.openSession();
+        ArrayList<FoodStore> list = (ArrayList<FoodStore>) session.createQuery(hql).list();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public ArrayList<FoodStore> getTopFood() {
+        String hql = "from FoodStore as f order by f.liked desc";
+        Session session = factory.openSession();
+        Query query = session.createQuery(hql);  
+        query.setMaxResults(6);
+        ArrayList<FoodStore> topList = (ArrayList<FoodStore>)query.list();
+        session.close();
+        
+        return topList;
+    }
+
+    @Override
+    public void insertStoreComment(FoodStoreComment storeComment) {
+        Session session = factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.save(storeComment);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public ArrayList<FoodStoreComment> getAllComments(FoodStore store) {
+        String hql = "from FoodStoreComment where foodStore = ? order by commentTime desc";
+        Session session=factory.openSession();
+        Query query = session.createQuery(hql);     
+        ArrayList<FoodStoreComment> list = (ArrayList<FoodStoreComment>)query.setEntity(0, store).list();       
+        session.close();
+        return list;
+    }
+
+    @Override
+    public ArrayList<FoodStore> getFoodByQD() {
+        String hql = "from FoodStore as f  where f.areas.areaName='Shandong'";
+        Session session = factory.openSession();
+        Query query = session.createQuery(hql);  
+        ArrayList<FoodStore> topList = (ArrayList<FoodStore>)query.list();
+        session.close();
+        
+        return topList;
+    }
+
+    @Override
+    public void updatePic(FoodStore food) {
+        Session session = factory.openSession();
+        String hql = "update FoodStore set storeImg=?  where foodStoreId=?";
+        Transaction trans = session.beginTransaction();
+        Query query = session.createQuery(hql);
+        query.setString(0, food.getStoreImg());
+        query.setString(1, food.getFoodStoreId());
+        query.executeUpdate();
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void deleteFoodCommentById(String storeCommentId) {
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        session.createQuery("delete from FoodStoreComment where storeCommentId = ?").setString(0, storeCommentId).executeUpdate();
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void addFoodReport(Report report) {
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        session.save(report);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public boolean findReport(Users user, FoodStore food) {
+        Session session = factory.openSession();
+        Query q = session.createQuery("from Report where user = ? and foodStore = ?");
+        q.setString(0, user.getUserId());
+        q.setString(1, food.getFoodStoreId());
+        Report report = (Report) q.uniqueResult();
+        if(report == null){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean findReportComment(Users user, FoodStoreComment comment) {
+        Session session = factory.openSession();
+        Query q = session.createQuery("from Report where user = ? and foodStoreComment = ?");
+        q.setString(0, user.getUserId());
+        q.setString(1, comment.getStoreCommentId());
+        Report report = (Report) q.uniqueResult();
+        if(report == null){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public FoodStoreComment getFoodStoreCommentById(String cid) {
+        String hql = "from FoodStoreComment where storeCommentId=?";
+        Session session = factory.openSession();
+        Query query = session.createQuery(hql).setString(0, cid);
+        FoodStoreComment comment = (FoodStoreComment) query.uniqueResult();
+        session.close();
+        return comment;
+    }
+    
+}

@@ -1,0 +1,63 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import pojo.FoodStore;
+import pojo.Scenic;
+import services.FoodService;
+
+/**
+ *
+ * @author hasee
+ */
+@Controller
+@RequestMapping(value = "food")
+public class FoodController {
+    
+    @Autowired
+    FoodService fs;
+    
+    @RequestMapping(value = "/add" ,method = RequestMethod.POST)
+    public String addFood(FoodStore food,Model model){
+        fs.addFood(food);
+        model.addAttribute("foodList", fs.getAllFood());
+        return "manager/foodManage";
+    }
+    
+    @RequestMapping(value = "/delete" , method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteFood(String fid){
+        fs.deleteFood(fid);
+    }
+    
+    @RequestMapping(value ="/edit" ,method = RequestMethod.POST)
+    public String editFood(FoodStore food,Model model){
+        fs.updateFood(food);
+        model.addAttribute("foodList", fs.getAllFood());
+        return "manager/foodManage";
+    }
+    
+    @RequestMapping(value = "showAll",method = RequestMethod.GET)
+    public String showAllFood(Model model){
+        model.addAttribute("foodList",fs.getAllFood());
+        System.out.println("List "+fs.getAllFood());
+        return "manager/foodManage";
+    }
+    
+    @RequestMapping(value = "getAFood",method = RequestMethod.POST)
+    public String getAFood(String fid,Model model){
+        FoodStore food = fs.getFoodById(fid);
+        model.addAttribute("getFood", food);
+        return "manager/foodManage";
+    }
+    
+}

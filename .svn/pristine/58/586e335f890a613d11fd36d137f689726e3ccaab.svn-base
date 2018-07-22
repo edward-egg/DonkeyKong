@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-5-28 23:08:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Admin" table="admin" catalog="donkeykong" optimistic-lock="version">
+        <id name="adminId" type="string">
+            <column name="admin_id" length="64" />
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="string">
+            <column name="password" length="64" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="registTime" >
+            <column name="regist_time" sql-type="datetime" />
+        </property>
+        <property name="updateTime" >
+            <column name="update_time" sql-type="datetime"/>
+        </property>
+    </class>
+</hibernate-mapping>

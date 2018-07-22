@@ -1,0 +1,85 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package services;
+
+import dao.TravelDao;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import pojo.Tour;
+import pojo.TourApply;
+import pojo.Users;
+
+/**
+ *
+ * @author hasee
+ */
+@Service
+public class TravelServiceImpl implements TravelService{
+
+    @Autowired
+    TravelDao dao;
+    
+        @Transactional(
+            //what type of propagation is needed for this type of transaction
+            propagation = Propagation.REQUIRED,
+            //is this transaction read only
+            readOnly = true,
+            timeout = 30,
+            //what are the rollback rules(When the transaction should roll back)
+            rollbackFor = {SQLException.class, IOException.class, RuntimeException.class},
+            //roll back the reansaction if the method gives any of these exception
+            //isolation level
+            isolation = Isolation.READ_COMMITTED
+    )
+    
+    @Override
+    public void addTravel(Tour tour) {
+        dao.insertTravel(tour);
+    }
+    
+    @Override
+    public void addTravelApply(TourApply tr){
+        dao.addTravelApply(tr);
+    }
+
+    @Override
+    public void deleteTravel(String tid) {
+        dao.deleteTravel(tid);
+    }
+
+    @Override
+    public void updateTravel(Tour tour) {
+        dao.updateTravel(tour);
+    }
+
+    @Override
+    public Tour getTourById(String tid) {
+        return dao.getTourById(tid);
+    }
+
+    @Override
+    public ArrayList<Tour> getAllTravel() {
+        return dao.getAllTravel();
+    }
+
+    @Override
+    public ArrayList<Tour> getAllTravelByUserId(String uid) {
+        return dao.getAllTravelByUserId(uid);
+    }
+
+    @Override
+    public ArrayList<String> getApplyUsersId(String tid) {
+        return dao.getApplyUsersId(tid);
+    }
+    
+
+}

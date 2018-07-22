@@ -1,0 +1,199 @@
+<%-- 
+    Document   : travelPage
+    Created on : 2018-5-23, 23:18:30
+    Author     : hasee
+    组团游主页
+--%>
+
+<%@page import="java.text.ParseException"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/travelPage.css">
+        <link rel="stylesheet" type="text/css" href="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
+
+        <title>Travel Page</title>
+        <style>
+            #t-table{
+                margin: 0 auto;
+                text-align: center;
+            }
+            #t-table tr{
+                height: 40px;
+                display:block;
+                margin-top: 10px;
+                border-bottom:  1px dashed #cccccc;
+            }
+            a{
+                color: black;
+                text-decoration: none;
+            }
+            a:link{
+                color: black;
+            }
+            a:visited{
+                color: black;
+            }
+            .apply{
+                    outline: 0;
+
+                    margin-left:9%;
+                    margin-top: 10px;
+                    width: 80%;
+                    height: 40px;
+                    border-radius: 5px;
+                    background-color: #00BC9B;
+                    color: #fff;
+                    font-size: 18px;
+                    border: none;
+            }
+            .apply:hover{
+                    outline: 0;
+                    background-color: #00B091;
+                    transition-duration: 0.2s;
+            }
+        </style>
+    </head>
+    <body>
+        <!--导航模块-->
+        <%@include file="header.jsp" %>
+        <div class="travel-search">
+            <span>
+                Go Travelling!
+            </span>
+            <img class="icon-search" src="resource/imags/icon/search.png" width="20px" height="20px"/>
+            <input id="findTravel" type="text" class="in-find" placeholder="Enter the Place" />
+            <button type="button" class="find">Search</button>
+        </div>
+
+        <div class="travel-list">
+            <div class="toolbar">
+                <div class="travel-sort">
+                    <span>
+                        Sort
+                    </span>
+                    <button type="button" class="sort-btn cost" onclick="sortByCost()">Cost</button>
+                    <button type="button" class="sort-btn day" onclick="sortByDays()">Days</button>
+                </div>
+            </div>
+            <div class="travel-note">
+                <c:forEach items="${travelList}" var="t">
+                    <div class="travel-item" id="${t.tourId}">	   
+                        <div class="t-head">
+                            <span id="t-name">
+                                ${t.tourTitle}
+                            </span>
+                        </div>
+                        <div class="t-body">
+                            <span class="days">
+                                <img src="resource/imags/icon/calendar.png" class="icon time" />&nbsp;</span>
+                            <span class="user">
+                                <img src="resource/imags/icon/account.png" class="icon account" alt=""> ${t.scenicName}</span><br/>
+                            <span class="money">
+                                <img src="resource/imags/icon/rmb.png" class="icon cash" />${t.tourPrice}
+                            </span>
+                        </div>
+                    </div>
+
+                </c:forEach>
+                <c:forEach items="${travelList}" var="t">
+                    <div class="travel-detail" title="Apply">
+                        <table id="t-table">
+                            <tr>
+                                <th>Title:</th>
+                                <td>${t.tourTitle}</td>
+                            </tr>
+                            <tr>
+                                <th>Place:</th>
+                                <td>${t.scenicName}</td>
+                            </tr>
+                            <tr>
+                                <th>Time:</th>
+                                <td>${t.tourBeginTime} --- ${t.tourEndTime}</td>
+                            </tr>
+                            <tr>
+                                <th>Cost:</th>
+                                <td>${t.tourPrice}</td>
+                            </tr>
+                            <tr>
+                                <th>Person Limit:</th>
+                                <td>${t.limitNum}</td>
+                            </tr>
+                            <tr>
+                                <th>Trip Mode</th>
+                                <td>${t.tripMode}</td>
+                            </tr>
+                            <tr>
+                                <th>Hotel</th>
+                                <td>${t.hotelName}</td>
+                            </tr>
+                            
+                        </table>
+                        <button type="button" class="apply"  onclick="apply('${t.tourId}')">Apply</button>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+
+    </body>
+    <script src="resource/js/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+    <script>
+                                $('.travel-item').click(function () {
+                                    var index = $(this).index();
+                                    $('.travel-detail').eq(index).dialog('open');
+                                });
+                                $('.travel-detail').dialog({
+                                    modal: true,
+                                    autoOpen: false,
+                                    width: 500,
+                                    height: 500
+                                });
+                                function apply(tid) {
+                                    $.ajax({
+                                        url: 'users/join',
+                                        type: 'POST',
+                                        data: {"tid": tid},
+                                        success: function () {
+                                            window.location.reload();
+                                        },
+                                        error: function () {
+                                        }
+                                    });
+                                }
+                                function sortByCost() {
+                                    $.ajax({
+                                        url: 'redirect/travelPageCostSort',
+                                        type: 'POST',
+                                        data: {},
+                                        dataType: "json",
+                                        success: function () {
+                                            window.location.href = 'redirect/travelPage';
+                                        },
+                                        error: function () {
+                                            window.location.href = 'redirect/travelPage';
+                                        }
+                                    });
+                                }
+                                function sortByDays() {
+                                    $.ajax({
+                                        url: 'redirect/travelPageDaysSort',
+                                        type: 'POST',
+                                        data: {},
+                                        dataType: "json",
+                                        success: function () {
+                                            window.location.href = 'redirect/travelPage';
+                                        },
+                                        error: function () {
+                                            window.location.href = 'redirect/travelPage';
+                                        }
+                                    });
+                                }
+    </script>
+</html>

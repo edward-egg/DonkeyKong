@@ -1,0 +1,109 @@
+body {
+  background-image: url("../../imags/login-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat; }
+  body .login {
+    float: right;
+    min-width: 23%;
+    width: auto;
+    height: auto;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    text-align: center;
+    margin-right: 10%;
+    box-shadow: 0 0 10px #434A50;
+    padding: 2%; }
+    body .login .radios {
+      margin-top: 20px; }
+      body .login .radios .user-radio,
+      body .login .radios .manager-radio {
+        width: 20px;
+        height: 20px;
+        outline: 0; }
+    body .login .error {
+      display: none;
+      font-size: 13px;
+      color: red;
+      position: relative;
+      top: 10px; }
+    body .login .welcome-login {
+      font-size: 30px;
+      font-weight: bolder;
+      color: dimgray;
+      display: block;
+      border-bottom: 1px solid #ee7700;
+      width: 100%; }
+    body .login .id-input,
+    body .login .pass-input {
+      line-height: 28px;
+      border: 1px solid #d8d8d8;
+      color: #666;
+      box-shadow: 0 0 5px #fff;
+      border-radius: 5px;
+      height: 40px;
+      width: 80%;
+      margin-top: 5%;
+      padding-left: 5px; }
+      body .login .id-input:focus,
+      body .login .pass-input:focus {
+        transition-duration: 0.5s;
+        border: 1px solid #ffa200;
+        box-shadow: 0 0 5px #ffa200;
+        outline: 0; }
+    body .login .btn-login {
+      width: 70%;
+      height: 40px;
+      margin-top: 10%;
+      background-color: #ffa800;
+      font-size: 18px;
+      color: whitesmoke;
+      border-radius: 8px;
+      font-weight: bold;
+      border: none; }
+      body .login .btn-login:hover {
+        background-color: #ffb01e;
+        color: whitesmoke;
+        font-weight: bold;
+        transition-duration: 0.3s; }
+    body .login .to-regist {
+      display: block;
+      margin-top: 5%;
+      font-size: 16px;
+      color: #757575; }
+      body .login .to-regist a {
+        text-decoration: none;
+        color: red; }
+    body .login #forget {
+      position: relative;
+      top: 16px;
+      font-size: 14px;
+      color: gainsboro;
+      float: left; }
+      body .login #forget a {
+        text-decoration: none; }
+        body .login #forget a:hover {
+          color: red; }
+  body .title {
+    color: black;
+    font-size: 28px;
+    font-weight: bolder;
+    position: relative;
+    top: 80px;
+    left: 120px;
+    letter-spacing: 2px; }
+    body .title span {
+      position: relative;
+      bottom: 20px; }
+  body .slogan {
+    width: 50%;
+    padding-left: 5px;
+    border-left: 5px whitesmoke solid;
+    border-radius: 3px;
+    color: black;
+    font-size: 25px;
+    font-weight: bolder;
+    position: relative;
+    top: 280px;
+    left: 100px; }
+
+/*# sourceMappingURL=login.css.map */

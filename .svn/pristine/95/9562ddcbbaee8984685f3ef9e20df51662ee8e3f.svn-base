@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-5-28 23:08:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Notification" table="notification" catalog="donkeykong" optimistic-lock="version">
+        <id name="notifyId" type="string">
+            <column name="notify_id" length="64" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="users" class="pojo.Users" fetch="select">
+            <column name="user_id" length="64" not-null="true" />
+        </many-to-one>
+        <property name="notifyContent" type="string">
+            <column name="notify_content" length="64" not-null="true" />
+        </property>
+        <property name="sendTime" >
+            <column name="send_time" sql-type="datetime"/>
+        </property>
+    </class>
+</hibernate-mapping>

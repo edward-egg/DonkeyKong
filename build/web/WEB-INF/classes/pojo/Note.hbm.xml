@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-5-28 23:08:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Note" table="note" catalog="donkeykong" optimistic-lock="version">
+        <id name="noteId" type="string">
+            <column name="note_id" length="64" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="users" class="pojo.Users">
+            <column name="user_id" length="64" not-null="true" />
+        </many-to-one>
+        <property name="noteTitle" type="string">
+            <column name="note_title" length="64" not-null="true" />
+        </property>
+        <property name="noteLike" type="int">
+            <column name="note_like" />
+        </property>
+        <property name="noteImg" type="string">
+            <column name="note_img"  length="100"/>
+        </property>
+        <property name="noteContent" type="string">
+            <column name="note_content" length="1000" />
+        </property>
+        <property name="publishTime" >
+            <column name="publish_time" sql-type="datetime"/>
+        </property>
+        <property name="updateTime" >
+            <column name="update_time" sql-type="datetime"/>
+        </property>
+        
+        <set name="noteComments" table="note_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="note_id" length="64" not-null="true" />
+            </key>
+            <one-to-many class="pojo.NoteComment" />
+        </set>
+    </class>
+</hibernate-mapping>

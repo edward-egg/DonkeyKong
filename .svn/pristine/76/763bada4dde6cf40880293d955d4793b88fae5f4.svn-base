@@ -1,0 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package services;
+
+import java.util.ArrayList;
+import pojo.Areas;
+
+/**
+ *
+ * @author Jason
+ */
+public interface AreasService {
+    void addAreas(Areas area);
+    void deleteAreas(String aid);
+    void updateAreas(Areas area);
+    ArrayList<Areas> getAllAreas();
+    Areas getFoodById(String aid);
+
+    public Areas getAreaByName(String areaName);
+}

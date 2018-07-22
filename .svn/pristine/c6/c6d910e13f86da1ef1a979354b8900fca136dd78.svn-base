@@ -1,0 +1,112 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.util.ArrayList;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pojo.Note;
+import pojo.NoteComment;
+import pojo.Users;
+
+/**
+ *
+ * @author hasee
+ */
+@Repository
+public class NoteDaoImpl implements NoteDao{
+
+    @Autowired
+    SessionFactory factory;
+    
+    @Override
+    public void insertNote(Note note) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.save(note);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void deleteNote(String nid) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.delete(getNoteById(nid));
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void updateNote(Note note) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.update(note);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public Note getNoteById(String nid) {
+        Session session=factory.openSession();
+        Note temp =(Note) session.get(Note.class, nid);
+        session.close();
+        return temp;
+    }
+
+    @Override
+    public ArrayList<Note> getAllNotes() {
+        String hql = "from Note";
+        Session session=factory.openSession();
+        ArrayList<Note> list = (ArrayList<Note>) session.createQuery(hql).list();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public void insertNoteComment(NoteComment noteComment) {
+        Session session = factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.save(noteComment);
+        trans.commit();
+        session.close();
+    }
+    
+    @Override
+    public ArrayList<NoteComment> getAllComments(Note note) {
+        String hql = "from NoteComment where note = ? order by commentTime desc";
+        Session session=factory.openSession();
+        ArrayList<NoteComment> list = (ArrayList<NoteComment>) session.createQuery(hql).setEntity(0, note).list();
+        session.close();
+        System.out.println("DAO LAYOR=====>"+list.size());
+        return list;
+    }
+
+    @Override
+    public ArrayList<Note> getTopNotes() {
+        String hql = "from Note as n order by n.noteLike desc";
+        Session session = factory.openSession();
+        ArrayList<Note> topList = (ArrayList<Note>)session.createQuery(hql).list();
+        session.close();
+        
+        return topList;
+    }
+
+    @Override
+    public ArrayList<Note> getAllNotesByUserId(String userId) {
+        String hql = "from Note where users = ?";
+        Session session = factory.openSession();
+        Query query = session.createQuery(hql).setString(0, userId);
+        ArrayList<Note> list = (ArrayList<Note>) query.list();
+        return list;
+    }
+    
+    
+}

@@ -1,0 +1,111 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pojo.Hotel;
+import pojo.HotelComment;
+import pojo.HotelRoom;
+import pojo.ScenicComment;
+import util.IDUtils;
+
+/**
+ *
+ * @author hasee
+ */
+@Repository
+public class HotelDaoImpl implements HotelDao{
+
+    @Autowired
+    SessionFactory factory;
+
+    @Override
+    public void insertHotel(Hotel hotel) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.save(hotel);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void deleteHotel(String hid) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.delete(getHotelById(hid));
+        trans.commit();
+        session.close();
+    }
+       
+
+    @Override
+    public void update(Hotel hotel) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.update(hotel);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public Hotel getHotelById(String hid) {
+        Session session=factory.openSession();
+        Hotel temp =  (Hotel) session.get(Hotel.class,hid);
+        session.close();
+        return temp;
+    }
+
+    @Override
+    public ArrayList<Hotel> getAllHotel() {
+        String hql = "from Hotel";
+        Session session=factory.openSession();
+        ArrayList<Hotel> list = (ArrayList<Hotel>) session.createQuery(hql).list();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public void insertHotelComment(HotelComment hotelComment) {
+        Session session = factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.save(hotelComment);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public ArrayList<HotelComment> getAllComments(Hotel hotel) {
+        String hql = "from HotelComment where hotel = ? order by commentTime desc";
+        Session session=factory.openSession();
+        Query query = session.createQuery(hql);     
+        ArrayList<HotelComment> list = (ArrayList<HotelComment>)query.setEntity(0, hotel).list();       
+        session.close();
+        return list;
+    }
+
+    @Override
+    public Set<HotelRoom> getAllRoomsByHotel(Hotel hotel) {
+        String hql = "from HotelRoom where hotel = ? ";
+        Session session=factory.openSession();
+        Query query = session.createQuery(hql);     
+        ArrayList<HotelRoom> list = (ArrayList<HotelRoom>)query.setEntity(0, hotel).list();
+        Set<HotelRoom> set = new HashSet<HotelRoom>();
+        for(HotelRoom room : list){
+            set.add(room);
+        }
+        session.close();
+        return set;
+    }
+    
+}

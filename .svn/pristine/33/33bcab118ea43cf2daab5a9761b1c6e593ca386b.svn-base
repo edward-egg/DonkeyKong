@@ -1,0 +1,121 @@
+<%-- 
+    Document   : myNote
+    Created on : 2018-5-23, 23:08:37
+    Author     : hasee
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        <title>Document</title>
+        <link rel="stylesheet" type="text/css" href="resource/css/css/myNote.css" />
+        <link rel="stylesheet" href="resource/css/edbox.css"/>
+    </head>
+
+    <body>
+        <%@include file="userTemplate.jsp" %>
+        <div class="content">
+            <div id="tabs">
+                <div class="thead">
+                    <span>My Notes</span>
+                    <ul>
+                        <li>
+                            <input type="button" value="NoteList"/>
+                        </li>
+                        <li>
+                            <input type="button" value="Write"/>
+                        </li>
+                    </ul>
+                </div><br/>
+                <div class="detail">
+                    <div id="tab1" class="note-list">
+                        <div class="list">
+                            <c:forEach items="${noteList}" var="n">
+                                
+                                    <div class="item" id="${n.noteId}">
+                                        <div class="item-img">
+                                            <img src="resource/imags/icon/camera.png" />
+                                        </div>
+                                        <div class="item-content">
+                                            <p hidden="true">${n.noteId}</p>
+                                            <a href="note/getANote?nid=${n.noteId}"><span>${n.noteTitle}</span>	</a>								
+                                        </div>
+                                        <div class="confirm">
+                                            <span class="like">
+                                                <img src="resource/imags/icon/favorites.png" width="20px" height="20px"/>${n.noteLike}
+                                            </span>
+                                        </div>
+                                        <div class="operate">
+                                            <button type="button" class="edit">
+                                                Edit
+                                            </button>
+                                            <button type="button" class="delete" onclick="delNote('${n.noteId}')">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div> 
+                                
+                            </c:forEach>
+
+                        </div>
+                    </div>
+                    <div id="tab2" class="write-note">
+                        <form action="note/add" method="POST">
+                            <div class="note-title">
+                                <input type="text" id="n-title" onblur="validateTitle(this)" name="noteTitle" id="note-title" placeholder="Enter the note title" required="true"/>
+                            </div>
+                            <div  class="note-content">
+                                <textarea id="n-content" name="noteContent" required="true"></textarea>
+                            </div>
+                            <div id="note-sub" class="note-submit">
+                                <button type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="resource/js/jquery-2.1.0.js"></script>
+    <script src="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="resource/js/jquery.edbox.js"></script>
+    <script>
+                                $(document).ready(function () {
+                                    $('#tab2').hide();
+                                    $('.thead li').bind("click", function () {
+                                        var index = $(this).index();
+                                        var divs = $(".detail > div");
+                                        $(this).parent().children("li").attr("class", "tab-nav");
+                                        divs.hide();
+                                        divs.eq(index).show();
+                                    });
+                                });
+                                function delNote(nid) {
+                                    alert('hhhh');
+                                    $.ajax({
+                                        url: 'note/delete',
+                                        type: 'POST',
+                                        data: {
+                                            "noteId": nid
+                                        },
+                                        success: function () {
+                                            console.log("delete success!");
+                                            window.location.href="toMyNnote";
+                                            $('#' + nid).remove();
+                                        },
+                                        error: function () {
+                                            console.log("error delete!!");
+                                        }
+                                    });
+                                }
+    </script>
+
+
+</html>

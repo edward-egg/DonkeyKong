@@ -1,0 +1,74 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import java.util.ArrayList;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pojo.Scenic;
+
+/**
+ *
+ * @author hasee
+ */
+@Repository
+public class ScenicDaoImpl implements ScenicDao{
+    
+    @Autowired
+    SessionFactory factory;
+    
+    @Override
+    public ArrayList<Scenic> getAllScenic() {
+        String hql = "select sc.scenicId,sc.scenicName,sc.areas,sc.scenicAddress,sc.scenicContent from Scenic as sc";
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        ArrayList<Scenic> list = (ArrayList<Scenic>) session.createQuery(hql).list();
+        trans.commit();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public void insert(Scenic scenic) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.save(scenic);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void delete(String sid) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.delete(getScenic(sid));
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public void update(Scenic scenic) {
+        Session session=factory.openSession();
+        Transaction trans=session.beginTransaction();
+        session.update(scenic);
+        trans.commit();
+        session.close();
+    }
+
+    @Override
+    public Scenic getScenic(String sid) {
+        Session session = factory.openSession();
+        Transaction trans = session.beginTransaction();
+        Scenic temp = (Scenic)session.get(Scenic.class, sid);
+        trans.commit();
+        session.close();
+        return temp;
+    }
+    
+}

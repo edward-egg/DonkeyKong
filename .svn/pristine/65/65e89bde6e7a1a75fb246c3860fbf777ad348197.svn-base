@@ -1,0 +1,135 @@
+<%-- 
+    Document   : hotelDetail
+    Created on : 2018-5-30, 19:45:31
+    Author     : hasee
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <base href="${pageContext.request.contextPath}/"/>
+        <link rel="stylesheet" href="resource/css/css/hotelDetail.css">
+        <link rel="stylesheet" href="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.css" />
+
+        <title>Hotel Detail</title>
+    </head>
+    <body>
+        <%@include file="header.jsp" %>
+        <div class="detail-content">
+            <div class="h-head">
+                <div class="h-info">
+                    <span id="h-name">
+                        上海香格里拉酒店
+                    </span>
+                    <div class="h-address">
+                        <span>Address:&nbsp;</span>
+                        <span>上海常德路12号</span>
+                    </div>
+                </div>
+                <div class="h-img">
+                    <img src="resource/imags/Akz00I_GGjU.jpg"/>
+                </div>
+                <div class="daohang">
+                    <div class="write">
+                        <img src="resource/imags/icon/edit.png"/>
+                        <button type="button" class="w-btn">Write Recommend</button>
+                    </div>
+                </div>
+                <div id="dialog" title="Comment">
+                    <form>
+                        <textarea cols="50" rows="7" id="comment" style="width: 100%;resize: none">
+                            
+                        </textarea>
+                    </form>
+                </div>
+            </div>		
+            <div class="h-body" id="booking">
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>Room Type</th>
+                            <th>Cost</th>
+                            <th>Book</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Normal</td>
+                            <td>999</td>
+                            <td><button type="button" class="btn-book">Book</button></td>
+                        </tr>
+                        <tr>
+                            <td>Normal</td>
+                            <td>999</td>
+                            <td><button type="button" class="btn-book">Book</button></td>
+                        </tr>
+                        <tr>
+                            <td>Normal</td>
+                            <td>999</td>
+                            <td><button type="button" class="btn-book">Book</button></td>
+                        </tr>
+                    </tbody>					
+                </table>
+            </div>
+            <div class="h-recommend" id="recommend">
+                <span id="comment-title">Comments</span>
+                <hr/>
+                <div class="comment-list">
+
+                    <div class="comment-item">
+                        <div class="avatar">
+                            <img src="resource/imags/icon/account.png" />
+                        </div>
+                        <div class="comment-detail">
+                            <div class="info">
+                                <span>dasha</span>&nbsp;&nbsp;
+                                <span>Lv.99</span>
+                                <span id="report">
+                                    <img src="resource/imags/icon/report.png"/>&nbsp;<button id="btn-report" type="button">Report!</button>
+                                </span>
+                            </div>
+                            <div class="msg">
+                                <p>
+                                    ……好了，楼主正处于“傻三年”的第二年，前言 事件背景 旅行意义 心灵感触。。。楼主已经编不下去了，少写点字，咋们先来点首页预览图可好？ 梵蒂冈——
+                                </p>
+                                <span id="">
+                                    2018-3-4
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="resource/js/jquery-2.1.0.js" ></script>
+    <script type="text/javascript" src="resource/js/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.w-btn').click(function () {
+                $('#dialog').dialog('open');
+            });
+            $('#dialog').dialog({
+                height: 300,
+                width: 400,
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    "Comment": function () {
+                        console.log("comment");
+
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        })
+    </script>
+
+</html>

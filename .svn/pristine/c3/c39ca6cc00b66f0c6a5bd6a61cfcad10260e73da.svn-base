@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-5-28 23:08:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Tour" table="tour" catalog="donkeykong" optimistic-lock="version">
+        <id name="tourId" type="string">
+            <column name="tour_id" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="tourTitle" type="string">
+            <column name="tour_title" length="30" not-null="true" />
+        </property>
+        <property name="scenicName" type="string">
+            <column name="scenic_name" length="64" not-null="true" />
+        </property>
+        <property name="tourPrice" type="double">
+            <column name="tour_price" precision="10" not-null="true" />
+        </property>
+        <property name="limitNum" type="int">
+            <column name="limit_num" not-null="true" />
+        </property>
+        <property name="tripMode" type="string">
+            <column name="trip_mode" length="64" not-null="true" />
+        </property>
+        <property name="hotelName" type="string">
+            <column name="hotel_name" length="64" not-null="true" />
+        </property>
+        <property name="isApprove" type="int">
+            <column name="is_approve" not-null="true" />
+        </property>
+        <property name="tourBeginTime" type="timestamp">
+            <column name="tour_begin_time" length="19" not-null="true" />
+        </property>
+        <property name="tourEndTime" type="timestamp">
+            <column name="tour_end_time" length="19" not-null="true" />
+        </property>
+        <property name="applyEndTime" type="timestamp">
+            <column name="apply_end_time" length="19" not-null="true" />
+        </property>
+        <set name="tourApplies" table="tour_apply" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tour_id" length="20" not-null="true" />
+            </key>
+            <one-to-many class="pojo.TourApply" />
+        </set>
+        <set name="tourComments" table="tour_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tour_id" length="20" not-null="true" />
+            </key>
+            <one-to-many class="pojo.TourComment" />
+        </set>
+    </class>
+</hibernate-mapping>

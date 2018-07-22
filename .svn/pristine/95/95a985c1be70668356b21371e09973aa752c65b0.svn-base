@@ -1,0 +1,105 @@
+body {
+  width: 100%;
+  height: 100%;
+   }
+  body .header {
+    width: 100%;
+    height: 150px;
+    background-color: #545c64; }
+    body .header .title {
+      position: absolute;
+      top: 3%;
+      left: 40%;
+      color: white;
+      font-size: 50px;
+      font-weight: bold; }
+      body .header .title span {
+        position: relative;
+        bottom: 30px; }
+    body .header .header-content {
+      padding: 1%;
+      text-align: center;
+      width: 20%;
+      height: inherit; }
+      body .header .header-content .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        overflow: hidden;
+        margin-left: 10%; }
+        body .header .header-content .avatar img {
+          width: 100%;
+          height: 100%; }
+      body .header .header-content .user-name {
+        float: left;
+        color: white;
+        font-size: 16px;
+        margin: 2% 0 0 2%; }
+    body .header .logout {
+      outline: 0;
+      float: right;
+      width: 8%;
+      height: 40px;
+      position: relative;
+      top: 20%;
+      right: 5%;
+      border-radius: 5px;
+      background-color: #909399;
+      color: #fff;
+      font-size: 18px;
+      border: none; }
+      body .header .logout:hover {
+        outline: 0;
+        background-color: #a6a9ad;
+        transition-duration: 0.2s; }
+    body .header .to-main {
+      margin-left: 5px;
+      outline: 0;
+      float: right;
+      width: 8%;
+      height: 40px;
+      position: relative;
+      top: 20%;
+      right: 5%;
+      border-radius: 5px;
+      background-color: #00BC9B;
+      color: #fff;
+      font-size: 18px;
+      border: none; }
+      body .header .to-main:hover {
+        outline: 0;
+        background-color: #00B091;
+        transition-duration: 0.2s; }
+  body .banner {
+    background-color: #545c64;
+    float: left;
+    width: 9%;
+    height: 500px; }
+    body .banner ul {
+      position: relative;
+      right: 40px;
+      list-style-type: none;
+      width: 100%;
+      padding-top: 5%; }
+      body .banner ul li {
+        text-align: center;
+        margin-top: 30%;
+        border-bottom: 1px white solid;
+        width: 100%;
+        height: 50px; }
+        body .banner ul li:hover {
+          background-color: #434a50; }
+        body .banner ul li .icon-menu {
+          width: 20px;
+          height: 20px; }
+        body .banner ul li a {
+          display: block;
+          padding-top: 8%;
+          font-size: 1em;
+          text-decoration: none;
+          color: white; }
+          body .banner ul li a:hover {
+            font-weight: bold;
+            color: #ffd04b; }
+
+/*# sourceMappingURL=userPage.css.map */
